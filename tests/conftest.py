@@ -1,18 +1,20 @@
 import pytest
 import asyncio
+import pytest
+import sys
 from typing import AsyncGenerator, Generator
 from httpx import AsyncClient, ASGITransport
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 from motor.motor_asyncio import AsyncIOMotorClient
-
+import database.mongo as mongo_module
 from main import app
 from database.sql_database import Base, get_db
 from config import settings
 from crud.security import create_access_token
 from crud.user_crud import add_user
 from schemas.users import User, Role, APIKey
-
+from pymongo import MongoClient
 TEST_DATABASE_URL = "sqlite:///./test.db"
 TEST_MONGODB_DATABASE_NAME = "fraudshield_test"
 
@@ -28,19 +30,32 @@ def override_get_db():
 
 mongo_test_client = AsyncIOMotorClient(settings.MONGODB_URL)
 test_db = mongo_test_client[TEST_MONGODB_DATABASE_NAME]
-
+sync_mongo_client = MongoClient(settings.MONGODB_URL)
 app.dependency_overrides[get_db] = override_get_db
 
 # REMOVED: custom event_loop fixture (not needed with asyncio_mode=auto)
-
+@pytest.fixture(scope="session")
+def event_loop() :
+    """
+    Create a session‑scoped event loop that won't close prematurely.
+    On Windows, force SelectorEventLoop to avoid ProactorEventLoop issues.
+    """
+    if sys.platform == "win32":
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+    loop = asyncio.get_event_loop_policy().new_event_loop()
+    yield loop
+    loop.close()
 @pytest.fixture(autouse=True)
 async def setup_database():
+    # SQL setup
     Base.metadata.create_all(bind=engine)
+    # MONGO OVERRIDE: point the app to the test database
+    mongo_module.transaction_collection = test_db["transactions"]
     yield
     Base.metadata.drop_all(bind=engine)
-    collections = await test_db.list_collection_names()
-    for collection in collections:
-        await test_db[collection].drop()
+    # CLEANUP: drop the whole test database using a *synchronous* client
+    sync_mongo_client.drop_database(TEST_MONGODB_DATABASE_NAME)
+    
 
 @pytest.fixture
 async def client() -> AsyncGenerator[AsyncClient, None]:

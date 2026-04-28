@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "FraudShield API",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "run_server.py",
+      "console": "internalConsole",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    }
+  ]
+}

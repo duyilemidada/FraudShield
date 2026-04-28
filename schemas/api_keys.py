@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-
+from pydantic import ConfigDict
 class APIKeyCreate(BaseModel):
     label: str
 
@@ -9,5 +9,4 @@ class APIKeyResponse(BaseModel):
     key: str
     is_active: bool
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

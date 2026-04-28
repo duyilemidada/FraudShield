@@ -1,0 +1,26 @@
+time 2026-04-27 12:36:42, INFO: FraudShield API starting up
+time 2026-04-27 12:41:25, INFO: Registration attempt for email=shop1@example.com, role=Role.BASIC
+time 2026-04-27 12:41:26, INFO: User shop1 registered successfully
+time 2026-04-27 12:45:35, INFO: FraudShield API stutting down
+time 2026-04-27 12:51:08, INFO: FraudShield API starting up
+time 2026-04-27 12:51:31, INFO: Registration attempt for email=shop1@example.com, role=Role.BASIC
+time 2026-04-27 13:04:03, INFO: Registration attempt for email=new@example.com, role=Role.BASIC
+time 2026-04-27 13:04:03, INFO: User newuser registered successfully
+time 2026-04-27 13:04:04, INFO: Login attempt for user: testuser
+time 2026-04-27 13:04:05, INFO: User testuser authenticated, role=Role.BASIC
+time 2026-04-27 13:04:06, INFO: Login attempt for user: testuser
+time 2026-04-27 13:04:06, WARNING: Failed login for testuser
+time 2026-04-27 13:15:18, INFO: Registration attempt for email=new@example.com, role=Role.BASIC
+time 2026-04-27 13:15:18, INFO: User newuser registered successfully
+time 2026-04-27 13:15:19, INFO: Login attempt for user: testuser
+time 2026-04-27 13:15:20, INFO: User testuser authenticated, role=Role.BASIC
+time 2026-04-27 13:15:22, INFO: Login attempt for user: testuser
+time 2026-04-27 13:15:22, WARNING: Failed login for testuser
+time 2026-04-27 13:21:52, INFO: Registration attempt for email=new@example.com, role=Role.BASIC
+time 2026-04-27 13:21:52, INFO: User newuser registered successfully
+time 2026-04-27 13:21:53, INFO: Login attempt for user: testuser
+time 2026-04-27 13:21:53, INFO: User testuser authenticated, role=Role.BASIC
+time 2026-04-27 13:21:54, INFO: Login attempt for user: testuser
+time 2026-04-27 13:21:54, WARNING: Failed login for testuser
+time 2026-04-27 13:24:33, INFO: Predict request from merchant_id=1, txn_id=txn_123, amount=25000.0
+time 2026-04-27 13:24:33, INFO: Prediction result: score=10.0, decision=approve, merchant=1, txn=txn_123
