@@ -1,26 +1,192 @@
-time 2026-04-27 12:36:42, INFO: FraudShield API starting up
-time 2026-04-27 12:41:25, INFO: Registration attempt for email=shop1@example.com, role=Role.BASIC
-time 2026-04-27 12:41:26, INFO: User shop1 registered successfully
-time 2026-04-27 12:45:35, INFO: FraudShield API stutting down
-time 2026-04-27 12:51:08, INFO: FraudShield API starting up
-time 2026-04-27 12:51:31, INFO: Registration attempt for email=shop1@example.com, role=Role.BASIC
-time 2026-04-27 13:04:03, INFO: Registration attempt for email=new@example.com, role=Role.BASIC
-time 2026-04-27 13:04:03, INFO: User newuser registered successfully
-time 2026-04-27 13:04:04, INFO: Login attempt for user: testuser
-time 2026-04-27 13:04:05, INFO: User testuser authenticated, role=Role.BASIC
-time 2026-04-27 13:04:06, INFO: Login attempt for user: testuser
-time 2026-04-27 13:04:06, WARNING: Failed login for testuser
-time 2026-04-27 13:15:18, INFO: Registration attempt for email=new@example.com, role=Role.BASIC
-time 2026-04-27 13:15:18, INFO: User newuser registered successfully
-time 2026-04-27 13:15:19, INFO: Login attempt for user: testuser
-time 2026-04-27 13:15:20, INFO: User testuser authenticated, role=Role.BASIC
-time 2026-04-27 13:15:22, INFO: Login attempt for user: testuser
-time 2026-04-27 13:15:22, WARNING: Failed login for testuser
-time 2026-04-27 13:21:52, INFO: Registration attempt for email=new@example.com, role=Role.BASIC
-time 2026-04-27 13:21:52, INFO: User newuser registered successfully
-time 2026-04-27 13:21:53, INFO: Login attempt for user: testuser
-time 2026-04-27 13:21:53, INFO: User testuser authenticated, role=Role.BASIC
-time 2026-04-27 13:21:54, INFO: Login attempt for user: testuser
-time 2026-04-27 13:21:54, WARNING: Failed login for testuser
-time 2026-04-27 13:24:33, INFO: Predict request from merchant_id=1, txn_id=txn_123, amount=25000.0
-time 2026-04-27 13:24:33, INFO: Prediction result: score=10.0, decision=approve, merchant=1, txn=txn_123
+time 2026-04-29 09:16:48, INFO: FraudShield API starting up
+time 2026-04-29 09:55:56, INFO: FraudShield API stutting down
+time 2026-04-29 09:56:01, INFO: FraudShield API starting up
+time 2026-04-29 09:57:01, INFO: FraudShield API stutting down
+time 2026-04-29 09:57:06, INFO: FraudShield API starting up
+time 2026-04-29 10:30:56, INFO: FraudShield API stutting down
+time 2026-04-29 10:31:02, INFO: FraudShield API starting up
+time 2026-04-29 10:32:58, INFO: FraudShield API stutting down
+time 2026-04-29 10:33:02, INFO: FraudShield API starting up
+time 2026-04-29 10:33:34, INFO: Registration attempt for email=locust_cpwlht@test.com, role=Role.BASIC
+time 2026-04-29 10:33:34, INFO: User locust_cpwlht registered successfully
+time 2026-04-29 10:33:34, INFO: Login attempt for user: locust_cpwlht
+time 2026-04-29 10:33:35, INFO: User locust_cpwlht authenticated, role=Role.BASIC
+time 2026-04-29 10:33:46, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:33:47, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:33:49, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:33:56, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:34:01, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:34:05, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:34:23, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:34:31, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:34:51, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:34:55, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:35:16, INFO: Registration attempt for email=locust_xyexwb@test.com, role=Role.BASIC
+time 2026-04-29 10:35:16, INFO: Registration attempt for email=locust_xbmfck@test.com, role=Role.BASIC
+time 2026-04-29 10:35:16, INFO: Registration attempt for email=locust_kcwyfw@test.com, role=Role.BASIC
+time 2026-04-29 10:35:16, INFO: Registration attempt for email=locust_eaeudl@test.com, role=Role.BASIC
+time 2026-04-29 10:35:16, INFO: Registration attempt for email=locust_arxomu@test.com, role=Role.BASIC
+time 2026-04-29 10:35:16, INFO: User locust_xbmfck registered successfully
+time 2026-04-29 10:35:16, INFO: User locust_xyexwb registered successfully
+time 2026-04-29 10:35:16, INFO: Login attempt for user: locust_xbmfck
+time 2026-04-29 10:35:16, INFO: User locust_kcwyfw registered successfully
+time 2026-04-29 10:35:16, INFO: Login attempt for user: locust_xyexwb
+time 2026-04-29 10:35:16, INFO: User locust_eaeudl registered successfully
+time 2026-04-29 10:35:16, INFO: Login attempt for user: locust_kcwyfw
+time 2026-04-29 10:35:16, INFO: User locust_arxomu registered successfully
+time 2026-04-29 10:35:16, INFO: Login attempt for user: locust_eaeudl
+time 2026-04-29 10:35:16, INFO: Login attempt for user: locust_arxomu
+time 2026-04-29 10:35:17, INFO: User locust_xbmfck authenticated, role=Role.BASIC
+time 2026-04-29 10:35:17, INFO: User locust_xyexwb authenticated, role=Role.BASIC
+time 2026-04-29 10:35:17, INFO: User locust_kcwyfw authenticated, role=Role.BASIC
+time 2026-04-29 10:35:17, INFO: Registration attempt for email=locust_dbcctc@test.com, role=Role.BASIC
+time 2026-04-29 10:35:17, INFO: Registration attempt for email=locust_wkijlo@test.com, role=Role.BASIC
+time 2026-04-29 10:35:17, INFO: User locust_eaeudl authenticated, role=Role.BASIC
+time 2026-04-29 10:35:17, INFO: User locust_arxomu authenticated, role=Role.BASIC
+time 2026-04-29 10:35:17, INFO: Registration attempt for email=locust_gmeshd@test.com, role=Role.BASIC
+time 2026-04-29 10:35:17, INFO: Registration attempt for email=locust_shfdpn@test.com, role=Role.BASIC
+time 2026-04-29 10:35:17, INFO: Registration attempt for email=locust_edsxut@test.com, role=Role.BASIC
+time 2026-04-29 10:35:18, INFO: User locust_dbcctc registered successfully
+time 2026-04-29 10:35:18, INFO: User locust_wkijlo registered successfully
+time 2026-04-29 10:35:18, INFO: User locust_gmeshd registered successfully
+time 2026-04-29 10:35:18, INFO: User locust_edsxut registered successfully
+time 2026-04-29 10:35:18, INFO: User locust_shfdpn registered successfully
+time 2026-04-29 10:35:18, INFO: Login attempt for user: locust_wkijlo
+time 2026-04-29 10:35:18, INFO: Login attempt for user: locust_gmeshd
+time 2026-04-29 10:35:18, INFO: Login attempt for user: locust_dbcctc
+time 2026-04-29 10:35:18, INFO: Registration attempt for email=locust_ngmgzw@test.com, role=Role.BASIC
+time 2026-04-29 10:35:18, INFO: Registration attempt for email=locust_nzmqej@test.com, role=Role.BASIC
+time 2026-04-29 10:35:18, INFO: Registration attempt for email=locust_obhuob@test.com, role=Role.BASIC
+time 2026-04-29 10:35:18, INFO: Registration attempt for email=locust_oevdaq@test.com, role=Role.BASIC
+time 2026-04-29 10:35:18, INFO: Login attempt for user: locust_edsxut
+time 2026-04-29 10:35:18, INFO: Registration attempt for email=locust_jdeaod@test.com, role=Role.BASIC
+time 2026-04-29 10:35:18, INFO: Login attempt for user: locust_shfdpn
+time 2026-04-29 10:35:19, INFO: User locust_wkijlo authenticated, role=Role.BASIC
+time 2026-04-29 10:35:19, INFO: User locust_dbcctc authenticated, role=Role.BASIC
+time 2026-04-29 10:35:20, INFO: User locust_gmeshd authenticated, role=Role.BASIC
+time 2026-04-29 10:35:20, INFO: User locust_nzmqej registered successfully
+time 2026-04-29 10:35:20, INFO: User locust_obhuob registered successfully
+time 2026-04-29 10:35:20, INFO: User locust_ngmgzw registered successfully
+time 2026-04-29 10:35:20, INFO: Registration attempt for email=locust_ocojgd@test.com, role=Role.BASIC
+time 2026-04-29 10:35:20, INFO: Registration attempt for email=locust_xrwhti@test.com, role=Role.BASIC
+time 2026-04-29 10:35:20, INFO: Registration attempt for email=locust_kkueyf@test.com, role=Role.BASIC
+time 2026-04-29 10:35:20, INFO: User locust_edsxut authenticated, role=Role.BASIC
+time 2026-04-29 10:35:20, INFO: User locust_oevdaq registered successfully
+time 2026-04-29 10:35:20, INFO: Registration attempt for email=locust_jjtzmk@test.com, role=Role.BASIC
+time 2026-04-29 10:35:20, INFO: Registration attempt for email=locust_ciyodv@test.com, role=Role.BASIC
+time 2026-04-29 10:35:20, INFO: User locust_jdeaod registered successfully
+time 2026-04-29 10:35:20, INFO: Transaction list requested by merchant 4
+time 2026-04-29 10:35:20, INFO: User locust_shfdpn authenticated, role=Role.BASIC
+time 2026-04-29 10:35:21, INFO: User locust_xrwhti registered successfully
+time 2026-04-29 10:35:21, INFO: User locust_ocojgd registered successfully
+time 2026-04-29 10:35:21, INFO: User locust_kkueyf registered successfully
+time 2026-04-29 10:35:21, INFO: User locust_jjtzmk registered successfully
+time 2026-04-29 10:35:21, INFO: User locust_ciyodv registered successfully
+time 2026-04-29 10:35:21, INFO: Registration attempt for email=locust_knsigf@test.com, role=Role.BASIC
+time 2026-04-29 10:35:21, INFO: Registration attempt for email=locust_wnfphj@test.com, role=Role.BASIC
+time 2026-04-29 10:35:21, INFO: Registration attempt for email=locust_dqicvj@test.com, role=Role.BASIC
+time 2026-04-29 10:35:21, INFO: Login attempt for user: locust_nzmqej
+time 2026-04-29 10:35:21, INFO: Registration attempt for email=locust_rpxfes@test.com, role=Role.BASIC
+time 2026-04-29 10:35:21, INFO: Registration attempt for email=locust_qnxkhe@test.com, role=Role.BASIC
+time 2026-04-29 10:35:22, INFO: User locust_knsigf registered successfully
+time 2026-04-29 10:35:22, INFO: User locust_wnfphj registered successfully
+time 2026-04-29 10:35:22, INFO: User locust_nzmqej authenticated, role=Role.BASIC
+time 2026-04-29 10:35:22, INFO: User locust_qnxkhe registered successfully
+time 2026-04-29 10:35:22, INFO: Login attempt for user: locust_obhuob
+time 2026-04-29 10:35:22, INFO: User locust_dqicvj registered successfully
+time 2026-04-29 10:35:22, INFO: Login attempt for user: locust_ngmgzw
+time 2026-04-29 10:35:22, INFO: Login attempt for user: locust_oevdaq
+time 2026-04-29 10:35:22, INFO: User locust_rpxfes registered successfully
+time 2026-04-29 10:35:22, INFO: Login attempt for user: locust_jdeaod
+time 2026-04-29 10:35:22, INFO: Login attempt for user: locust_xrwhti
+time 2026-04-29 10:35:22, INFO: Transaction list requested by merchant 7
+time 2026-04-29 10:35:22, INFO: Login attempt for user: locust_ocojgd
+time 2026-04-29 10:35:22, INFO: Registration attempt for email=locust_xzebpy@test.com, role=Role.BASIC
+time 2026-04-29 10:35:22, INFO: Registration attempt for email=locust_lzrtny@test.com, role=Role.BASIC
+time 2026-04-29 10:35:22, INFO: Registration attempt for email=locust_ezqgtc@test.com, role=Role.BASIC
+time 2026-04-29 10:35:22, INFO: Registration attempt for email=locust_zfojnd@test.com, role=Role.BASIC
+time 2026-04-29 10:35:22, INFO: Registration attempt for email=locust_hyjdxn@test.com, role=Role.BASIC
+time 2026-04-29 10:35:23, INFO: User locust_oevdaq authenticated, role=Role.BASIC
+time 2026-04-29 10:35:23, INFO: User locust_ngmgzw authenticated, role=Role.BASIC
+time 2026-04-29 10:35:23, INFO: User locust_obhuob authenticated, role=Role.BASIC
+time 2026-04-29 10:35:23, INFO: User locust_jdeaod authenticated, role=Role.BASIC
+time 2026-04-29 10:35:23, INFO: User locust_xrwhti authenticated, role=Role.BASIC
+time 2026-04-29 10:35:23, INFO: User locust_ocojgd authenticated, role=Role.BASIC
+time 2026-04-29 10:35:23, INFO: User locust_xzebpy registered successfully
+time 2026-04-29 10:35:23, INFO: User locust_lzrtny registered successfully
+time 2026-04-29 10:35:24, INFO: Login attempt for user: locust_jjtzmk
+time 2026-04-29 10:35:24, INFO: Login attempt for user: locust_ciyodv
+time 2026-04-29 10:35:24, INFO: User locust_ezqgtc registered successfully
+time 2026-04-29 10:35:24, INFO: Login attempt for user: locust_kkueyf
+time 2026-04-29 10:35:24, INFO: User locust_zfojnd registered successfully
+time 2026-04-29 10:35:24, INFO: User locust_hyjdxn registered successfully
+time 2026-04-29 10:35:24, INFO: Transaction list requested by merchant 3
+time 2026-04-29 10:35:24, INFO: Registration attempt for email=locust_fxgorl@test.com, role=Role.BASIC
+time 2026-04-29 10:35:24, INFO: Registration attempt for email=locust_nhapew@test.com, role=Role.BASIC
+time 2026-04-29 10:35:24, INFO: Registration attempt for email=locust_fqcvpa@test.com, role=Role.BASIC
+time 2026-04-29 10:35:24, INFO: Registration attempt for email=locust_qdpnlo@test.com, role=Role.BASIC
+time 2026-04-29 10:35:24, INFO: Registration attempt for email=locust_mxwlev@test.com, role=Role.BASIC
+time 2026-04-29 10:35:24, INFO: Login attempt for user: locust_wnfphj
+time 2026-04-29 10:35:24, INFO: Login attempt for user: locust_knsigf
+time 2026-04-29 10:35:24, INFO: Login attempt for user: locust_qnxkhe
+time 2026-04-29 10:35:24, INFO: User locust_jjtzmk authenticated, role=Role.BASIC
+time 2026-04-29 10:35:24, INFO: User locust_ciyodv authenticated, role=Role.BASIC
+time 2026-04-29 10:35:25, INFO: User locust_kkueyf authenticated, role=Role.BASIC
+time 2026-04-29 10:35:25, INFO: Login attempt for user: locust_rpxfes
+time 2026-04-29 10:35:25, INFO: Login attempt for user: locust_dqicvj
+time 2026-04-29 10:35:25, INFO: User locust_fxgorl registered successfully
+time 2026-04-29 10:35:25, INFO: User locust_wnfphj authenticated, role=Role.BASIC
+time 2026-04-29 10:35:25, INFO: User locust_knsigf authenticated, role=Role.BASIC
+time 2026-04-29 10:35:25, INFO: User locust_fqcvpa registered successfully
+time 2026-04-29 10:35:25, INFO: User locust_qnxkhe authenticated, role=Role.BASIC
+time 2026-04-29 10:35:26, INFO: User locust_nhapew registered successfully
+time 2026-04-29 10:35:26, INFO: Login attempt for user: locust_lzrtny
+time 2026-04-29 10:35:26, INFO: Login attempt for user: locust_xzebpy
+time 2026-04-29 10:35:26, INFO: Registration attempt for email=locust_pdddxa@test.com, role=Role.BASIC
+time 2026-04-29 10:35:26, INFO: Registration attempt for email=locust_mrhciv@test.com, role=Role.BASIC
+time 2026-04-29 10:35:26, INFO: Registration attempt for email=locust_gkwqtx@test.com, role=Role.BASIC
+time 2026-04-29 10:35:26, INFO: Registration attempt for email=locust_myomyn@test.com, role=Role.BASIC
+time 2026-04-29 10:35:26, INFO: Registration attempt for email=locust_eptvbx@test.com, role=Role.BASIC
+time 2026-04-29 10:35:26, INFO: Login attempt for user: locust_ezqgtc
+time 2026-04-29 10:35:26, INFO: User locust_qdpnlo registered successfully
+time 2026-04-29 10:35:26, INFO: User locust_mxwlev registered successfully
+time 2026-04-29 10:35:26, INFO: User locust_dqicvj authenticated, role=Role.BASIC
+time 2026-04-29 10:35:26, INFO: User locust_rpxfes authenticated, role=Role.BASIC
+time 2026-04-29 10:35:26, INFO: User locust_lzrtny authenticated, role=Role.BASIC
+time 2026-04-29 10:35:27, INFO: User locust_xzebpy authenticated, role=Role.BASIC
+time 2026-04-29 10:35:27, INFO: Login attempt for user: locust_hyjdxn
+time 2026-04-29 10:35:27, INFO: User locust_pdddxa registered successfully
+time 2026-04-29 10:35:27, INFO: User locust_mrhciv registered successfully
+time 2026-04-29 10:35:27, INFO: User locust_eptvbx registered successfully
+time 2026-04-29 10:35:27, INFO: User locust_gkwqtx registered successfully
+time 2026-04-29 10:35:27, INFO: Registration attempt for email=locust_zeehmn@test.com, role=Role.BASIC
+time 2026-04-29 10:35:27, INFO: Registration attempt for email=locust_aitxnn@test.com, role=Role.BASIC
+time 2026-04-29 10:35:27, INFO: Registration attempt for email=locust_dipkxm@test.com, role=Role.BASIC
+time 2026-04-29 10:35:27, INFO: Registration attempt for email=locust_jusvrr@test.com, role=Role.BASIC
+time 2026-04-29 10:35:27, INFO: Registration attempt for email=locust_fkabds@test.com, role=Role.BASIC
+time 2026-04-29 10:35:27, INFO: Login attempt for user: locust_zfojnd
+time 2026-04-29 10:35:27, INFO: User locust_myomyn registered successfully
+time 2026-04-29 10:35:28, INFO: User locust_hyjdxn authenticated, role=Role.BASIC
+time 2026-04-29 10:35:28, INFO: User locust_ezqgtc authenticated, role=Role.BASIC
+time 2026-04-29 10:35:28, INFO: User locust_zeehmn registered successfully
+time 2026-04-29 10:35:29, INFO: User locust_zfojnd authenticated, role=Role.BASIC
+time 2026-04-29 10:35:58, INFO: Registration attempt for email=locust_fkaolo@test.com, role=Role.BASIC
+time 2026-04-29 10:35:58, INFO: Registration attempt for email=locust_jqwgci@test.com, role=Role.BASIC
+time 2026-04-29 10:35:58, INFO: Registration attempt for email=locust_vyeshg@test.com, role=Role.BASIC
+time 2026-04-29 10:35:58, INFO: Registration attempt for email=locust_asfrfr@test.com, role=Role.BASIC
+time 2026-04-29 10:35:58, INFO: Registration attempt for email=locust_vuaiku@test.com, role=Role.BASIC
+time 2026-04-29 10:35:58, INFO: Login attempt for user: locust_fqcvpa
+time 2026-04-29 10:35:58, INFO: Login attempt for user: locust_nhapew
+time 2026-04-29 10:35:58, INFO: Login attempt for user: locust_fxgorl
+time 2026-04-29 10:35:59, INFO: User locust_fqcvpa authenticated, role=Role.BASIC
+time 2026-04-29 10:35:59, INFO: User locust_nhapew authenticated, role=Role.BASIC
+time 2026-04-29 10:37:30, INFO: Transaction list requested by merchant 11
+time 2026-04-29 10:37:30, INFO: Transaction list requested by merchant 16
+time 2026-04-29 10:37:30, INFO: Transaction list requested by merchant 7
+time 2026-04-29 10:37:30, INFO: Login attempt for user: locust_qdpnlo
+time 2026-04-29 10:37:30, INFO: Login attempt for user: locust_mxwlev
+time 2026-04-29 10:37:31, INFO: Login attempt for user: locust_pdddxa
+time 2026-04-29 10:37:31, INFO: User locust_qdpnlo authenticated, role=Role.BASIC
+time 2026-04-29 10:37:31, INFO: User locust_mxwlev authenticated, role=Role.BASIC
+time 2026-04-29 10:37:31, INFO: User locust_pdddxa authenticated, role=Role.BASIC
+time 2026-04-29 10:37:48, INFO: FraudShield API stutting down
