@@ -21,7 +21,7 @@ def authenticate_user(session: Session, username_or_email: str, password: str) -
     try:
         validate_email(username_or_email)
         query = User.email
-    except:
+    except EmailNotValidError:
         query = User.username
     user = session.query(User).filter(query == username_or_email).first()
     if not user or not pwd_context.verify(password, user.hash_password):

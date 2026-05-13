@@ -1,0 +1,1049 @@
+time 2026-04-29 09:16:48, INFO: FraudShield API starting up
+time 2026-04-29 09:55:56, INFO: FraudShield API stutting down
+time 2026-04-29 09:56:01, INFO: FraudShield API starting up
+time 2026-04-29 09:57:01, INFO: FraudShield API stutting down
+time 2026-04-29 09:57:06, INFO: FraudShield API starting up
+time 2026-04-29 10:30:56, INFO: FraudShield API stutting down
+time 2026-04-29 10:31:02, INFO: FraudShield API starting up
+time 2026-04-29 10:32:58, INFO: FraudShield API stutting down
+time 2026-04-29 10:33:02, INFO: FraudShield API starting up
+time 2026-04-29 10:33:34, INFO: Registration attempt for email=locust_cpwlht@test.com, role=Role.BASIC
+time 2026-04-29 10:33:34, INFO: User locust_cpwlht registered successfully
+time 2026-04-29 10:33:34, INFO: Login attempt for user: locust_cpwlht
+time 2026-04-29 10:33:35, INFO: User locust_cpwlht authenticated, role=Role.BASIC
+time 2026-04-29 10:33:46, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:33:47, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:33:49, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:33:56, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:34:01, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:34:05, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:34:23, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:34:31, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:34:51, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:34:55, INFO: Transaction list requested by merchant 1
+time 2026-04-29 10:35:16, INFO: Registration attempt for email=locust_xyexwb@test.com, role=Role.BASIC
+time 2026-04-29 10:35:16, INFO: Registration attempt for email=locust_xbmfck@test.com, role=Role.BASIC
+time 2026-04-29 10:35:16, INFO: Registration attempt for email=locust_kcwyfw@test.com, role=Role.BASIC
+time 2026-04-29 10:35:16, INFO: Registration attempt for email=locust_eaeudl@test.com, role=Role.BASIC
+time 2026-04-29 10:35:16, INFO: Registration attempt for email=locust_arxomu@test.com, role=Role.BASIC
+time 2026-04-29 10:35:16, INFO: User locust_xbmfck registered successfully
+time 2026-04-29 10:35:16, INFO: User locust_xyexwb registered successfully
+time 2026-04-29 10:35:16, INFO: Login attempt for user: locust_xbmfck
+time 2026-04-29 10:35:16, INFO: User locust_kcwyfw registered successfully
+time 2026-04-29 10:35:16, INFO: Login attempt for user: locust_xyexwb
+time 2026-04-29 10:35:16, INFO: User locust_eaeudl registered successfully
+time 2026-04-29 10:35:16, INFO: Login attempt for user: locust_kcwyfw
+time 2026-04-29 10:35:16, INFO: User locust_arxomu registered successfully
+time 2026-04-29 10:35:16, INFO: Login attempt for user: locust_eaeudl
+time 2026-04-29 10:35:16, INFO: Login attempt for user: locust_arxomu
+time 2026-04-29 10:35:17, INFO: User locust_xbmfck authenticated, role=Role.BASIC
+time 2026-04-29 10:35:17, INFO: User locust_xyexwb authenticated, role=Role.BASIC
+time 2026-04-29 10:35:17, INFO: User locust_kcwyfw authenticated, role=Role.BASIC
+time 2026-04-29 10:35:17, INFO: Registration attempt for email=locust_dbcctc@test.com, role=Role.BASIC
+time 2026-04-29 10:35:17, INFO: Registration attempt for email=locust_wkijlo@test.com, role=Role.BASIC
+time 2026-04-29 10:35:17, INFO: User locust_eaeudl authenticated, role=Role.BASIC
+time 2026-04-29 10:35:17, INFO: User locust_arxomu authenticated, role=Role.BASIC
+time 2026-04-29 10:35:17, INFO: Registration attempt for email=locust_gmeshd@test.com, role=Role.BASIC
+time 2026-04-29 10:35:17, INFO: Registration attempt for email=locust_shfdpn@test.com, role=Role.BASIC
+time 2026-04-29 10:35:17, INFO: Registration attempt for email=locust_edsxut@test.com, role=Role.BASIC
+time 2026-04-29 10:35:18, INFO: User locust_dbcctc registered successfully
+time 2026-04-29 10:35:18, INFO: User locust_wkijlo registered successfully
+time 2026-04-29 10:35:18, INFO: User locust_gmeshd registered successfully
+time 2026-04-29 10:35:18, INFO: User locust_edsxut registered successfully
+time 2026-04-29 10:35:18, INFO: User locust_shfdpn registered successfully
+time 2026-04-29 10:35:18, INFO: Login attempt for user: locust_wkijlo
+time 2026-04-29 10:35:18, INFO: Login attempt for user: locust_gmeshd
+time 2026-04-29 10:35:18, INFO: Login attempt for user: locust_dbcctc
+time 2026-04-29 10:35:18, INFO: Registration attempt for email=locust_ngmgzw@test.com, role=Role.BASIC
+time 2026-04-29 10:35:18, INFO: Registration attempt for email=locust_nzmqej@test.com, role=Role.BASIC
+time 2026-04-29 10:35:18, INFO: Registration attempt for email=locust_obhuob@test.com, role=Role.BASIC
+time 2026-04-29 10:35:18, INFO: Registration attempt for email=locust_oevdaq@test.com, role=Role.BASIC
+time 2026-04-29 10:35:18, INFO: Login attempt for user: locust_edsxut
+time 2026-04-29 10:35:18, INFO: Registration attempt for email=locust_jdeaod@test.com, role=Role.BASIC
+time 2026-04-29 10:35:18, INFO: Login attempt for user: locust_shfdpn
+time 2026-04-29 10:35:19, INFO: User locust_wkijlo authenticated, role=Role.BASIC
+time 2026-04-29 10:35:19, INFO: User locust_dbcctc authenticated, role=Role.BASIC
+time 2026-04-29 10:35:20, INFO: User locust_gmeshd authenticated, role=Role.BASIC
+time 2026-04-29 10:35:20, INFO: User locust_nzmqej registered successfully
+time 2026-04-29 10:35:20, INFO: User locust_obhuob registered successfully
+time 2026-04-29 10:35:20, INFO: User locust_ngmgzw registered successfully
+time 2026-04-29 10:35:20, INFO: Registration attempt for email=locust_ocojgd@test.com, role=Role.BASIC
+time 2026-04-29 10:35:20, INFO: Registration attempt for email=locust_xrwhti@test.com, role=Role.BASIC
+time 2026-04-29 10:35:20, INFO: Registration attempt for email=locust_kkueyf@test.com, role=Role.BASIC
+time 2026-04-29 10:35:20, INFO: User locust_edsxut authenticated, role=Role.BASIC
+time 2026-04-29 10:35:20, INFO: User locust_oevdaq registered successfully
+time 2026-04-29 10:35:20, INFO: Registration attempt for email=locust_jjtzmk@test.com, role=Role.BASIC
+time 2026-04-29 10:35:20, INFO: Registration attempt for email=locust_ciyodv@test.com, role=Role.BASIC
+time 2026-04-29 10:35:20, INFO: User locust_jdeaod registered successfully
+time 2026-04-29 10:35:20, INFO: Transaction list requested by merchant 4
+time 2026-04-29 10:35:20, INFO: User locust_shfdpn authenticated, role=Role.BASIC
+time 2026-04-29 10:35:21, INFO: User locust_xrwhti registered successfully
+time 2026-04-29 10:35:21, INFO: User locust_ocojgd registered successfully
+time 2026-04-29 10:35:21, INFO: User locust_kkueyf registered successfully
+time 2026-04-29 10:35:21, INFO: User locust_jjtzmk registered successfully
+time 2026-04-29 10:35:21, INFO: User locust_ciyodv registered successfully
+time 2026-04-29 10:35:21, INFO: Registration attempt for email=locust_knsigf@test.com, role=Role.BASIC
+time 2026-04-29 10:35:21, INFO: Registration attempt for email=locust_wnfphj@test.com, role=Role.BASIC
+time 2026-04-29 10:35:21, INFO: Registration attempt for email=locust_dqicvj@test.com, role=Role.BASIC
+time 2026-04-29 10:35:21, INFO: Login attempt for user: locust_nzmqej
+time 2026-04-29 10:35:21, INFO: Registration attempt for email=locust_rpxfes@test.com, role=Role.BASIC
+time 2026-04-29 10:35:21, INFO: Registration attempt for email=locust_qnxkhe@test.com, role=Role.BASIC
+time 2026-04-29 10:35:22, INFO: User locust_knsigf registered successfully
+time 2026-04-29 10:35:22, INFO: User locust_wnfphj registered successfully
+time 2026-04-29 10:35:22, INFO: User locust_nzmqej authenticated, role=Role.BASIC
+time 2026-04-29 10:35:22, INFO: User locust_qnxkhe registered successfully
+time 2026-04-29 10:35:22, INFO: Login attempt for user: locust_obhuob
+time 2026-04-29 10:35:22, INFO: User locust_dqicvj registered successfully
+time 2026-04-29 10:35:22, INFO: Login attempt for user: locust_ngmgzw
+time 2026-04-29 10:35:22, INFO: Login attempt for user: locust_oevdaq
+time 2026-04-29 10:35:22, INFO: User locust_rpxfes registered successfully
+time 2026-04-29 10:35:22, INFO: Login attempt for user: locust_jdeaod
+time 2026-04-29 10:35:22, INFO: Login attempt for user: locust_xrwhti
+time 2026-04-29 10:35:22, INFO: Transaction list requested by merchant 7
+time 2026-04-29 10:35:22, INFO: Login attempt for user: locust_ocojgd
+time 2026-04-29 10:35:22, INFO: Registration attempt for email=locust_xzebpy@test.com, role=Role.BASIC
+time 2026-04-29 10:35:22, INFO: Registration attempt for email=locust_lzrtny@test.com, role=Role.BASIC
+time 2026-04-29 10:35:22, INFO: Registration attempt for email=locust_ezqgtc@test.com, role=Role.BASIC
+time 2026-04-29 10:35:22, INFO: Registration attempt for email=locust_zfojnd@test.com, role=Role.BASIC
+time 2026-04-29 10:35:22, INFO: Registration attempt for email=locust_hyjdxn@test.com, role=Role.BASIC
+time 2026-04-29 10:35:23, INFO: User locust_oevdaq authenticated, role=Role.BASIC
+time 2026-04-29 10:35:23, INFO: User locust_ngmgzw authenticated, role=Role.BASIC
+time 2026-04-29 10:35:23, INFO: User locust_obhuob authenticated, role=Role.BASIC
+time 2026-04-29 10:35:23, INFO: User locust_jdeaod authenticated, role=Role.BASIC
+time 2026-04-29 10:35:23, INFO: User locust_xrwhti authenticated, role=Role.BASIC
+time 2026-04-29 10:35:23, INFO: User locust_ocojgd authenticated, role=Role.BASIC
+time 2026-04-29 10:35:23, INFO: User locust_xzebpy registered successfully
+time 2026-04-29 10:35:23, INFO: User locust_lzrtny registered successfully
+time 2026-04-29 10:35:24, INFO: Login attempt for user: locust_jjtzmk
+time 2026-04-29 10:35:24, INFO: Login attempt for user: locust_ciyodv
+time 2026-04-29 10:35:24, INFO: User locust_ezqgtc registered successfully
+time 2026-04-29 10:35:24, INFO: Login attempt for user: locust_kkueyf
+time 2026-04-29 10:35:24, INFO: User locust_zfojnd registered successfully
+time 2026-04-29 10:35:24, INFO: User locust_hyjdxn registered successfully
+time 2026-04-29 10:35:24, INFO: Transaction list requested by merchant 3
+time 2026-04-29 10:35:24, INFO: Registration attempt for email=locust_fxgorl@test.com, role=Role.BASIC
+time 2026-04-29 10:35:24, INFO: Registration attempt for email=locust_nhapew@test.com, role=Role.BASIC
+time 2026-04-29 10:35:24, INFO: Registration attempt for email=locust_fqcvpa@test.com, role=Role.BASIC
+time 2026-04-29 10:35:24, INFO: Registration attempt for email=locust_qdpnlo@test.com, role=Role.BASIC
+time 2026-04-29 10:35:24, INFO: Registration attempt for email=locust_mxwlev@test.com, role=Role.BASIC
+time 2026-04-29 10:35:24, INFO: Login attempt for user: locust_wnfphj
+time 2026-04-29 10:35:24, INFO: Login attempt for user: locust_knsigf
+time 2026-04-29 10:35:24, INFO: Login attempt for user: locust_qnxkhe
+time 2026-04-29 10:35:24, INFO: User locust_jjtzmk authenticated, role=Role.BASIC
+time 2026-04-29 10:35:24, INFO: User locust_ciyodv authenticated, role=Role.BASIC
+time 2026-04-29 10:35:25, INFO: User locust_kkueyf authenticated, role=Role.BASIC
+time 2026-04-29 10:35:25, INFO: Login attempt for user: locust_rpxfes
+time 2026-04-29 10:35:25, INFO: Login attempt for user: locust_dqicvj
+time 2026-04-29 10:35:25, INFO: User locust_fxgorl registered successfully
+time 2026-04-29 10:35:25, INFO: User locust_wnfphj authenticated, role=Role.BASIC
+time 2026-04-29 10:35:25, INFO: User locust_knsigf authenticated, role=Role.BASIC
+time 2026-04-29 10:35:25, INFO: User locust_fqcvpa registered successfully
+time 2026-04-29 10:35:25, INFO: User locust_qnxkhe authenticated, role=Role.BASIC
+time 2026-04-29 10:35:26, INFO: User locust_nhapew registered successfully
+time 2026-04-29 10:35:26, INFO: Login attempt for user: locust_lzrtny
+time 2026-04-29 10:35:26, INFO: Login attempt for user: locust_xzebpy
+time 2026-04-29 10:35:26, INFO: Registration attempt for email=locust_pdddxa@test.com, role=Role.BASIC
+time 2026-04-29 10:35:26, INFO: Registration attempt for email=locust_mrhciv@test.com, role=Role.BASIC
+time 2026-04-29 10:35:26, INFO: Registration attempt for email=locust_gkwqtx@test.com, role=Role.BASIC
+time 2026-04-29 10:35:26, INFO: Registration attempt for email=locust_myomyn@test.com, role=Role.BASIC
+time 2026-04-29 10:35:26, INFO: Registration attempt for email=locust_eptvbx@test.com, role=Role.BASIC
+time 2026-04-29 10:35:26, INFO: Login attempt for user: locust_ezqgtc
+time 2026-04-29 10:35:26, INFO: User locust_qdpnlo registered successfully
+time 2026-04-29 10:35:26, INFO: User locust_mxwlev registered successfully
+time 2026-04-29 10:35:26, INFO: User locust_dqicvj authenticated, role=Role.BASIC
+time 2026-04-29 10:35:26, INFO: User locust_rpxfes authenticated, role=Role.BASIC
+time 2026-04-29 10:35:26, INFO: User locust_lzrtny authenticated, role=Role.BASIC
+time 2026-04-29 10:35:27, INFO: User locust_xzebpy authenticated, role=Role.BASIC
+time 2026-04-29 10:35:27, INFO: Login attempt for user: locust_hyjdxn
+time 2026-04-29 10:35:27, INFO: User locust_pdddxa registered successfully
+time 2026-04-29 10:35:27, INFO: User locust_mrhciv registered successfully
+time 2026-04-29 10:35:27, INFO: User locust_eptvbx registered successfully
+time 2026-04-29 10:35:27, INFO: User locust_gkwqtx registered successfully
+time 2026-04-29 10:35:27, INFO: Registration attempt for email=locust_zeehmn@test.com, role=Role.BASIC
+time 2026-04-29 10:35:27, INFO: Registration attempt for email=locust_aitxnn@test.com, role=Role.BASIC
+time 2026-04-29 10:35:27, INFO: Registration attempt for email=locust_dipkxm@test.com, role=Role.BASIC
+time 2026-04-29 10:35:27, INFO: Registration attempt for email=locust_jusvrr@test.com, role=Role.BASIC
+time 2026-04-29 10:35:27, INFO: Registration attempt for email=locust_fkabds@test.com, role=Role.BASIC
+time 2026-04-29 10:35:27, INFO: Login attempt for user: locust_zfojnd
+time 2026-04-29 10:35:27, INFO: User locust_myomyn registered successfully
+time 2026-04-29 10:35:28, INFO: User locust_hyjdxn authenticated, role=Role.BASIC
+time 2026-04-29 10:35:28, INFO: User locust_ezqgtc authenticated, role=Role.BASIC
+time 2026-04-29 10:35:28, INFO: User locust_zeehmn registered successfully
+time 2026-04-29 10:35:29, INFO: User locust_zfojnd authenticated, role=Role.BASIC
+time 2026-04-29 10:35:58, INFO: Registration attempt for email=locust_fkaolo@test.com, role=Role.BASIC
+time 2026-04-29 10:35:58, INFO: Registration attempt for email=locust_jqwgci@test.com, role=Role.BASIC
+time 2026-04-29 10:35:58, INFO: Registration attempt for email=locust_vyeshg@test.com, role=Role.BASIC
+time 2026-04-29 10:35:58, INFO: Registration attempt for email=locust_asfrfr@test.com, role=Role.BASIC
+time 2026-04-29 10:35:58, INFO: Registration attempt for email=locust_vuaiku@test.com, role=Role.BASIC
+time 2026-04-29 10:35:58, INFO: Login attempt for user: locust_fqcvpa
+time 2026-04-29 10:35:58, INFO: Login attempt for user: locust_nhapew
+time 2026-04-29 10:35:58, INFO: Login attempt for user: locust_fxgorl
+time 2026-04-29 10:35:59, INFO: User locust_fqcvpa authenticated, role=Role.BASIC
+time 2026-04-29 10:35:59, INFO: User locust_nhapew authenticated, role=Role.BASIC
+time 2026-04-29 10:37:30, INFO: Transaction list requested by merchant 11
+time 2026-04-29 10:37:30, INFO: Transaction list requested by merchant 16
+time 2026-04-29 10:37:30, INFO: Transaction list requested by merchant 7
+time 2026-04-29 10:37:30, INFO: Login attempt for user: locust_qdpnlo
+time 2026-04-29 10:37:30, INFO: Login attempt for user: locust_mxwlev
+time 2026-04-29 10:37:31, INFO: Login attempt for user: locust_pdddxa
+time 2026-04-29 10:37:31, INFO: User locust_qdpnlo authenticated, role=Role.BASIC
+time 2026-04-29 10:37:31, INFO: User locust_mxwlev authenticated, role=Role.BASIC
+time 2026-04-29 10:37:31, INFO: User locust_pdddxa authenticated, role=Role.BASIC
+time 2026-04-29 10:37:48, INFO: FraudShield API stutting down
+time 2026-04-29 10:37:54, INFO: FraudShield API starting up
+time 2026-04-29 10:39:04, INFO: Registration attempt for email=locust_zkyndn@test.com, role=Role.BASIC
+time 2026-04-29 10:39:04, INFO: User locust_zkyndn registered successfully
+time 2026-04-29 10:39:04, INFO: Login attempt for user: locust_zkyndn
+time 2026-04-29 10:39:05, INFO: User locust_zkyndn authenticated, role=Role.BASIC
+time 2026-04-29 10:39:05, INFO: Predict request from merchant_id=43, txn_id=txn_1985, amount=110684.81847789757
+time 2026-04-29 10:39:05, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_1985
+time 2026-04-29 10:39:07, INFO: Predict request from merchant_id=43, txn_id=txn_5980, amount=96750.6201630113
+time 2026-04-29 10:39:07, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_5980
+time 2026-04-29 10:39:09, INFO: Predict request from merchant_id=43, txn_id=txn_7969, amount=151646.5339152466
+time 2026-04-29 10:39:09, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_7969
+time 2026-04-29 10:39:10, INFO: Predict request from merchant_id=43, txn_id=txn_4498, amount=440362.1016982577
+time 2026-04-29 10:39:10, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_4498
+time 2026-04-29 10:39:11, INFO: Predict request from merchant_id=43, txn_id=txn_8824, amount=51257.67395610275
+time 2026-04-29 10:39:11, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_8824
+time 2026-04-29 10:39:14, INFO: Predict request from merchant_id=43, txn_id=txn_8721, amount=562199.1022601395
+time 2026-04-29 10:39:14, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_8721
+time 2026-04-29 10:39:16, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:39:19, INFO: Predict request from merchant_id=43, txn_id=txn_6971, amount=459044.9616383576
+time 2026-04-29 10:39:19, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_6971
+time 2026-04-29 10:39:20, INFO: Predict request from merchant_id=43, txn_id=txn_2316, amount=812467.8470597385
+time 2026-04-29 10:39:20, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2316
+time 2026-04-29 10:39:23, INFO: Predict request from merchant_id=43, txn_id=txn_3636, amount=142184.71773106907
+time 2026-04-29 10:39:23, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_3636
+time 2026-04-29 10:39:27, INFO: Predict request from merchant_id=43, txn_id=txn_9261, amount=606212.8189700085
+time 2026-04-29 10:39:27, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9261
+time 2026-04-29 10:39:29, INFO: Predict request from merchant_id=43, txn_id=txn_5324, amount=359424.2957041251
+time 2026-04-29 10:39:29, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_5324
+time 2026-04-29 10:39:32, INFO: Predict request from merchant_id=43, txn_id=txn_5056, amount=461632.8921573257
+time 2026-04-29 10:39:32, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_5056
+time 2026-04-29 10:39:36, INFO: Predict request from merchant_id=43, txn_id=txn_7565, amount=586712.7572625835
+time 2026-04-29 10:39:36, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7565
+time 2026-04-29 10:39:39, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:39:42, INFO: Predict request from merchant_id=43, txn_id=txn_9408, amount=392593.74162550265
+time 2026-04-29 10:39:42, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_9408
+time 2026-04-29 10:39:45, INFO: Predict request from merchant_id=43, txn_id=txn_6212, amount=769918.7170850288
+time 2026-04-29 10:39:45, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6212
+time 2026-04-29 10:39:47, INFO: Predict request from merchant_id=43, txn_id=txn_6212, amount=474597.60848964873
+time 2026-04-29 10:39:47, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_6212
+time 2026-04-29 10:39:52, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:39:54, INFO: Predict request from merchant_id=43, txn_id=txn_4008, amount=739171.1994388264
+time 2026-04-29 10:39:54, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4008
+time 2026-04-29 10:39:57, INFO: Predict request from merchant_id=43, txn_id=txn_6933, amount=185205.907713494
+time 2026-04-29 10:39:57, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_6933
+time 2026-04-29 10:39:59, INFO: Predict request from merchant_id=43, txn_id=txn_6937, amount=729518.0207433673
+time 2026-04-29 10:39:59, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6937
+time 2026-04-29 10:40:01, INFO: Predict request from merchant_id=43, txn_id=txn_3211, amount=760532.9150693846
+time 2026-04-29 10:40:01, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_3211
+time 2026-04-29 10:40:02, INFO: Predict request from merchant_id=43, txn_id=txn_1880, amount=514281.33689093735
+time 2026-04-29 10:40:02, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1880
+time 2026-04-29 10:40:06, INFO: Predict request from merchant_id=43, txn_id=txn_8620, amount=87911.69939497928
+time 2026-04-29 10:40:06, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_8620
+time 2026-04-29 10:40:08, INFO: Predict request from merchant_id=43, txn_id=txn_7774, amount=745694.5695360563
+time 2026-04-29 10:40:08, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7774
+time 2026-04-29 10:40:09, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:40:11, INFO: Predict request from merchant_id=43, txn_id=txn_2503, amount=876177.6641880121
+time 2026-04-29 10:40:11, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2503
+time 2026-04-29 10:40:14, INFO: Predict request from merchant_id=43, txn_id=txn_6638, amount=204704.2982867597
+time 2026-04-29 10:40:14, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_6638
+time 2026-04-29 10:40:17, INFO: Predict request from merchant_id=43, txn_id=txn_6319, amount=752440.3836018965
+time 2026-04-29 10:40:17, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6319
+time 2026-04-29 10:40:19, INFO: Predict request from merchant_id=43, txn_id=txn_5444, amount=638781.790118592
+time 2026-04-29 10:40:19, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_5444
+time 2026-04-29 10:40:21, INFO: Predict request from merchant_id=43, txn_id=txn_7688, amount=524380.1622387302
+time 2026-04-29 10:40:21, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7688
+time 2026-04-29 10:40:23, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:40:26, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:40:31, INFO: Predict request from merchant_id=43, txn_id=txn_7696, amount=844313.2500267042
+time 2026-04-29 10:40:31, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7696
+time 2026-04-29 10:40:32, INFO: Predict request from merchant_id=43, txn_id=txn_7952, amount=726271.0389682512
+time 2026-04-29 10:40:32, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7952
+time 2026-04-29 10:40:38, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:40:41, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:40:43, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:40:45, INFO: Predict request from merchant_id=43, txn_id=txn_7237, amount=255850.47606525954
+time 2026-04-29 10:40:45, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_7237
+time 2026-04-29 10:40:48, INFO: Predict request from merchant_id=43, txn_id=txn_3808, amount=618507.8353474595
+time 2026-04-29 10:40:48, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_3808
+time 2026-04-29 10:40:55, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:40:56, INFO: Predict request from merchant_id=43, txn_id=txn_7747, amount=786351.8330977225
+time 2026-04-29 10:40:56, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7747
+time 2026-04-29 10:40:57, INFO: Predict request from merchant_id=43, txn_id=txn_1472, amount=818009.4511239021
+time 2026-04-29 10:40:57, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1472
+time 2026-04-29 10:40:59, INFO: Predict request from merchant_id=43, txn_id=txn_1494, amount=545693.0244879788
+time 2026-04-29 10:40:59, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1494
+time 2026-04-29 10:41:01, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:41:03, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:41:06, INFO: Predict request from merchant_id=43, txn_id=txn_9027, amount=503257.8183692842
+time 2026-04-29 10:41:06, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9027
+time 2026-04-29 10:41:09, INFO: Predict request from merchant_id=43, txn_id=txn_4015, amount=292549.57712557586
+time 2026-04-29 10:41:09, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_4015
+time 2026-04-29 10:41:15, INFO: Predict request from merchant_id=43, txn_id=txn_3439, amount=158467.78856091094
+time 2026-04-29 10:41:15, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_3439
+time 2026-04-29 10:41:18, INFO: Predict request from merchant_id=43, txn_id=txn_7282, amount=893633.5425091907
+time 2026-04-29 10:41:18, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7282
+time 2026-04-29 10:41:22, INFO: Predict request from merchant_id=43, txn_id=txn_3679, amount=325786.2355456403
+time 2026-04-29 10:41:22, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_3679
+time 2026-04-29 10:41:24, INFO: Predict request from merchant_id=43, txn_id=txn_2805, amount=858875.1976490271
+time 2026-04-29 10:41:24, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2805
+time 2026-04-29 10:41:25, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:41:28, INFO: Predict request from merchant_id=43, txn_id=txn_8203, amount=443193.04286949587
+time 2026-04-29 10:41:28, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_8203
+time 2026-04-29 10:41:31, INFO: Predict request from merchant_id=43, txn_id=txn_4944, amount=951302.7266992251
+time 2026-04-29 10:41:31, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4944
+time 2026-04-29 10:41:33, INFO: Predict request from merchant_id=43, txn_id=txn_9966, amount=634847.9745993814
+time 2026-04-29 10:41:33, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9966
+time 2026-04-29 10:41:35, INFO: Predict request from merchant_id=43, txn_id=txn_3654, amount=930968.1398682862
+time 2026-04-29 10:41:35, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_3654
+time 2026-04-29 10:41:37, INFO: Predict request from merchant_id=43, txn_id=txn_8645, amount=677117.3832198707
+time 2026-04-29 10:41:37, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_8645
+time 2026-04-29 10:41:39, INFO: Predict request from merchant_id=43, txn_id=txn_7988, amount=762603.1110710838
+time 2026-04-29 10:41:39, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7988
+time 2026-04-29 10:41:42, INFO: Predict request from merchant_id=43, txn_id=txn_7897, amount=504217.9279691789
+time 2026-04-29 10:41:42, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7897
+time 2026-04-29 10:41:44, INFO: Predict request from merchant_id=43, txn_id=txn_1253, amount=395589.08014775754
+time 2026-04-29 10:41:44, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_1253
+time 2026-04-29 10:41:47, INFO: Predict request from merchant_id=43, txn_id=txn_6336, amount=263385.09614112077
+time 2026-04-29 10:41:47, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_6336
+time 2026-04-29 10:41:49, INFO: Predict request from merchant_id=43, txn_id=txn_9511, amount=859612.4398040406
+time 2026-04-29 10:41:49, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9511
+time 2026-04-29 10:41:55, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:41:58, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:42:01, INFO: Predict request from merchant_id=43, txn_id=txn_6168, amount=595435.4709734374
+time 2026-04-29 10:42:01, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6168
+time 2026-04-29 10:42:04, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:42:06, INFO: Predict request from merchant_id=43, txn_id=txn_9440, amount=382414.4096550808
+time 2026-04-29 10:42:06, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_9440
+time 2026-04-29 10:42:08, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:42:10, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:42:12, INFO: Predict request from merchant_id=43, txn_id=txn_3778, amount=585327.9793388561
+time 2026-04-29 10:42:12, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_3778
+time 2026-04-29 10:42:15, INFO: Predict request from merchant_id=43, txn_id=txn_4394, amount=619022.482963817
+time 2026-04-29 10:42:15, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4394
+time 2026-04-29 10:42:18, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:42:20, INFO: Predict request from merchant_id=43, txn_id=txn_1547, amount=904354.2536081014
+time 2026-04-29 10:42:20, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1547
+time 2026-04-29 10:42:24, INFO: Predict request from merchant_id=43, txn_id=txn_4781, amount=106820.1076077656
+time 2026-04-29 10:42:24, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_4781
+time 2026-04-29 10:42:26, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:42:28, INFO: Predict request from merchant_id=43, txn_id=txn_3024, amount=487800.1073933011
+time 2026-04-29 10:42:28, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_3024
+time 2026-04-29 10:42:31, INFO: Predict request from merchant_id=43, txn_id=txn_5513, amount=235437.2774874972
+time 2026-04-29 10:42:31, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_5513
+time 2026-04-29 10:42:32, INFO: Predict request from merchant_id=43, txn_id=txn_5177, amount=749741.645592915
+time 2026-04-29 10:42:32, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_5177
+time 2026-04-29 10:42:39, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:42:42, INFO: Predict request from merchant_id=43, txn_id=txn_1237, amount=747159.5727531567
+time 2026-04-29 10:42:42, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1237
+time 2026-04-29 10:42:44, INFO: Predict request from merchant_id=43, txn_id=txn_5326, amount=838832.6496165193
+time 2026-04-29 10:42:44, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_5326
+time 2026-04-29 10:42:46, INFO: Predict request from merchant_id=43, txn_id=txn_8284, amount=394175.9366920071
+time 2026-04-29 10:42:46, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_8284
+time 2026-04-29 10:42:47, INFO: Predict request from merchant_id=43, txn_id=txn_9592, amount=849003.098331315
+time 2026-04-29 10:42:47, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9592
+time 2026-04-29 10:42:52, INFO: Predict request from merchant_id=43, txn_id=txn_1552, amount=901344.5094543202
+time 2026-04-29 10:42:52, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1552
+time 2026-04-29 10:42:54, INFO: Predict request from merchant_id=43, txn_id=txn_3197, amount=483594.4837599543
+time 2026-04-29 10:42:54, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_3197
+time 2026-04-29 10:42:55, INFO: Predict request from merchant_id=43, txn_id=txn_7502, amount=879609.4077436633
+time 2026-04-29 10:42:55, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7502
+time 2026-04-29 10:42:56, INFO: Predict request from merchant_id=43, txn_id=txn_7902, amount=617961.7610162979
+time 2026-04-29 10:42:56, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7902
+time 2026-04-29 10:42:58, INFO: Predict request from merchant_id=43, txn_id=txn_7492, amount=729046.185395551
+time 2026-04-29 10:42:58, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7492
+time 2026-04-29 10:43:00, INFO: Predict request from merchant_id=43, txn_id=txn_4756, amount=935967.1614587264
+time 2026-04-29 10:43:00, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4756
+time 2026-04-29 10:43:01, INFO: Predict request from merchant_id=43, txn_id=txn_5599, amount=337391.5159759544
+time 2026-04-29 10:43:01, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_5599
+time 2026-04-29 10:43:03, INFO: Predict request from merchant_id=43, txn_id=txn_7600, amount=643154.4319196823
+time 2026-04-29 10:43:03, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7600
+time 2026-04-29 10:43:04, INFO: Predict request from merchant_id=43, txn_id=txn_7275, amount=473276.46613651206
+time 2026-04-29 10:43:04, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_7275
+time 2026-04-29 10:43:07, INFO: Predict request from merchant_id=43, txn_id=txn_8759, amount=162959.10467785122
+time 2026-04-29 10:43:07, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_8759
+time 2026-04-29 10:43:08, INFO: Predict request from merchant_id=43, txn_id=txn_6200, amount=753591.1435812198
+time 2026-04-29 10:43:08, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6200
+time 2026-04-29 10:43:09, INFO: Predict request from merchant_id=43, txn_id=txn_9468, amount=83723.0833906602
+time 2026-04-29 10:43:09, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_9468
+time 2026-04-29 10:43:12, INFO: Predict request from merchant_id=43, txn_id=txn_7916, amount=750629.4381772501
+time 2026-04-29 10:43:12, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7916
+time 2026-04-29 10:43:15, INFO: Predict request from merchant_id=43, txn_id=txn_4310, amount=370358.97154820536
+time 2026-04-29 10:43:15, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_4310
+time 2026-04-29 10:43:17, INFO: Predict request from merchant_id=43, txn_id=txn_1358, amount=948244.632210313
+time 2026-04-29 10:43:17, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1358
+time 2026-04-29 10:43:20, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:43:23, INFO: Predict request from merchant_id=43, txn_id=txn_5573, amount=122963.33576660597
+time 2026-04-29 10:43:23, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_5573
+time 2026-04-29 10:43:24, INFO: Predict request from merchant_id=43, txn_id=txn_2579, amount=484823.6899411031
+time 2026-04-29 10:43:24, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_2579
+time 2026-04-29 10:43:27, INFO: Predict request from merchant_id=43, txn_id=txn_5186, amount=874765.0425414531
+time 2026-04-29 10:43:27, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_5186
+time 2026-04-29 10:43:30, INFO: Predict request from merchant_id=43, txn_id=txn_9832, amount=654597.0337192304
+time 2026-04-29 10:43:30, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9832
+time 2026-04-29 10:43:31, INFO: Predict request from merchant_id=43, txn_id=txn_2544, amount=19248.33760976384
+time 2026-04-29 10:43:31, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_2544
+time 2026-04-29 10:43:32, INFO: Predict request from merchant_id=43, txn_id=txn_9380, amount=562272.1064842999
+time 2026-04-29 10:43:32, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9380
+time 2026-04-29 10:43:36, INFO: Predict request from merchant_id=43, txn_id=txn_1916, amount=314223.70729985676
+time 2026-04-29 10:43:36, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_1916
+time 2026-04-29 10:43:38, INFO: Predict request from merchant_id=43, txn_id=txn_4365, amount=838438.6385169794
+time 2026-04-29 10:43:38, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4365
+time 2026-04-29 10:43:40, INFO: Predict request from merchant_id=43, txn_id=txn_6386, amount=514281.27821754763
+time 2026-04-29 10:43:40, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6386
+time 2026-04-29 10:43:45, INFO: Predict request from merchant_id=43, txn_id=txn_7520, amount=339414.67073133244
+time 2026-04-29 10:43:45, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_7520
+time 2026-04-29 10:43:47, INFO: Predict request from merchant_id=43, txn_id=txn_8229, amount=382541.08945944154
+time 2026-04-29 10:43:47, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_8229
+time 2026-04-29 10:43:50, INFO: Predict request from merchant_id=43, txn_id=txn_8606, amount=52612.44954735104
+time 2026-04-29 10:43:50, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_8606
+time 2026-04-29 10:43:52, INFO: Predict request from merchant_id=43, txn_id=txn_7340, amount=758641.9574023556
+time 2026-04-29 10:43:52, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7340
+time 2026-04-29 10:43:55, INFO: Predict request from merchant_id=43, txn_id=txn_8039, amount=32764.688658917436
+time 2026-04-29 10:43:55, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_8039
+time 2026-04-29 10:43:56, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:43:58, INFO: Predict request from merchant_id=43, txn_id=txn_1546, amount=786886.7758244477
+time 2026-04-29 10:43:58, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1546
+time 2026-04-29 10:43:59, INFO: Predict request from merchant_id=43, txn_id=txn_1615, amount=33626.746490539306
+time 2026-04-29 10:43:59, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_1615
+time 2026-04-29 10:44:04, INFO: Predict request from merchant_id=43, txn_id=txn_4320, amount=637871.4531415753
+time 2026-04-29 10:44:04, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4320
+time 2026-04-29 10:44:05, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:44:07, INFO: Predict request from merchant_id=43, txn_id=txn_1691, amount=143827.98694483808
+time 2026-04-29 10:44:07, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_1691
+time 2026-04-29 10:44:10, INFO: Predict request from merchant_id=43, txn_id=txn_5382, amount=123683.731375365
+time 2026-04-29 10:44:10, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_5382
+time 2026-04-29 10:44:12, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:44:13, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:44:16, INFO: Predict request from merchant_id=43, txn_id=txn_2196, amount=946370.4828307008
+time 2026-04-29 10:44:16, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2196
+time 2026-04-29 10:44:18, INFO: Predict request from merchant_id=43, txn_id=txn_1911, amount=714268.633947984
+time 2026-04-29 10:44:18, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1911
+time 2026-04-29 10:44:21, INFO: Predict request from merchant_id=43, txn_id=txn_8964, amount=629096.3868018927
+time 2026-04-29 10:44:21, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_8964
+time 2026-04-29 10:44:23, INFO: Predict request from merchant_id=43, txn_id=txn_3790, amount=702668.5773684592
+time 2026-04-29 10:44:23, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_3790
+time 2026-04-29 10:44:26, INFO: Predict request from merchant_id=43, txn_id=txn_9639, amount=230400.2523752436
+time 2026-04-29 10:44:26, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_9639
+time 2026-04-29 10:44:28, INFO: Predict request from merchant_id=43, txn_id=txn_4582, amount=25884.493125362107
+time 2026-04-29 10:44:28, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_4582
+time 2026-04-29 10:44:31, INFO: Predict request from merchant_id=43, txn_id=txn_8676, amount=650484.5363507431
+time 2026-04-29 10:44:31, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_8676
+time 2026-04-29 10:44:33, INFO: Predict request from merchant_id=43, txn_id=txn_5405, amount=597543.289531993
+time 2026-04-29 10:44:33, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_5405
+time 2026-04-29 10:44:34, INFO: Predict request from merchant_id=43, txn_id=txn_3528, amount=276295.6688939299
+time 2026-04-29 10:44:34, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_3528
+time 2026-04-29 10:44:36, INFO: Predict request from merchant_id=43, txn_id=txn_7463, amount=990704.4822717728
+time 2026-04-29 10:44:36, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7463
+time 2026-04-29 10:44:38, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:44:39, INFO: Predict request from merchant_id=43, txn_id=txn_1626, amount=430545.68291188334
+time 2026-04-29 10:44:39, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_1626
+time 2026-04-29 10:44:42, INFO: Predict request from merchant_id=43, txn_id=txn_3172, amount=151597.49128344381
+time 2026-04-29 10:44:42, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_3172
+time 2026-04-29 10:44:44, INFO: Predict request from merchant_id=43, txn_id=txn_7623, amount=463754.4919029105
+time 2026-04-29 10:44:44, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_7623
+time 2026-04-29 10:44:46, INFO: Predict request from merchant_id=43, txn_id=txn_9733, amount=110721.25929568474
+time 2026-04-29 10:44:46, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_9733
+time 2026-04-29 10:44:48, INFO: Predict request from merchant_id=43, txn_id=txn_3370, amount=268959.49943231075
+time 2026-04-29 10:44:48, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_3370
+time 2026-04-29 10:44:50, INFO: Predict request from merchant_id=43, txn_id=txn_3006, amount=429068.67548531864
+time 2026-04-29 10:44:50, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_3006
+time 2026-04-29 10:44:55, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:44:58, INFO: Predict request from merchant_id=43, txn_id=txn_7884, amount=293817.0119514671
+time 2026-04-29 10:44:58, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_7884
+time 2026-04-29 10:45:00, INFO: Predict request from merchant_id=43, txn_id=txn_1073, amount=844613.0319016002
+time 2026-04-29 10:45:00, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1073
+time 2026-04-29 10:45:02, INFO: Predict request from merchant_id=43, txn_id=txn_7940, amount=348077.0139940622
+time 2026-04-29 10:45:02, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_7940
+time 2026-04-29 10:45:06, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:45:07, INFO: Predict request from merchant_id=43, txn_id=txn_5008, amount=963646.8618479084
+time 2026-04-29 10:45:07, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_5008
+time 2026-04-29 10:45:09, INFO: Predict request from merchant_id=43, txn_id=txn_6955, amount=859631.1882467495
+time 2026-04-29 10:45:09, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6955
+time 2026-04-29 10:45:11, INFO: Predict request from merchant_id=43, txn_id=txn_7189, amount=46731.49344480978
+time 2026-04-29 10:45:11, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_7189
+time 2026-04-29 10:45:14, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:45:15, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:45:16, INFO: Predict request from merchant_id=43, txn_id=txn_1607, amount=659881.8994180956
+time 2026-04-29 10:45:16, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1607
+time 2026-04-29 10:45:18, INFO: Predict request from merchant_id=43, txn_id=txn_7041, amount=981046.5396309227
+time 2026-04-29 10:45:18, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7041
+time 2026-04-29 10:45:21, INFO: Predict request from merchant_id=43, txn_id=txn_6140, amount=504972.2390971493
+time 2026-04-29 10:45:21, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6140
+time 2026-04-29 10:45:24, INFO: Predict request from merchant_id=43, txn_id=txn_6384, amount=455619.562324723
+time 2026-04-29 10:45:24, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_6384
+time 2026-04-29 10:45:33, INFO: Predict request from merchant_id=43, txn_id=txn_5815, amount=254393.67468989128
+time 2026-04-29 10:45:33, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_5815
+time 2026-04-29 10:45:35, INFO: Predict request from merchant_id=43, txn_id=txn_1654, amount=192496.0915664054
+time 2026-04-29 10:45:35, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_1654
+time 2026-04-29 10:45:38, INFO: Predict request from merchant_id=43, txn_id=txn_5966, amount=33183.4907712514
+time 2026-04-29 10:45:38, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_5966
+time 2026-04-29 10:45:40, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:45:44, INFO: Predict request from merchant_id=43, txn_id=txn_6882, amount=598921.0890172718
+time 2026-04-29 10:45:44, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6882
+time 2026-04-29 10:45:47, INFO: Predict request from merchant_id=43, txn_id=txn_8365, amount=337887.54057430685
+time 2026-04-29 10:45:47, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_8365
+time 2026-04-29 10:45:50, INFO: Predict request from merchant_id=43, txn_id=txn_4237, amount=864281.1634029729
+time 2026-04-29 10:45:50, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4237
+time 2026-04-29 10:45:52, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:45:55, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:45:56, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:45:58, INFO: Predict request from merchant_id=43, txn_id=txn_6837, amount=417174.07959143113
+time 2026-04-29 10:45:58, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_6837
+time 2026-04-29 10:46:01, INFO: Predict request from merchant_id=43, txn_id=txn_2969, amount=272037.06393244094
+time 2026-04-29 10:46:01, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_2969
+time 2026-04-29 10:46:03, INFO: Predict request from merchant_id=43, txn_id=txn_4087, amount=377455.0275625639
+time 2026-04-29 10:46:03, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_4087
+time 2026-04-29 10:46:04, INFO: Predict request from merchant_id=43, txn_id=txn_9577, amount=116656.76483881848
+time 2026-04-29 10:46:04, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_9577
+time 2026-04-29 10:46:06, INFO: Predict request from merchant_id=43, txn_id=txn_4568, amount=517584.0735166386
+time 2026-04-29 10:46:06, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4568
+time 2026-04-29 10:46:08, INFO: Predict request from merchant_id=43, txn_id=txn_6135, amount=979407.3780774067
+time 2026-04-29 10:46:08, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6135
+time 2026-04-29 10:46:10, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:46:11, INFO: Predict request from merchant_id=43, txn_id=txn_8019, amount=700202.7522601436
+time 2026-04-29 10:46:11, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_8019
+time 2026-04-29 10:46:17, INFO: Predict request from merchant_id=43, txn_id=txn_4075, amount=831293.2300148109
+time 2026-04-29 10:46:17, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4075
+time 2026-04-29 10:46:19, INFO: Predict request from merchant_id=43, txn_id=txn_9230, amount=891093.8544510452
+time 2026-04-29 10:46:19, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9230
+time 2026-04-29 10:46:23, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:46:26, INFO: Predict request from merchant_id=43, txn_id=txn_2217, amount=41978.759196856874
+time 2026-04-29 10:46:26, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_2217
+time 2026-04-29 10:46:28, INFO: Predict request from merchant_id=43, txn_id=txn_3751, amount=869616.0137152061
+time 2026-04-29 10:46:28, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_3751
+time 2026-04-29 10:46:30, INFO: Predict request from merchant_id=43, txn_id=txn_7853, amount=606208.6646678593
+time 2026-04-29 10:46:30, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7853
+time 2026-04-29 10:46:32, INFO: Predict request from merchant_id=43, txn_id=txn_7095, amount=840942.566664696
+time 2026-04-29 10:46:32, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7095
+time 2026-04-29 10:46:34, INFO: Predict request from merchant_id=43, txn_id=txn_3759, amount=287338.95657039114
+time 2026-04-29 10:46:34, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_3759
+time 2026-04-29 10:46:37, INFO: Predict request from merchant_id=43, txn_id=txn_3038, amount=422267.50307310506
+time 2026-04-29 10:46:37, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_3038
+time 2026-04-29 10:46:40, INFO: Predict request from merchant_id=43, txn_id=txn_6910, amount=546359.8205549798
+time 2026-04-29 10:46:40, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6910
+time 2026-04-29 10:46:42, INFO: Predict request from merchant_id=43, txn_id=txn_7146, amount=851886.9687590579
+time 2026-04-29 10:46:42, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7146
+time 2026-04-29 10:46:44, INFO: Predict request from merchant_id=43, txn_id=txn_8360, amount=560873.6808309247
+time 2026-04-29 10:46:44, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_8360
+time 2026-04-29 10:46:48, INFO: Predict request from merchant_id=43, txn_id=txn_4276, amount=156156.93769285906
+time 2026-04-29 10:46:48, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_4276
+time 2026-04-29 10:46:51, INFO: Predict request from merchant_id=43, txn_id=txn_5827, amount=860114.99065687
+time 2026-04-29 10:46:51, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_5827
+time 2026-04-29 10:46:53, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:46:56, INFO: Predict request from merchant_id=43, txn_id=txn_8668, amount=212157.02845171897
+time 2026-04-29 10:46:56, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_8668
+time 2026-04-29 10:46:58, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:47:01, INFO: Predict request from merchant_id=43, txn_id=txn_2557, amount=789007.4392043358
+time 2026-04-29 10:47:01, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2557
+time 2026-04-29 10:47:03, INFO: Predict request from merchant_id=43, txn_id=txn_2323, amount=577111.8194331115
+time 2026-04-29 10:47:03, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2323
+time 2026-04-29 10:47:06, INFO: Predict request from merchant_id=43, txn_id=txn_5211, amount=197909.8567172144
+time 2026-04-29 10:47:06, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_5211
+time 2026-04-29 10:47:07, INFO: Predict request from merchant_id=43, txn_id=txn_8588, amount=831529.197223848
+time 2026-04-29 10:47:07, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_8588
+time 2026-04-29 10:47:09, INFO: Predict request from merchant_id=43, txn_id=txn_5302, amount=916352.5445959123
+time 2026-04-29 10:47:09, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_5302
+time 2026-04-29 10:47:14, INFO: Predict request from merchant_id=43, txn_id=txn_8474, amount=190461.42046960106
+time 2026-04-29 10:47:14, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_8474
+time 2026-04-29 10:47:16, INFO: Predict request from merchant_id=43, txn_id=txn_5584, amount=772104.6378452308
+time 2026-04-29 10:47:16, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_5584
+time 2026-04-29 10:47:18, INFO: Predict request from merchant_id=43, txn_id=txn_5571, amount=951097.5863862814
+time 2026-04-29 10:47:18, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_5571
+time 2026-04-29 10:47:20, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:47:21, INFO: Predict request from merchant_id=43, txn_id=txn_7759, amount=784314.7690557155
+time 2026-04-29 10:47:21, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7759
+time 2026-04-29 10:47:23, INFO: Predict request from merchant_id=43, txn_id=txn_1631, amount=734930.6477740057
+time 2026-04-29 10:47:23, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1631
+time 2026-04-29 10:47:24, INFO: Predict request from merchant_id=43, txn_id=txn_3862, amount=499018.00042273325
+time 2026-04-29 10:47:24, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_3862
+time 2026-04-29 10:47:27, INFO: Predict request from merchant_id=43, txn_id=txn_7422, amount=40937.34053667406
+time 2026-04-29 10:47:27, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_7422
+time 2026-04-29 10:47:32, INFO: Predict request from merchant_id=43, txn_id=txn_5668, amount=988523.4120963787
+time 2026-04-29 10:47:32, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_5668
+time 2026-04-29 10:47:33, INFO: Predict request from merchant_id=43, txn_id=txn_6802, amount=69231.11583003757
+time 2026-04-29 10:47:33, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_6802
+time 2026-04-29 10:47:35, INFO: Predict request from merchant_id=43, txn_id=txn_4608, amount=515693.91554462607
+time 2026-04-29 10:47:35, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4608
+time 2026-04-29 10:47:37, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:47:40, INFO: Predict request from merchant_id=43, txn_id=txn_9921, amount=934673.5354340507
+time 2026-04-29 10:47:40, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9921
+time 2026-04-29 10:47:45, INFO: Predict request from merchant_id=43, txn_id=txn_8713, amount=296369.9866013732
+time 2026-04-29 10:47:45, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_8713
+time 2026-04-29 10:47:46, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:47:48, INFO: Predict request from merchant_id=43, txn_id=txn_2720, amount=524499.6127693728
+time 2026-04-29 10:47:48, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2720
+time 2026-04-29 10:47:55, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:47:57, INFO: Predict request from merchant_id=43, txn_id=txn_9666, amount=893633.2532446409
+time 2026-04-29 10:47:57, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9666
+time 2026-04-29 10:47:59, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:48:02, INFO: Predict request from merchant_id=43, txn_id=txn_1141, amount=274194.30121163966
+time 2026-04-29 10:48:02, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_1141
+time 2026-04-29 10:48:05, INFO: Predict request from merchant_id=43, txn_id=txn_8489, amount=558413.105381363
+time 2026-04-29 10:48:05, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_8489
+time 2026-04-29 10:48:06, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:48:08, INFO: Predict request from merchant_id=43, txn_id=txn_1016, amount=377001.7943340555
+time 2026-04-29 10:48:08, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_1016
+time 2026-04-29 10:48:14, INFO: Predict request from merchant_id=43, txn_id=txn_3921, amount=106143.3902139409
+time 2026-04-29 10:48:14, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_3921
+time 2026-04-29 10:48:15, INFO: Predict request from merchant_id=43, txn_id=txn_7800, amount=482796.6369586775
+time 2026-04-29 10:48:15, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_7800
+time 2026-04-29 10:48:17, INFO: Predict request from merchant_id=43, txn_id=txn_2102, amount=672743.355751698
+time 2026-04-29 10:48:17, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2102
+time 2026-04-29 10:48:21, INFO: Predict request from merchant_id=43, txn_id=txn_1804, amount=958539.9847503348
+time 2026-04-29 10:48:21, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1804
+time 2026-04-29 10:48:23, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:48:25, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:48:27, INFO: Predict request from merchant_id=43, txn_id=txn_2679, amount=242263.13506086462
+time 2026-04-29 10:48:27, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_2679
+time 2026-04-29 10:48:30, INFO: Predict request from merchant_id=43, txn_id=txn_9229, amount=29782.80810211747
+time 2026-04-29 10:48:30, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_9229
+time 2026-04-29 10:48:31, INFO: Predict request from merchant_id=43, txn_id=txn_3728, amount=526817.5704175418
+time 2026-04-29 10:48:31, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_3728
+time 2026-04-29 10:48:39, INFO: Predict request from merchant_id=43, txn_id=txn_2579, amount=818176.1824894801
+time 2026-04-29 10:48:39, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2579
+time 2026-04-29 10:48:40, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:48:42, INFO: Predict request from merchant_id=43, txn_id=txn_4174, amount=494914.22884968854
+time 2026-04-29 10:48:42, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_4174
+time 2026-04-29 10:48:45, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:48:46, INFO: Predict request from merchant_id=43, txn_id=txn_4939, amount=61023.363454827384
+time 2026-04-29 10:48:46, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_4939
+time 2026-04-29 10:48:50, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:48:51, INFO: Predict request from merchant_id=43, txn_id=txn_2724, amount=519166.3380827749
+time 2026-04-29 10:48:51, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2724
+time 2026-04-29 10:48:55, INFO: Predict request from merchant_id=43, txn_id=txn_1365, amount=301633.1932934211
+time 2026-04-29 10:48:55, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_1365
+time 2026-04-29 10:48:57, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:48:58, INFO: Predict request from merchant_id=43, txn_id=txn_6484, amount=782394.4360156534
+time 2026-04-29 10:48:58, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6484
+time 2026-04-29 10:49:00, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:49:02, INFO: Predict request from merchant_id=43, txn_id=txn_5690, amount=470860.8475608624
+time 2026-04-29 10:49:02, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_5690
+time 2026-04-29 10:49:04, INFO: Predict request from merchant_id=43, txn_id=txn_7625, amount=801987.3737569858
+time 2026-04-29 10:49:04, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7625
+time 2026-04-29 10:49:07, INFO: Predict request from merchant_id=43, txn_id=txn_8187, amount=780042.531460489
+time 2026-04-29 10:49:07, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_8187
+time 2026-04-29 10:49:09, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:49:11, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:49:13, INFO: Predict request from merchant_id=43, txn_id=txn_4866, amount=608695.7840294758
+time 2026-04-29 10:49:13, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4866
+time 2026-04-29 10:49:16, INFO: Predict request from merchant_id=43, txn_id=txn_9490, amount=56713.964479013914
+time 2026-04-29 10:49:16, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_9490
+time 2026-04-29 10:49:19, INFO: Predict request from merchant_id=43, txn_id=txn_8998, amount=619182.2357316402
+time 2026-04-29 10:49:19, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_8998
+time 2026-04-29 10:49:21, INFO: Predict request from merchant_id=43, txn_id=txn_8355, amount=968117.2509598329
+time 2026-04-29 10:49:21, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_8355
+time 2026-04-29 10:49:22, INFO: Predict request from merchant_id=43, txn_id=txn_3422, amount=354820.72054420953
+time 2026-04-29 10:49:22, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_3422
+time 2026-04-29 10:49:25, INFO: Predict request from merchant_id=43, txn_id=txn_3616, amount=265310.27078298916
+time 2026-04-29 10:49:25, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_3616
+time 2026-04-29 10:49:26, INFO: Predict request from merchant_id=43, txn_id=txn_1170, amount=322910.20470655675
+time 2026-04-29 10:49:26, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_1170
+time 2026-04-29 10:49:28, INFO: Predict request from merchant_id=43, txn_id=txn_5367, amount=294013.60734779615
+time 2026-04-29 10:49:28, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_5367
+time 2026-04-29 10:49:31, INFO: Predict request from merchant_id=43, txn_id=txn_2079, amount=987191.9022295682
+time 2026-04-29 10:49:31, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2079
+time 2026-04-29 10:49:33, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:49:36, INFO: Predict request from merchant_id=43, txn_id=txn_9489, amount=345918.9242786128
+time 2026-04-29 10:49:36, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_9489
+time 2026-04-29 10:49:37, INFO: Predict request from merchant_id=43, txn_id=txn_6236, amount=58186.41755470539
+time 2026-04-29 10:49:37, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_6236
+time 2026-04-29 10:49:40, INFO: Predict request from merchant_id=43, txn_id=txn_5233, amount=435671.5723564311
+time 2026-04-29 10:49:40, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_5233
+time 2026-04-29 10:49:42, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:49:44, INFO: Predict request from merchant_id=43, txn_id=txn_3595, amount=852740.7020536733
+time 2026-04-29 10:49:44, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_3595
+time 2026-04-29 10:49:49, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:49:51, INFO: Predict request from merchant_id=43, txn_id=txn_1531, amount=455200.7689623744
+time 2026-04-29 10:49:51, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_1531
+time 2026-04-29 10:49:54, INFO: Predict request from merchant_id=43, txn_id=txn_2763, amount=217605.6979534258
+time 2026-04-29 10:49:54, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_2763
+time 2026-04-29 10:49:55, INFO: Predict request from merchant_id=43, txn_id=txn_6789, amount=148073.92574231504
+time 2026-04-29 10:49:55, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_6789
+time 2026-04-29 10:49:57, INFO: Predict request from merchant_id=43, txn_id=txn_8870, amount=553904.3446946034
+time 2026-04-29 10:49:57, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_8870
+time 2026-04-29 10:49:59, INFO: Predict request from merchant_id=43, txn_id=txn_8176, amount=164413.22672377148
+time 2026-04-29 10:49:59, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_8176
+time 2026-04-29 10:50:01, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:50:05, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:50:07, INFO: Predict request from merchant_id=43, txn_id=txn_3148, amount=485891.04848908697
+time 2026-04-29 10:50:07, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_3148
+time 2026-04-29 10:50:08, INFO: Predict request from merchant_id=43, txn_id=txn_1861, amount=938720.3393963876
+time 2026-04-29 10:50:08, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1861
+time 2026-04-29 10:50:11, INFO: Predict request from merchant_id=43, txn_id=txn_4678, amount=258639.29051951665
+time 2026-04-29 10:50:11, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_4678
+time 2026-04-29 10:50:15, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:50:17, INFO: Predict request from merchant_id=43, txn_id=txn_3222, amount=95444.4930052408
+time 2026-04-29 10:50:17, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_3222
+time 2026-04-29 10:50:19, INFO: Predict request from merchant_id=43, txn_id=txn_5386, amount=453093.43195754697
+time 2026-04-29 10:50:19, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_5386
+time 2026-04-29 10:50:21, INFO: Predict request from merchant_id=43, txn_id=txn_2169, amount=130190.79039007924
+time 2026-04-29 10:50:21, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_2169
+time 2026-04-29 10:50:23, INFO: Predict request from merchant_id=43, txn_id=txn_4966, amount=38196.98040753611
+time 2026-04-29 10:50:23, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_4966
+time 2026-04-29 10:50:25, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:50:27, INFO: Predict request from merchant_id=43, txn_id=txn_2429, amount=288867.7563644426
+time 2026-04-29 10:50:27, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_2429
+time 2026-04-29 10:50:30, INFO: Predict request from merchant_id=43, txn_id=txn_3874, amount=936397.5546599113
+time 2026-04-29 10:50:30, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_3874
+time 2026-04-29 10:50:32, INFO: Predict request from merchant_id=43, txn_id=txn_7736, amount=169211.75400944563
+time 2026-04-29 10:50:32, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_7736
+time 2026-04-29 10:50:34, INFO: Predict request from merchant_id=43, txn_id=txn_4785, amount=965627.8290871518
+time 2026-04-29 10:50:34, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4785
+time 2026-04-29 10:50:39, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:50:42, INFO: Predict request from merchant_id=43, txn_id=txn_7693, amount=790292.299978897
+time 2026-04-29 10:50:42, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7693
+time 2026-04-29 10:50:46, INFO: Predict request from merchant_id=43, txn_id=txn_5507, amount=105057.3623153155
+time 2026-04-29 10:50:46, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_5507
+time 2026-04-29 10:50:50, INFO: Predict request from merchant_id=43, txn_id=txn_9481, amount=314853.62597601704
+time 2026-04-29 10:50:50, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_9481
+time 2026-04-29 10:50:52, INFO: Predict request from merchant_id=43, txn_id=txn_7508, amount=868682.5345539086
+time 2026-04-29 10:50:52, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7508
+time 2026-04-29 10:50:53, INFO: Predict request from merchant_id=43, txn_id=txn_6921, amount=205767.33891030203
+time 2026-04-29 10:50:53, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_6921
+time 2026-04-29 10:50:56, INFO: Predict request from merchant_id=43, txn_id=txn_7700, amount=725657.0862884789
+time 2026-04-29 10:50:56, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7700
+time 2026-04-29 10:51:01, INFO: Predict request from merchant_id=43, txn_id=txn_2384, amount=961493.7833464324
+time 2026-04-29 10:51:01, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2384
+time 2026-04-29 10:51:02, INFO: Predict request from merchant_id=43, txn_id=txn_1629, amount=580650.9659837615
+time 2026-04-29 10:51:02, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1629
+time 2026-04-29 10:51:04, INFO: Predict request from merchant_id=43, txn_id=txn_6082, amount=70252.65599691925
+time 2026-04-29 10:51:04, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_6082
+time 2026-04-29 10:51:06, INFO: Predict request from merchant_id=43, txn_id=txn_7267, amount=118114.26091199215
+time 2026-04-29 10:51:06, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_7267
+time 2026-04-29 10:51:08, INFO: Predict request from merchant_id=43, txn_id=txn_3051, amount=170889.54393450503
+time 2026-04-29 10:51:08, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_3051
+time 2026-04-29 10:51:10, INFO: Predict request from merchant_id=43, txn_id=txn_3415, amount=997977.6103600406
+time 2026-04-29 10:51:10, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_3415
+time 2026-04-29 10:51:12, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:51:13, INFO: Predict request from merchant_id=43, txn_id=txn_8863, amount=426867.5535253738
+time 2026-04-29 10:51:13, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_8863
+time 2026-04-29 10:51:15, INFO: Predict request from merchant_id=43, txn_id=txn_6466, amount=84685.90311474817
+time 2026-04-29 10:51:15, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_6466
+time 2026-04-29 10:51:16, INFO: Predict request from merchant_id=43, txn_id=txn_4952, amount=404745.9975916826
+time 2026-04-29 10:51:16, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_4952
+time 2026-04-29 10:51:24, INFO: Predict request from merchant_id=43, txn_id=txn_1823, amount=263429.6764804431
+time 2026-04-29 10:51:24, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_1823
+time 2026-04-29 10:51:27, INFO: Predict request from merchant_id=43, txn_id=txn_7405, amount=13322.36035711789
+time 2026-04-29 10:51:27, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_7405
+time 2026-04-29 10:51:29, INFO: Predict request from merchant_id=43, txn_id=txn_2794, amount=975245.6611823114
+time 2026-04-29 10:51:29, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2794
+time 2026-04-29 10:51:31, INFO: Predict request from merchant_id=43, txn_id=txn_9064, amount=656446.6077752357
+time 2026-04-29 10:51:31, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9064
+time 2026-04-29 10:51:32, INFO: Predict request from merchant_id=43, txn_id=txn_7501, amount=622842.8273654087
+time 2026-04-29 10:51:32, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7501
+time 2026-04-29 10:51:33, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:51:40, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:51:42, INFO: Predict request from merchant_id=43, txn_id=txn_4018, amount=179200.0166584087
+time 2026-04-29 10:51:42, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_4018
+time 2026-04-29 10:51:45, INFO: Predict request from merchant_id=43, txn_id=txn_4385, amount=696089.0299743251
+time 2026-04-29 10:51:45, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4385
+time 2026-04-29 10:51:47, INFO: Predict request from merchant_id=43, txn_id=txn_5850, amount=274093.61408149597
+time 2026-04-29 10:51:47, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_5850
+time 2026-04-29 10:51:49, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:51:52, INFO: Predict request from merchant_id=43, txn_id=txn_9111, amount=465680.3624758646
+time 2026-04-29 10:51:52, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_9111
+time 2026-04-29 10:51:53, INFO: Predict request from merchant_id=43, txn_id=txn_5653, amount=828614.9203025104
+time 2026-04-29 10:51:53, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_5653
+time 2026-04-29 10:51:56, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:52:01, INFO: Predict request from merchant_id=43, txn_id=txn_3894, amount=711343.1094553921
+time 2026-04-29 10:52:01, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_3894
+time 2026-04-29 10:52:03, INFO: Predict request from merchant_id=43, txn_id=txn_2011, amount=513520.0562432713
+time 2026-04-29 10:52:03, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2011
+time 2026-04-29 10:52:09, INFO: Predict request from merchant_id=43, txn_id=txn_9629, amount=790720.1660284526
+time 2026-04-29 10:52:09, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9629
+time 2026-04-29 10:52:11, INFO: Predict request from merchant_id=43, txn_id=txn_3432, amount=354559.56513355393
+time 2026-04-29 10:52:11, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_3432
+time 2026-04-29 10:52:13, INFO: Predict request from merchant_id=43, txn_id=txn_7111, amount=735772.2538549871
+time 2026-04-29 10:52:13, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7111
+time 2026-04-29 10:52:14, INFO: Predict request from merchant_id=43, txn_id=txn_6848, amount=95231.15923303853
+time 2026-04-29 10:52:14, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_6848
+time 2026-04-29 10:52:15, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:52:19, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:52:25, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:52:26, INFO: Predict request from merchant_id=43, txn_id=txn_9356, amount=618920.2780232396
+time 2026-04-29 10:52:26, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9356
+time 2026-04-29 10:52:29, INFO: Predict request from merchant_id=43, txn_id=txn_1741, amount=139104.26210855765
+time 2026-04-29 10:52:29, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_1741
+time 2026-04-29 10:52:30, INFO: Predict request from merchant_id=43, txn_id=txn_1922, amount=69970.17007990347
+time 2026-04-29 10:52:30, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_1922
+time 2026-04-29 10:52:32, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:52:35, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:52:36, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:52:40, INFO: Predict request from merchant_id=43, txn_id=txn_3702, amount=260601.89379451287
+time 2026-04-29 10:52:40, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_3702
+time 2026-04-29 10:52:45, INFO: Predict request from merchant_id=43, txn_id=txn_3634, amount=418825.36824327474
+time 2026-04-29 10:52:45, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_3634
+time 2026-04-29 10:52:46, INFO: Predict request from merchant_id=43, txn_id=txn_8317, amount=225800.70842823113
+time 2026-04-29 10:52:46, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_8317
+time 2026-04-29 10:52:48, INFO: Predict request from merchant_id=43, txn_id=txn_5796, amount=82905.78373741558
+time 2026-04-29 10:52:48, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_5796
+time 2026-04-29 10:52:50, INFO: Predict request from merchant_id=43, txn_id=txn_6702, amount=714948.212731104
+time 2026-04-29 10:52:50, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6702
+time 2026-04-29 10:52:52, INFO: Predict request from merchant_id=43, txn_id=txn_8502, amount=979471.8822139789
+time 2026-04-29 10:52:52, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_8502
+time 2026-04-29 10:52:55, INFO: Predict request from merchant_id=43, txn_id=txn_2922, amount=177320.83491045146
+time 2026-04-29 10:52:55, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_2922
+time 2026-04-29 10:52:57, INFO: Predict request from merchant_id=43, txn_id=txn_5398, amount=830967.1122119796
+time 2026-04-29 10:52:57, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_5398
+time 2026-04-29 10:52:59, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:53:03, INFO: Predict request from merchant_id=43, txn_id=txn_3242, amount=864000.269789881
+time 2026-04-29 10:53:03, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_3242
+time 2026-04-29 10:53:05, INFO: Predict request from merchant_id=43, txn_id=txn_8858, amount=599574.5035158104
+time 2026-04-29 10:53:05, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_8858
+time 2026-04-29 10:53:07, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:53:09, INFO: Predict request from merchant_id=43, txn_id=txn_8843, amount=70954.66163291594
+time 2026-04-29 10:53:09, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_8843
+time 2026-04-29 10:53:12, INFO: Predict request from merchant_id=43, txn_id=txn_1405, amount=501050.4756328353
+time 2026-04-29 10:53:12, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1405
+time 2026-04-29 10:53:19, INFO: Predict request from merchant_id=43, txn_id=txn_7842, amount=154177.26068229167
+time 2026-04-29 10:53:19, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_7842
+time 2026-04-29 10:53:22, INFO: Predict request from merchant_id=43, txn_id=txn_9350, amount=157269.28171397434
+time 2026-04-29 10:53:22, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_9350
+time 2026-04-29 10:53:23, INFO: Predict request from merchant_id=43, txn_id=txn_2077, amount=703755.1196844811
+time 2026-04-29 10:53:23, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2077
+time 2026-04-29 10:53:25, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:53:27, INFO: Predict request from merchant_id=43, txn_id=txn_1080, amount=502453.07451636484
+time 2026-04-29 10:53:27, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1080
+time 2026-04-29 10:53:30, INFO: Predict request from merchant_id=43, txn_id=txn_1082, amount=536638.0585911558
+time 2026-04-29 10:53:30, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1082
+time 2026-04-29 10:53:32, INFO: Predict request from merchant_id=43, txn_id=txn_7456, amount=114787.2888866926
+time 2026-04-29 10:53:32, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_7456
+time 2026-04-29 10:53:35, INFO: Predict request from merchant_id=43, txn_id=txn_7439, amount=75072.07859781272
+time 2026-04-29 10:53:35, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_7439
+time 2026-04-29 10:53:39, INFO: Predict request from merchant_id=43, txn_id=txn_4681, amount=186469.18049455996
+time 2026-04-29 10:53:39, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_4681
+time 2026-04-29 10:53:40, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:53:44, INFO: Predict request from merchant_id=43, txn_id=txn_4000, amount=611262.6941872409
+time 2026-04-29 10:53:44, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4000
+time 2026-04-29 10:53:47, INFO: Predict request from merchant_id=43, txn_id=txn_8139, amount=826276.9424880258
+time 2026-04-29 10:53:47, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_8139
+time 2026-04-29 10:53:49, INFO: Predict request from merchant_id=43, txn_id=txn_7173, amount=643862.0780785977
+time 2026-04-29 10:53:49, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7173
+time 2026-04-29 10:53:51, INFO: Predict request from merchant_id=43, txn_id=txn_2386, amount=981022.1852338647
+time 2026-04-29 10:53:51, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2386
+time 2026-04-29 10:53:53, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:53:56, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:53:57, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:53:59, INFO: Predict request from merchant_id=43, txn_id=txn_4351, amount=617227.772301176
+time 2026-04-29 10:53:59, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4351
+time 2026-04-29 10:54:01, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:54:04, INFO: Predict request from merchant_id=43, txn_id=txn_4731, amount=944501.5448787836
+time 2026-04-29 10:54:04, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4731
+time 2026-04-29 10:54:06, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:54:11, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:54:15, INFO: Predict request from merchant_id=43, txn_id=txn_4604, amount=161255.90895745918
+time 2026-04-29 10:54:15, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_4604
+time 2026-04-29 10:54:16, INFO: Predict request from merchant_id=43, txn_id=txn_8920, amount=320273.2250213925
+time 2026-04-29 10:54:16, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_8920
+time 2026-04-29 10:54:19, INFO: Predict request from merchant_id=43, txn_id=txn_7102, amount=923807.5752211905
+time 2026-04-29 10:54:19, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7102
+time 2026-04-29 10:54:20, INFO: Predict request from merchant_id=43, txn_id=txn_9148, amount=876376.5028394529
+time 2026-04-29 10:54:20, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9148
+time 2026-04-29 10:54:21, INFO: Predict request from merchant_id=43, txn_id=txn_6044, amount=208529.91864052461
+time 2026-04-29 10:54:21, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_6044
+time 2026-04-29 10:54:25, INFO: Predict request from merchant_id=43, txn_id=txn_2888, amount=753544.2899629178
+time 2026-04-29 10:54:25, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2888
+time 2026-04-29 10:54:27, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:54:30, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:54:35, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:54:36, INFO: Predict request from merchant_id=43, txn_id=txn_8888, amount=937977.3227340719
+time 2026-04-29 10:54:36, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_8888
+time 2026-04-29 10:54:39, INFO: Predict request from merchant_id=43, txn_id=txn_6479, amount=533234.4002094337
+time 2026-04-29 10:54:39, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6479
+time 2026-04-29 10:54:41, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:54:43, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:54:45, INFO: Predict request from merchant_id=43, txn_id=txn_9548, amount=547212.0522718638
+time 2026-04-29 10:54:45, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9548
+time 2026-04-29 10:54:48, INFO: Predict request from merchant_id=43, txn_id=txn_6588, amount=197372.85992872526
+time 2026-04-29 10:54:48, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_6588
+time 2026-04-29 10:54:54, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:54:56, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:54:58, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:55:00, INFO: Predict request from merchant_id=43, txn_id=txn_7590, amount=106069.84342775114
+time 2026-04-29 10:55:00, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_7590
+time 2026-04-29 10:55:02, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:55:05, INFO: Predict request from merchant_id=43, txn_id=txn_7119, amount=309947.44092630513
+time 2026-04-29 10:55:05, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_7119
+time 2026-04-29 10:55:07, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:55:10, INFO: Predict request from merchant_id=43, txn_id=txn_7649, amount=122123.80417425981
+time 2026-04-29 10:55:10, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_7649
+time 2026-04-29 10:55:11, INFO: Predict request from merchant_id=43, txn_id=txn_2946, amount=684318.8274521525
+time 2026-04-29 10:55:11, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2946
+time 2026-04-29 10:55:13, INFO: Predict request from merchant_id=43, txn_id=txn_4491, amount=532747.0262039024
+time 2026-04-29 10:55:13, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4491
+time 2026-04-29 10:55:14, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:55:19, INFO: Predict request from merchant_id=43, txn_id=txn_6303, amount=480924.3044686508
+time 2026-04-29 10:55:19, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_6303
+time 2026-04-29 10:55:23, INFO: Predict request from merchant_id=43, txn_id=txn_4378, amount=588622.4057970428
+time 2026-04-29 10:55:23, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4378
+time 2026-04-29 10:55:25, INFO: Predict request from merchant_id=43, txn_id=txn_1395, amount=783202.9353802007
+time 2026-04-29 10:55:25, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1395
+time 2026-04-29 10:55:26, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:55:31, INFO: Predict request from merchant_id=43, txn_id=txn_3268, amount=217208.45382006146
+time 2026-04-29 10:55:31, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_3268
+time 2026-04-29 10:55:34, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:55:36, INFO: Predict request from merchant_id=43, txn_id=txn_8057, amount=439309.5711944936
+time 2026-04-29 10:55:36, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_8057
+time 2026-04-29 10:55:38, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:55:41, INFO: Predict request from merchant_id=43, txn_id=txn_1177, amount=246333.35372487118
+time 2026-04-29 10:55:41, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_1177
+time 2026-04-29 10:55:45, INFO: Predict request from merchant_id=43, txn_id=txn_7444, amount=425956.9233450663
+time 2026-04-29 10:55:45, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_7444
+time 2026-04-29 10:55:47, INFO: Predict request from merchant_id=43, txn_id=txn_7288, amount=134313.68532558286
+time 2026-04-29 10:55:47, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_7288
+time 2026-04-29 10:55:51, INFO: Predict request from merchant_id=43, txn_id=txn_7705, amount=12217.871100576209
+time 2026-04-29 10:55:51, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_7705
+time 2026-04-29 10:55:52, INFO: Predict request from merchant_id=43, txn_id=txn_5868, amount=608636.2075916153
+time 2026-04-29 10:55:52, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_5868
+time 2026-04-29 10:55:54, INFO: Predict request from merchant_id=43, txn_id=txn_4043, amount=971050.4356817883
+time 2026-04-29 10:55:54, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4043
+time 2026-04-29 10:55:57, INFO: Predict request from merchant_id=43, txn_id=txn_6261, amount=910154.6081130707
+time 2026-04-29 10:55:57, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6261
+time 2026-04-29 10:56:01, INFO: Predict request from merchant_id=43, txn_id=txn_7401, amount=414893.8424745371
+time 2026-04-29 10:56:01, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_7401
+time 2026-04-29 10:56:03, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:56:09, INFO: Predict request from merchant_id=43, txn_id=txn_5287, amount=210238.267565993
+time 2026-04-29 10:56:09, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_5287
+time 2026-04-29 10:56:11, INFO: Predict request from merchant_id=43, txn_id=txn_3448, amount=849832.5856096889
+time 2026-04-29 10:56:11, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_3448
+time 2026-04-29 10:56:14, INFO: Predict request from merchant_id=43, txn_id=txn_9769, amount=203283.00618380203
+time 2026-04-29 10:56:14, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_9769
+time 2026-04-29 10:56:20, INFO: Predict request from merchant_id=43, txn_id=txn_9677, amount=213231.04051872404
+time 2026-04-29 10:56:20, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_9677
+time 2026-04-29 10:56:24, INFO: Predict request from merchant_id=43, txn_id=txn_7409, amount=903387.191049086
+time 2026-04-29 10:56:24, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7409
+time 2026-04-29 10:56:27, INFO: Predict request from merchant_id=43, txn_id=txn_9629, amount=829457.7461909908
+time 2026-04-29 10:56:27, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9629
+time 2026-04-29 10:56:29, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:56:31, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:56:36, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:56:40, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:56:43, INFO: Predict request from merchant_id=43, txn_id=txn_3057, amount=499907.39183570945
+time 2026-04-29 10:56:43, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_3057
+time 2026-04-29 10:56:45, INFO: Predict request from merchant_id=43, txn_id=txn_8007, amount=279649.1433028235
+time 2026-04-29 10:56:45, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_8007
+time 2026-04-29 10:56:48, INFO: Predict request from merchant_id=43, txn_id=txn_3973, amount=539199.5490872178
+time 2026-04-29 10:56:48, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_3973
+time 2026-04-29 10:56:50, INFO: Predict request from merchant_id=43, txn_id=txn_9413, amount=656469.3393091904
+time 2026-04-29 10:56:50, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9413
+time 2026-04-29 10:56:51, INFO: Predict request from merchant_id=43, txn_id=txn_4860, amount=946696.0555057985
+time 2026-04-29 10:56:51, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4860
+time 2026-04-29 10:56:52, INFO: Predict request from merchant_id=43, txn_id=txn_4135, amount=81492.15430352952
+time 2026-04-29 10:56:52, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_4135
+time 2026-04-29 10:56:55, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:56:57, INFO: Predict request from merchant_id=43, txn_id=txn_4254, amount=79710.80870125662
+time 2026-04-29 10:56:57, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_4254
+time 2026-04-29 10:56:59, INFO: Predict request from merchant_id=43, txn_id=txn_6819, amount=257539.38661331977
+time 2026-04-29 10:56:59, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_6819
+time 2026-04-29 10:57:02, INFO: Predict request from merchant_id=43, txn_id=txn_8113, amount=797436.398699705
+time 2026-04-29 10:57:02, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_8113
+time 2026-04-29 10:57:05, INFO: Predict request from merchant_id=43, txn_id=txn_4388, amount=903701.4539802934
+time 2026-04-29 10:57:05, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4388
+time 2026-04-29 10:57:06, INFO: Predict request from merchant_id=43, txn_id=txn_8338, amount=230926.98061000463
+time 2026-04-29 10:57:06, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_8338
+time 2026-04-29 10:57:07, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:57:09, INFO: Predict request from merchant_id=43, txn_id=txn_4055, amount=967194.5884450778
+time 2026-04-29 10:57:09, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4055
+time 2026-04-29 10:57:11, INFO: Predict request from merchant_id=43, txn_id=txn_1664, amount=17345.4322966015
+time 2026-04-29 10:57:11, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_1664
+time 2026-04-29 10:57:15, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:57:16, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:57:18, INFO: Predict request from merchant_id=43, txn_id=txn_1384, amount=622769.1051672461
+time 2026-04-29 10:57:18, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1384
+time 2026-04-29 10:57:20, INFO: Predict request from merchant_id=43, txn_id=txn_2813, amount=121258.54299726305
+time 2026-04-29 10:57:20, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_2813
+time 2026-04-29 10:57:22, INFO: Predict request from merchant_id=43, txn_id=txn_4396, amount=215151.74848392935
+time 2026-04-29 10:57:22, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_4396
+time 2026-04-29 10:57:25, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:57:27, INFO: Predict request from merchant_id=43, txn_id=txn_1577, amount=995197.0180537257
+time 2026-04-29 10:57:27, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1577
+time 2026-04-29 10:57:29, INFO: Predict request from merchant_id=43, txn_id=txn_6417, amount=642423.4650021465
+time 2026-04-29 10:57:29, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6417
+time 2026-04-29 10:57:30, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:57:31, INFO: Predict request from merchant_id=43, txn_id=txn_6169, amount=119479.51872269908
+time 2026-04-29 10:57:31, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_6169
+time 2026-04-29 10:57:35, INFO: Predict request from merchant_id=43, txn_id=txn_5049, amount=297238.92822109855
+time 2026-04-29 10:57:35, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_5049
+time 2026-04-29 10:57:38, INFO: Predict request from merchant_id=43, txn_id=txn_9531, amount=575324.8693386909
+time 2026-04-29 10:57:38, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9531
+time 2026-04-29 10:57:39, INFO: Predict request from merchant_id=43, txn_id=txn_8427, amount=426170.84885610815
+time 2026-04-29 10:57:39, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_8427
+time 2026-04-29 10:57:43, INFO: Predict request from merchant_id=43, txn_id=txn_5217, amount=704627.6857987383
+time 2026-04-29 10:57:43, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_5217
+time 2026-04-29 10:57:45, INFO: Predict request from merchant_id=43, txn_id=txn_3822, amount=439814.4554457415
+time 2026-04-29 10:57:45, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_3822
+time 2026-04-29 10:57:47, INFO: Predict request from merchant_id=43, txn_id=txn_6115, amount=407885.0511014951
+time 2026-04-29 10:57:47, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_6115
+time 2026-04-29 10:57:49, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:57:51, INFO: Predict request from merchant_id=43, txn_id=txn_6939, amount=863044.4581882271
+time 2026-04-29 10:57:51, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6939
+time 2026-04-29 10:57:53, INFO: Predict request from merchant_id=43, txn_id=txn_6185, amount=295865.33418791153
+time 2026-04-29 10:57:53, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_6185
+time 2026-04-29 10:57:56, INFO: Predict request from merchant_id=43, txn_id=txn_7176, amount=418106.0673832854
+time 2026-04-29 10:57:56, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_7176
+time 2026-04-29 10:57:58, INFO: Predict request from merchant_id=43, txn_id=txn_1462, amount=997488.8254839592
+time 2026-04-29 10:57:58, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1462
+time 2026-04-29 10:58:00, INFO: Predict request from merchant_id=43, txn_id=txn_4534, amount=922172.3496643007
+time 2026-04-29 10:58:00, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_4534
+time 2026-04-29 10:58:02, INFO: Predict request from merchant_id=43, txn_id=txn_8219, amount=198698.1833523412
+time 2026-04-29 10:58:02, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_8219
+time 2026-04-29 10:58:05, INFO: Predict request from merchant_id=43, txn_id=txn_5237, amount=486755.35543328035
+time 2026-04-29 10:58:05, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_5237
+time 2026-04-29 10:58:08, INFO: Predict request from merchant_id=43, txn_id=txn_3671, amount=909201.6930349335
+time 2026-04-29 10:58:08, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_3671
+time 2026-04-29 10:58:10, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:58:12, INFO: Predict request from merchant_id=43, txn_id=txn_3584, amount=411520.9926796908
+time 2026-04-29 10:58:12, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_3584
+time 2026-04-29 10:58:15, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:58:17, INFO: Predict request from merchant_id=43, txn_id=txn_6703, amount=744089.812370585
+time 2026-04-29 10:58:17, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6703
+time 2026-04-29 10:58:21, INFO: Predict request from merchant_id=43, txn_id=txn_3473, amount=639123.4760849734
+time 2026-04-29 10:58:21, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_3473
+time 2026-04-29 10:58:23, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:58:30, INFO: Predict request from merchant_id=43, txn_id=txn_6703, amount=272509.9552956082
+time 2026-04-29 10:58:30, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_6703
+time 2026-04-29 10:58:35, INFO: Predict request from merchant_id=43, txn_id=txn_2585, amount=253128.68851328144
+time 2026-04-29 10:58:35, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_2585
+time 2026-04-29 10:58:38, INFO: Predict request from merchant_id=43, txn_id=txn_7663, amount=804326.6919723297
+time 2026-04-29 10:58:38, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7663
+time 2026-04-29 10:58:39, INFO: Predict request from merchant_id=43, txn_id=txn_8732, amount=242603.0873151744
+time 2026-04-29 10:58:39, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_8732
+time 2026-04-29 10:58:41, INFO: Predict request from merchant_id=43, txn_id=txn_6520, amount=823762.9738690696
+time 2026-04-29 10:58:41, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6520
+time 2026-04-29 10:58:46, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:58:53, INFO: Predict request from merchant_id=43, txn_id=txn_6743, amount=887789.719780001
+time 2026-04-29 10:58:53, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_6743
+time 2026-04-29 10:58:56, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:59:00, INFO: Predict request from merchant_id=43, txn_id=txn_3070, amount=830870.0156513758
+time 2026-04-29 10:59:00, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_3070
+time 2026-04-29 10:59:02, INFO: Predict request from merchant_id=43, txn_id=txn_2754, amount=927493.83857796
+time 2026-04-29 10:59:02, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_2754
+time 2026-04-29 10:59:06, INFO: Predict request from merchant_id=43, txn_id=txn_7494, amount=928340.6011098003
+time 2026-04-29 10:59:06, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_7494
+time 2026-04-29 10:59:11, INFO: Predict request from merchant_id=43, txn_id=txn_1503, amount=640108.3113941469
+time 2026-04-29 10:59:11, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1503
+time 2026-04-29 10:59:14, INFO: Predict request from merchant_id=43, txn_id=txn_8262, amount=324110.8553813379
+time 2026-04-29 10:59:14, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_8262
+time 2026-04-29 10:59:19, INFO: Predict request from merchant_id=43, txn_id=txn_9066, amount=751783.3239635169
+time 2026-04-29 10:59:19, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_9066
+time 2026-04-29 10:59:26, INFO: Predict request from merchant_id=43, txn_id=txn_7429, amount=290391.0770128811
+time 2026-04-29 10:59:26, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_7429
+time 2026-04-29 10:59:28, INFO: Predict request from merchant_id=43, txn_id=txn_3643, amount=191225.4878958818
+time 2026-04-29 10:59:28, INFO: Prediction result: score=65.0, decision=review, merchant=43, txn=txn_3643
+time 2026-04-29 10:59:30, INFO: Transaction list requested by merchant 43
+time 2026-04-29 10:59:32, INFO: Predict request from merchant_id=43, txn_id=txn_2350, amount=277374.84199938126
+time 2026-04-29 10:59:32, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_2350
+time 2026-04-29 10:59:35, INFO: Predict request from merchant_id=43, txn_id=txn_5143, amount=979093.507443774
+time 2026-04-29 10:59:35, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_5143
+time 2026-04-29 10:59:36, INFO: Predict request from merchant_id=43, txn_id=txn_5192, amount=970558.7808477711
+time 2026-04-29 10:59:36, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_5192
+time 2026-04-29 10:59:38, INFO: Predict request from merchant_id=43, txn_id=txn_1497, amount=832440.9216574245
+time 2026-04-29 10:59:38, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_1497
+time 2026-04-29 10:59:40, INFO: Predict request from merchant_id=43, txn_id=txn_8008, amount=854531.4433938257
+time 2026-04-29 10:59:40, INFO: Prediction result: score=80.0, decision=review, merchant=43, txn=txn_8008
+time 2026-04-29 10:59:41, INFO: Predict request from merchant_id=43, txn_id=txn_6348, amount=358935.86287886876
+time 2026-04-29 10:59:41, INFO: Prediction result: score=10.0, decision=approve, merchant=43, txn=txn_6348
+time 2026-04-29 10:59:44, INFO: Transaction list requested by merchant 43
