@@ -12,16 +12,14 @@ async def create_transaction(data: dict):
     return data
 
 async def get_transaction(transaction_id: str, merchant_id: str):
-    if not ObjectId.is_valid(transaction_id):
-        raise HTTPException(status_code=400, detail="Invalid transaction ID")
+   
     doc = await mongo_module.transaction_collection.find_one(
         {"_id": ObjectId(transaction_id), "merchant_id": merchant_id}
     )
     if not doc:
         raise HTTPException(status_code=404, detail="Transaction not found")
     doc["id"] = str(doc["_id"])
-    if "_id" in doc:
-        del doc["_id"]
+    del doc["_id"]
     return doc
 
 async def get_all_transactions(merchant_id: str):

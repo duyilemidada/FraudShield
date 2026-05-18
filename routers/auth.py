@@ -6,6 +6,7 @@ from crud.security import authenticate_user, create_access_token, decode_access_
 
 from pydantic import BaseModel
 from logger_config import client_logger
+from rate_limiter import limiter
 router = APIRouter(tags=["Auth"])
 
 
@@ -14,6 +15,7 @@ class Token(BaseModel):
     token_type: str
 @router.post("/login", response_model=Token)
 @router.post("/token", include_in_schema=False)
+@limiter.limit('10/minute') #stricter for brute force protection
 def login(form_data: OAuth2PasswordRequestForm = Depends(), session: Session = Depends(get_db)):
     client_logger.info(f"Login attempt for user: {form_data.username}")
     user = authenticate_user(session, form_data.username, form_data.password)

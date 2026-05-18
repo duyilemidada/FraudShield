@@ -16,6 +16,13 @@ import os
 import joblib
 import json
 from database.mongo import create_indexes
+from middleware.timing import RequestTimingMiddleware
+from slowapi import _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
+from slowapi.middleware import SlowAPIMiddleware
+from rate_limiter import limiter
+from fastapi.middleware.cors import CORSMiddleware
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # ── STARTUP ──────────────────────────────────────────
@@ -24,14 +31,28 @@ async def lifespan(app: FastAPI):
     await create_indexes()
 
     model_path  = 'ml/models/fraud_model.pkl'
-    preroc_path = 'ml/models/preprocessor.pkl'
+    preproc_path = 'ml/models/preprocessor.pkl'
+    anomaly_path  = 'ml/models/anomaly_model.pkl'
+    anomaly_bounds_path = 'ml/models/anomaly_bounds.json'
     thresholds_path = 'ml/models/thresholds.json'
    
-    if os.path.exists(model_path) and os.path.exists(preroc_path):  
+    if os.path.exists(anomaly_path) and os.path.exists(anomaly_bounds_path):
+        with open(anomaly_bounds_path, 'r') as f:
+            anomaly_bounds = json.load(f)
+        app.state.anomaly_model = {
+            'model': joblib.load(anomaly_path),
+            'bounds': anomaly_bounds
+        }
+        client_logger.info('Anomaly model loaded')
+    else:
+        app.state.anomaly_model = None
+
+
+    if os.path.exists(model_path) and os.path.exists(preproc_path):  
         try:
             app.state.ml_model = {
                 'classifier':   joblib.load(model_path),
-                'preprocessor': joblib.load(preroc_path)
+                'preprocessor': joblib.load(preproc_path)
             }
 
             # Load thresholds if available, otherwise fall back to defaults
@@ -59,7 +80,24 @@ async def lifespan(app: FastAPI):
     # ── SHUTDOWN ─────────────────────────────────────────
     client_logger.info('FraudShield API shutting down')
 
+# ── CORS Configuration ─────────────────────────────────
+# Use environment variables or sensible defaults
+ALLOW_ORIGINS = os.getenv(
+    "ALLOWED_ORIGINS",
+    ""
+).split(",")
+
 app = FastAPI(title='FraudShield', lifespan=lifespan)
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.add_middleware(SlowAPIMiddleware)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=ALLOW_ORIGINS,
+    allow_credentials=True,                 # allow cookies/Authorization headers
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Content-Type", "Authorization", "X-API-KEY", "X-Requested-With"],
+)
 
 app.include_router(register_router,   prefix='/api/v1')
 app.include_router(auth_router,       prefix='/api/v1')
@@ -70,6 +108,10 @@ app.include_router(transaction_router,prefix='/api/v1')
 app.include_router(mfa_router,        prefix='/api/v1')
 app.include_router(upload_router,     prefix='/api/v1')
 app.include_router(download_router,   prefix='/api/v1')
+
+#custom middleware 
+app.add_middleware(RequestTimingMiddleware)
+
 
 @app.get('/')
 async def root():
