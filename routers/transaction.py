@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request
 from schemas.transaction import TransactionInDB
 from crud.transaction_crud import get_all_transactions, get_transaction
 from crud.security import get_api_key
@@ -11,7 +11,7 @@ router = APIRouter(tags=["Transactions"])
 
 @router.get("/transactions", response_model=list[TransactionInDB])
 @limiter.limit('200/hour')
-async def list_transactions(current_user: User = Depends(get_api_key)):
+async def list_transactions(request: Request, current_user: User = Depends(get_api_key)):
     client_logger.info(f"Transaction list requested by merchant {current_user.id}")
     return await get_all_transactions(str(current_user.id))   # ← filtered
 
