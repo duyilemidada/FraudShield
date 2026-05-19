@@ -73,7 +73,6 @@ python-engineio==4.13.1
 python-jose==3.5.0
 python-multipart==0.0.24
 python-socketio==5.16.1
-pywin32==311
 PyYAML==6.0.3
 pyzmq==27.1.0
 redis==7.4.0
