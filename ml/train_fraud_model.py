@@ -92,11 +92,15 @@ def split_features_labels(df):
     """
     X = all columns except the target ('is_fraud') and metadata.
     y = 'is_fraud' converted to 0/1.
+    Only rows that actually have a fraud label are kept.
     """
+    # ── NEW: Keep only rows where is_fraud is present (not NaN) ──
+    df = df.dropna(subset=['is_fraud']).copy()
+
     drop_cols = [
         '_id', 'transaction_id', 'is_fraud', 'created_at',
         'customer_email', 'customer_phone', 'customer_ip',
-        'device_fingerprint', 'merchant_id', 'fraud_score', 'decision'  
+        'device_fingerprint', 'merchant_id', 'fraud_score', 'decision'
     ]
     # Only drop columns that actually exist in the DataFrame
     X = df.drop(columns=[c for c in drop_cols if c in df.columns])
@@ -479,12 +483,12 @@ def train_and_compare(X_train, y_train, X_val, y_val, feature_names=None):
         colsample_bytree=0.8,      # fraction of features per tree
         scale_pos_weight=scale_pos_weight,  # handles class imbalance
         eval_metric='auc',
+        early_stopping_rounds=10,          # ← moved here
         random_state=42
     )
     xgb_clf.fit(
         X_train, y_train_np,
         eval_set=[(X_val, y_val)],
-        early_stopping_rounds=10,   # stop if AUC does not improve for 10 rounds
         verbose=False
     )
     logger.info(f'  Best iteration: {xgb_clf.best_iteration}')
@@ -584,10 +588,19 @@ def semi_supervised_learning(X_prep, y_full=None, label_fraction=0.1, k=50):
         known_mask = np.zeros(n, dtype=bool)
         known_mask[representative_idx] = True   # these are definitely known
         # Add a few random labelled examples to mimic real randomness
-        unlabeled = np.where(~known_mask)[0]
-        extra = np.random.choice(unlabeled, size=int(n * label_fraction) - k, replace=False)
-        known_mask[extra] = True
-        logger.info(f"  Using {known_mask.sum()} labelled samples (representatives + random)")
+
+        num_desired = int(n * label_fraction)
+        if num_desired > k:
+
+
+            unlabeled = np.where(~known_mask)[0]
+            extra = np.random.choice(unlabeled, size=int(n * label_fraction) - k, replace=False)
+            known_mask[extra] = True
+            logger.info(f"  Using {known_mask.sum()} labelled samples (representatives + random)")
+        else :
+            # label_fraction is too small – just use the representatives
+            logger.warning(f"  Requested {num_desired} labelled samples, but need at least {k} "
+                           f"for {k} clusters. Using only the {k} representatives.")
     else:
         # Real production mode: you have a mask of known labels (e.g., chargebacks)
         # In that case, known_mask would be passed in. We'll just use representatives.
@@ -708,7 +721,7 @@ def main():
                     'model_type': best_unsup['name']}, f)
         logger.info('Anomaly model saved.')
 
-    skip_learning_curves = isinstance(best_model, (VotingClassifier, StackingClassifier))
+    skip_learning_curves = isinstance(best_model, (VotingClassifier, StackingClassifier, xgb.XGBClassifier))
 
     if skip_learning_curves:
         logger.info('Skipping learning curves for ensemble model (too slow to clone).')

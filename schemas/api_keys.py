@@ -8,5 +8,7 @@ class APIKeyResponse(BaseModel):
     label: str
     key: str
     is_active: bool
+    key:         str         
+    key_preview: str 
 
     model_config = ConfigDict(from_attributes=True)

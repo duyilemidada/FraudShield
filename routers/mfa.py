@@ -21,22 +21,29 @@ def enable_mfa(
 ):
     secret = generate_totp_secret()
     db_user = get_user(session, current_user.username)
-    db_user.totp_secret = secret
+    db_user.pending_totp_secret = secret
     session.commit()
-    session.refresh(db_user)
 
     totp_uri = generate_totp_uri(secret, db_user.email)
     return {
         "totp_uri": totp_uri,
-        "current_code": pyotp.TOTP(secret).now()
+        "secret": secret,
+        "message": "Scan the QR code in your authenticator app, then call /verify-totp to confirm setup"
     }
 
-@router.post("/verify-totp")
-def verify_totp(code: str, username: str, session: Session = Depends(get_db)):
-    user = get_user(session, username)
-    if not user.totp_secret:
-        raise HTTPException(400, "MFA not enabled")
-    totp = pyotp.TOTP(user.totp_secret)
-    if not totp.verify(code):
-        raise HTTPException(401, "Invalid TOTP")
-    return {"message": "TOTP verified successfully"}
+@router.post("/user/confirm-mfa")
+def confirm_mfa(
+    code: str,
+    current_user: User = Depends(get_current_user),  # must be logged in
+    session: Session = Depends(get_db)
+):
+    db_user = get_user(session, current_user.username)
+    if not db_user.pending_totp_secret:
+        raise HTTPException(400, "No pending MFA setup")
+    totp = pyotp.TOTP(db_user.pending_totp_secret)
+    if not totp.verify(code, valid_window=1):  # allow 1 window of clock drift
+        raise HTTPException(401, "Code invalid — check your authenticator app")
+    db_user.totp_secret = db_user.pending_totp_secret
+    db_user.pending_totp_secret = None
+    session.commit()
+    return {"message": "MFA enabled successfully"}

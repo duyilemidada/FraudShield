@@ -15,6 +15,7 @@ from logger_config import client_logger
 import os
 import joblib
 import json
+from config import settings
 from database.mongo import create_indexes
 from middleware.timing import RequestTimingMiddleware
 from slowapi import _rate_limit_exceeded_handler
@@ -23,6 +24,7 @@ from slowapi.middleware import SlowAPIMiddleware
 from rate_limiter import limiter
 from fastapi.middleware.cors import CORSMiddleware
 from middleware.validation import TransactionValidationMiddleware
+from starlette.middleware.sessions import SessionMiddleware
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # ── STARTUP ──────────────────────────────────────────
@@ -103,6 +105,7 @@ app.add_middleware(
 )
 
 app.add_middleware(TransactionValidationMiddleware)
+app.add_middleware(SessionMiddleware, secret_key=settings.SECRET_KEY)
 
 app.include_router(register_router,   prefix='/api/v1')
 app.include_router(auth_router,       prefix='/api/v1')

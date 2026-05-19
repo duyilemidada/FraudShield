@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 from database.sql_database import get_db
@@ -16,7 +16,7 @@ class Token(BaseModel):
 @router.post("/login", response_model=Token)
 @router.post("/token", include_in_schema=False)
 @limiter.limit('10/minute') #stricter for brute force protection
-def login(form_data: OAuth2PasswordRequestForm = Depends(), session: Session = Depends(get_db)):
+def login( request: Request,form_data: OAuth2PasswordRequestForm = Depends(), session: Session = Depends(get_db)):
     client_logger.info(f"Login attempt for user: {form_data.username}")
     user = authenticate_user(session, form_data.username, form_data.password)
     if not user:

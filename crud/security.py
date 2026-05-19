@@ -9,7 +9,7 @@ from jose import jwt, JWTError
 from config import settings
 from datetime import datetime, timedelta, timezone
 from pydantic import BaseModel
-
+import hashlib
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/token")
 api_key_header = APIKeyHeader(name="X-API-KEY", auto_error=False)
 
@@ -50,8 +50,9 @@ async def get_api_key(
 ) -> User:
     if not api_key_header:
         raise HTTPException(status_code=403, detail="API key missing")
+    key_hash  = hashlib.sha256(api_key_header.encode()).hexdigest()
     db_key = db.query(APIKey).filter(
-        APIKey.key == api_key_header,
+        APIKey.key == key_hash,
         APIKey.is_active == True
     ).first()
     if not db_key:

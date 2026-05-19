@@ -34,6 +34,8 @@ async def predict_and_save(
         f'txn={transaction.transaction_id}, amount={transaction.amount}'
     )
 
+    anomaly_score = 0.0
+
     # ── 1. Preprocess the transaction (needed by any model) ──
     ml_model = request.app.state.ml_model
     anomaly_model = request.app.state.anomaly_model
