@@ -6,9 +6,8 @@ class APIKeyCreate(BaseModel):
 class APIKeyResponse(BaseModel):
     id: int
     label: str
-    key: str
+    key: str | None = None
     is_active: bool
-    key:         str         
     key_preview: str 
 
     model_config = ConfigDict(from_attributes=True)

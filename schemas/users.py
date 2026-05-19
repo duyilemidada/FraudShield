@@ -28,7 +28,7 @@ class APIKey(Base):
     is_active: Mapped[bool] = mapped_column(default=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     owner: Mapped["User"] = relationship("User", back_populates="api_keys")
-
+    key_preview: Mapped[Optional[str]]= mapped_column(String(30), nullable=True)
 User.api_keys = relationship("APIKey", back_populates="owner")  # bidirectional
 
 class UserCreate(BaseModel):

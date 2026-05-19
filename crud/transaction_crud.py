@@ -14,7 +14,7 @@ async def create_transaction(data: dict):
 async def get_transaction(transaction_id: str, merchant_id: str):
    
     doc = await mongo_module.transaction_collection.find_one(
-        {"_id": ObjectId(transaction_id), "merchant_id": merchant_id}
+        {"transaction_id": transaction_id, "merchant_id": merchant_id}
     )
     if not doc:
         raise HTTPException(status_code=404, detail="Transaction not found")

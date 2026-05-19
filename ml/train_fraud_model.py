@@ -118,7 +118,7 @@ def build_preprocessing_pipeline(X):
     Categorical features: one-hot encode (create a binary column per category).
     """
     numerical_cols   = X.select_dtypes(include=[np.number]).columns.tolist()
-    categorical_cols = X.select_dtypes(include=['object']).columns.tolist()
+    categorical_cols = X.select_dtypes(include=['object', 'str']).columns.tolist()
     logger.info(f"Numerical features:   {numerical_cols}")
     logger.info(f"Categorical features: {categorical_cols}")
 
@@ -403,7 +403,7 @@ def train_and_compare(X_train, y_train, X_val, y_val, feature_names=None):
 
     # ── A: LogReg Ridge ──────────────────────────────────────────────
     logger.info('Training LogReg_Ridge...')
-    lr = LogisticRegression(C=1.0, penalty='l2', solver='lbfgs',
+    lr = LogisticRegression(C=1.0, solver='lbfgs',
                              max_iter=1000, class_weight='balanced', random_state=42)
     lr.fit(X_train, y_train_np)
     lr_proba = lr.predict_proba(X_val)[:, 1]
@@ -411,7 +411,7 @@ def train_and_compare(X_train, y_train, X_val, y_val, feature_names=None):
 
     # ── B: LogReg Lasso ──────────────────────────────────────────────
     logger.info('Training LogReg_Lasso...')
-    lr_l1 = LogisticRegression(C=0.1, penalty='l1', solver='liblinear',
+    lr_l1 = LogisticRegression(C=0.1,  solver='liblinear',
                                 class_weight='balanced', random_state=42)
     lr_l1.fit(X_train, y_train_np)
     logger.info(f'  Lasso zeroed {np.sum(lr_l1.coef_[0]==0)} features.')
