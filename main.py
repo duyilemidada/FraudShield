@@ -22,7 +22,7 @@ from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
 from rate_limiter import limiter
 from fastapi.middleware.cors import CORSMiddleware
-
+from middleware.validation import TransactionValidationMiddleware
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # ── STARTUP ──────────────────────────────────────────
@@ -82,10 +82,13 @@ async def lifespan(app: FastAPI):
 
 # ── CORS Configuration ─────────────────────────────────
 # Use environment variables or sensible defaults
-ALLOW_ORIGINS = os.getenv(
-    "ALLOWED_ORIGINS",
-    ""
-).split(",")
+raw_origins = os.getenv("ALLOWED_ORIGINS", "")
+ALLOW_ORIGINS = [o.strip() for o in raw_origins.split(",") if o.strip()]
+
+if not ALLOW_ORIGINS:
+    ALLOW_ORIGINS = [
+        "http://localhost:5173",   
+    ]
 
 app = FastAPI(title='FraudShield', lifespan=lifespan)
 app.state.limiter = limiter
@@ -98,6 +101,8 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["Content-Type", "Authorization", "X-API-KEY", "X-Requested-With"],
 )
+
+app.add_middleware(TransactionValidationMiddleware)
 
 app.include_router(register_router,   prefix='/api/v1')
 app.include_router(auth_router,       prefix='/api/v1')
