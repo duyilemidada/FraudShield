@@ -79,7 +79,7 @@ async def predict_and_save(
 
             # Blend with anomaly score (70% weight for anomaly)
             combined_score = max(fraud_proba, anomaly_score * 0.7)
-            score = round(combined_score * 100, 2)
+            score = float(round(combined_score * 100, 2))
 
             # Use business thresholds
             thresholds = ml_model.get('thresholds', {"BLOCK_THRESHOLD": 0.75, "REVIEW_THRESHOLD": 0.35})
