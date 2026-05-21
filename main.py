@@ -116,10 +116,11 @@ app.include_router(auth_router,       prefix='/api/v1')
 app.include_router(google_router,     prefix='/api/v1')
 app.include_router(api_keys_router,   prefix='/api/v1')
 app.include_router(predict_router,    prefix='/api/v1')
+app.include_router(download_router,   prefix='/api/v1')
 app.include_router(transaction_router,prefix='/api/v1')
 app.include_router(mfa_router,        prefix='/api/v1')
 app.include_router(upload_router,     prefix='/api/v1')
-app.include_router(download_router,   prefix='/api/v1')
+
 
 #custom middleware 
 
