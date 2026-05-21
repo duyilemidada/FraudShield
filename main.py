@@ -25,7 +25,7 @@ from rate_limiter import limiter
 from fastapi.middleware.cors import CORSMiddleware
 from middleware.validation import TransactionValidationMiddleware
 from starlette.middleware.sessions import SessionMiddleware
-from sqlalchemy import text, inspect
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # ── STARTUP ──────────────────────────────────────────
@@ -33,13 +33,7 @@ async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
     await create_indexes()
 
-    inspector = inspect(engine)
-    cols = [c['name'] for c  in inspector.get_columns('api_keys')]
-    if 'created_at' not in cols:
-        with engine.connect() as conn:
-            conn.execute(text('ALTER TABLE api_keys ADD COLUMN created_at DATETIME'))
-            conn.commit()
-
+   
     model_path  = 'ml/models/fraud_model.pkl'
     preproc_path = 'ml/models/preprocessor.pkl'
     anomaly_path  = 'ml/models/anomaly_model.pkl'

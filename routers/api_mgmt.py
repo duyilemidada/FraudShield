@@ -19,7 +19,7 @@ def create_new_key(
     new_raw_key = f"fs_{secrets.token_urlsafe(32)}"
     # Store only the hash (same principle as password hashing)
     key_hash = hashlib.sha256(new_raw_key.encode()).hexdigest()
-    db_key = APIKey(key=key_hash, key_preview=f"{new_raw_key[:8]}...{new_raw_key[-4:]}", label=data.label, user_id=user.id, is_active=True,  created_at=datetime.now(timezone.utc))
+    db_key = APIKey(key=key_hash, key_preview=f"{new_raw_key[:8]}...{new_raw_key[-4:]}", label=data.label, user_id=user.id, is_active=True)
     db.add(db_key)
     db.commit()
     db.refresh(db_key)
