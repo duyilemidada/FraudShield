@@ -10,7 +10,7 @@ import pandas as pd
 from crud.get_current_user import role_required
 from schemas.users import Role
 from rate_limiter import limiter
-
+import numpy as np
 from background_tasks import send_fraud_alert_webhook, log_to_analytics
 # Thresholds based on precision/recall tradeoff 
 BLOCK_THRESHOLD  = 0.75   # very confident → auto-block
@@ -47,6 +47,7 @@ async def predict_and_save(
         preproc = ml_model["preprocessor"] 
         input_df = pd.DataFrame([{
             'amount':           transaction.amount,
+            'log_amount':       np.log1p(transaction.amount), 
             'currency':         transaction.currency,
             'payment_method':   transaction.payment_method,
             'transaction_type': transaction.transaction_type,
