@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 
 router = APIRouter(tags=["API Key Management"])
 
-@router.post("/api-keys", response_model=APIKeyResponse)
+@router.post("/api-keys")
 def create_new_key(
     data: APIKeyCreate,
     db: Session = Depends(get_db),
