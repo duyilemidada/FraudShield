@@ -15,6 +15,7 @@ from crud.security import create_access_token
 from crud.user_crud import add_user
 from schemas.users import User, Role, APIKey
 from pymongo import MongoClient
+import hashlib
 TEST_DATABASE_URL = "sqlite:///./test.db"
 TEST_MONGODB_DATABASE_NAME = "fraudshield_test"
 
@@ -32,6 +33,9 @@ mongo_test_client = AsyncIOMotorClient(settings.MONGODB_URL)
 test_db = mongo_test_client[TEST_MONGODB_DATABASE_NAME]
 sync_mongo_client = MongoClient(settings.MONGODB_URL)
 app.dependency_overrides[get_db] = override_get_db
+
+app.state.ml_model = None
+app.state.anomaly_model = None
 
 # REMOVED: custom event_loop fixture (not needed with asyncio_mode=auto)
 @pytest.fixture(scope="session")
@@ -101,8 +105,9 @@ def mongo_test_db():
 @pytest.fixture
 def api_key_headers(db_session: Session, create_test_user: User):
     raw_key = "fs_test_" + "a" * 32
+    key_hash = hashlib.sha256(raw_key.encode()).hexdigest()
     api_key = APIKey(
-        key=raw_key,
+        key=key_hash,
         label="test-key",
         user_id=create_test_user.id,
         is_active=True

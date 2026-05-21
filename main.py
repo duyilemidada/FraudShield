@@ -107,6 +107,8 @@ app.add_middleware(
 app.add_middleware(TransactionValidationMiddleware)
 app.add_middleware(SessionMiddleware, secret_key=settings.SECRET_KEY)
 
+app.add_middleware(RequestTimingMiddleware)
+
 app.include_router(register_router,   prefix='/api/v1')
 app.include_router(auth_router,       prefix='/api/v1')
 app.include_router(google_router,     prefix='/api/v1')
@@ -118,7 +120,7 @@ app.include_router(upload_router,     prefix='/api/v1')
 app.include_router(download_router,   prefix='/api/v1')
 
 #custom middleware 
-app.add_middleware(RequestTimingMiddleware)
+
 
 
 @app.get('/')

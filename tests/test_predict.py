@@ -37,10 +37,26 @@ async def test_predict_with_valid_api_key(
     assert saved["merchant_id"] == "1"
 
 async def test_predict_missing_api_key(client: AsyncClient):
-    response = await client.post("/api/v1/predict", json={})
+    payload = {
+        "transaction_id": "txn_001",
+        "amount": 1000.0,
+        "currency": "NGN",
+        "customer_email": "test@example.com",
+        "payment_method": "card",
+        "transaction_type": "purchase"
+    }
+    response = await client.post("/api/v1/predict", json=payload)
     assert response.status_code == 403
 
 async def test_predict_invalid_api_key(client: AsyncClient):
+    payload = {
+        "transaction_id": "txn_002",
+        "amount": 2000.0,
+        "currency": "NGN",
+        "customer_email": "test@example.com",
+        "payment_method": "card",
+        "transaction_type": "purchase"
+    }
     headers = {"X-API-KEY": "invalid_key"}
-    response = await client.post("/api/v1/predict", json={}, headers=headers)
+    response = await client.post("/api/v1/predict", json=payload, headers=headers)
     assert response.status_code == 403

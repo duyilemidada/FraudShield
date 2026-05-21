@@ -1,27 +1,11 @@
-time 2026-05-07 10:05:49, INFO: FraudShield API starting up
-time 2026-05-07 10:05:49, WARNING: ML model files not found. Using rule-based fallback
-time 2026-05-07 10:05:49, INFO: FraudShield API shutting down
-time 2026-05-07 10:10:06, INFO: FraudShield API stutting down
-time 2026-05-07 10:10:12, INFO: FraudShield API starting up
-time 2026-05-07 10:13:00, INFO: FraudShield API shutting down
-time 2026-05-07 10:13:06, INFO: FraudShield API starting up
-time 2026-05-07 10:18:17, INFO: FraudShield API shutting down
-time 2026-05-07 10:18:23, INFO: FraudShield API starting up
-time 2026-05-07 10:30:20, INFO: FraudShield API shutting down
-time 2026-05-07 10:30:25, INFO: FraudShield API starting up
-time 2026-05-07 10:31:46, INFO: FraudShield API shutting down
-time 2026-05-07 10:31:52, INFO: FraudShield API starting up
-time 2026-05-07 10:33:19, INFO: FraudShield API shutting down
-time 2026-05-07 10:33:25, INFO: FraudShield API starting up
-time 2026-05-07 10:37:04, INFO: FraudShield API shutting down
-time 2026-05-07 10:37:10, INFO: FraudShield API starting up
-time 2026-05-07 10:54:09, INFO: FraudShield API shutting down
-time 2026-05-07 10:54:19, INFO: FraudShield API starting up
-time 2026-05-07 11:11:11, INFO: FraudShield API shutting down
-time 2026-05-07 11:11:19, INFO: FraudShield API starting up
-time 2026-05-07 11:15:56, INFO: FraudShield API shutting down
-time 2026-05-07 11:16:03, INFO: FraudShield API starting up
-time 2026-05-07 11:24:16, INFO: FraudShield API shutting down
-time 2026-05-07 11:24:23, INFO: FraudShield API starting up
-time 2026-05-07 11:27:30, INFO: FraudShield API shutting down
-time 2026-05-07 11:27:35, INFO: FraudShield API starting up
+time 2026-05-20 10:24:58, INFO: Predict request: merchant=1, txn=txn_123, amount=25000.0
+time 2026-05-20 10:29:23, INFO: Predict request: merchant=1, txn=txn_123, amount=25000.0
+time 2026-05-20 10:29:23, INFO: Rule-based: score=10.0, decision=approve
+time 2026-05-20 10:31:49, INFO: Predict request: merchant=1, txn=txn_123, amount=25000.0
+time 2026-05-20 10:31:49, INFO: Rule-based: score=10.0, decision=approve
+time 2026-05-20 10:31:49, INFO: Registration attempt for email=new@example.com, role=Role.BASIC
+time 2026-05-20 10:31:50, INFO: User newuser registered successfully
+time 2026-05-20 10:31:50, INFO: Login attempt for user: testuser
+time 2026-05-20 10:31:51, INFO: User testuser authenticated, role=Role.BASIC
+time 2026-05-20 10:31:52, INFO: Login attempt for user: testuser
+time 2026-05-20 10:31:53, WARNING: Failed login for testuser
