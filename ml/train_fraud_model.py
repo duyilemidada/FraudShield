@@ -44,6 +44,8 @@ import xgboost as xgb
 import joblib
 import database.mongo as mongo_module   # the same Motor client used by your API
 
+from defenses.training_data_scanner import scan_training_data
+from redteam.detect_label_flip import label_consistency_check
 
 # ── LOGGER ────────────────────────────────────────────────
 logging.basicConfig(
@@ -100,7 +102,7 @@ def split_features_labels(df):
     drop_cols = [
         '_id', 'transaction_id', 'is_fraud', 'created_at',
         'customer_email', 'customer_phone', 'customer_ip',
-        'device_fingerprint', 'merchant_id', 'fraud_score', 'decision'
+        'device_fingerprint', 'merchant_id', 'fraud_score', 'decision', 'recipient_email'
     ]
     # Only drop columns that actually exist in the DataFrame
     X = df.drop(columns=[c for c in drop_cols if c in df.columns])
@@ -639,6 +641,109 @@ def semi_supervised_learning(X_prep, y_full=None, label_fraction=0.1, k=50):
     logger.info(f"  Propagated label distribution: {dict(zip(unique, counts))}")
 
     return propagated_partial, keep_mask
+
+# ═════════════════════════════════════════════════════════
+# Feature: Historical velocity simulation for training
+# ═════════════════════════════════════════════════════════
+# ═════════════════════════════════════════════════════════
+# Feature: Historical velocity simulation for training
+# ═════════════════════════════════════════════════════════
+def add_training_velocity_features(df):
+    df = df.sort_values('created_at').copy()
+    df['created_at'] = pd.to_datetime(df['created_at'])
+
+    # Initialise all velocity columns to zero
+    df['txn_count_5min']      = 0
+    df['txn_count_1hr']       = 0
+    df['txn_count_24hr']      = 0
+    df['amount_sum_24hr']     = 0.0
+    df['unique_devices_24hr'] = 0
+    df['inbound_senders_1hr'] = 0
+
+    # ── Part 1: customer-level features ──────────────────────────
+    # (txn counts, amount sum, unique devices — same as before)
+    for email, group in df.groupby('customer_email'):
+        if len(group) <= 1:
+            continue
+        group = group.sort_values('created_at')
+        times = group['created_at'].astype('int64') // 1_000_000_000
+
+        for i in range(1, len(group)):
+            current_time = times.iloc[i]
+            prev_times   = times.iloc[:i]
+
+            count_5min  = ((current_time - prev_times) <= 300).sum()
+            count_1hr   = ((current_time - prev_times) <= 3600).sum()
+            count_24hr  = ((current_time - prev_times) <= 86400).sum()
+
+            prev_amounts = group['amount'].iloc[:i]
+            in_24hr_mask = (current_time - prev_times) <= 86400
+            amount_sum   = prev_amounts[in_24hr_mask].sum()
+
+            prev_devices   = group['device_fingerprint'].iloc[:i]
+            unique_devices = prev_devices[in_24hr_mask].nunique()
+
+            idx = group.index[i]
+            df.at[idx, 'txn_count_5min']      = count_5min
+            df.at[idx, 'txn_count_1hr']       = count_1hr
+            df.at[idx, 'txn_count_24hr']      = count_24hr
+            df.at[idx, 'amount_sum_24hr']     = amount_sum
+            df.at[idx, 'unique_devices_24hr'] = unique_devices
+
+    # ── Part 2: beneficiary-level feature ────────────────────────
+    # inbound_senders_1hr: for each transaction, how many DIFFERENT
+    # senders sent money to this recipient in the hour before this txn?
+    #
+    # This requires recipient_email to exist in the data.
+    # If it does not exist (old data, no beneficiary info), stays zero.
+
+    if 'recipient_email' not in df.columns:
+        logger.info("No recipient_email column — inbound_senders_1hr stays zero.")
+        return df
+
+    # Work on rows that have a recipient
+    has_recipient = df['recipient_email'].notna() & (df['recipient_email'] != '')
+
+    if not has_recipient.any():
+        logger.info("recipient_email column exists but is empty — inbound_senders_1hr stays zero.")
+        return df
+
+    # For each transaction that has a recipient,
+    # look back 1 hour and count unique senders to that recipient
+    times_seconds = df['created_at'].astype('int64') // 1_000_000_000
+
+    for idx, row in df[has_recipient].iterrows():
+        recipient    = row['recipient_email']
+        current_time = times_seconds[idx]
+        window_start = current_time - 3600
+
+        # Find all PREVIOUS transactions going to this same recipient
+        # within the 1-hour window, BEFORE the current transaction
+        mask = (
+            (df['recipient_email'] == recipient) &
+            (times_seconds < current_time) &          # strictly before
+            (times_seconds >= window_start)            # within 1 hour
+        )
+
+        # Count unique senders in that window
+        unique_senders = df.loc[mask, 'customer_email'].nunique()
+        df.at[idx, 'inbound_senders_1hr'] = unique_senders
+
+    logger.info("Training velocity features (including inbound_senders_1hr) added.")
+    return df
+""" 
+Issue  — add_training_velocity_features will be very slow on large datasets (train_fraud_model.py)
+The beneficiary loop in Part 2:
+pythonfor idx, row in df[has_recipient].iterrows():
+    mask = (
+        (df['recipient_email'] == recipient) &
+        (times_seconds < current_time) &
+        (times_seconds >= window_start)
+    )
+    unique_senders = df.loc[mask, 'customer_email'].nunique()
+This is O(n²) — for every transaction with a recipient, it scans the entire DataFrame. With 500 rows this is fine. With 50,000 rows this will take minutes. Not a bug for now but it will hurt when you scale.
+The fix when you hit that scale is to use a merge-based approach or sort + binary search. For now add a comment warning about this.
+"""
 # ═════════════════════════════════════════════════════════
 # 9. MAIN PIPELINE
 # ═════════════════════════════════════════════════════════
@@ -651,6 +756,8 @@ def main():
     
     model_dir = os.path.join(os.path.dirname(__file__), 'models')
     os.makedirs(model_dir, exist_ok=True)
+
+    df = add_training_velocity_features(df)
 
     # 2. Feature engineering (log transform)
     df = engineer_features(df)
@@ -668,7 +775,7 @@ def main():
     # 5. Build preprocessing pipeline and fit on training data
     preprocessor = build_preprocessing_pipeline(X_train)
     X_train_prep = preprocessor.fit_transform(X_train)
-    X_val_prep   = preprocessor.transform(X_val)
+    X_val_prep   = preprocessor.transform(X_val)          # NEVER filter this
 
     try:
         num_cols = X_train.select_dtypes(include=[np.number]).columns.tolist()
@@ -679,59 +786,71 @@ def main():
     except Exception:
         feature_names = None
 
+    # ── 5b. Visualise original clusters (before cleaning) ──
     visualise_fraud_cluster(X_train_prep, y_train, method='pca')
 
-    y_train_np = np.array(y_train)
-    y_val_np = np.array(y_val)
-    propagated_labels, train_mask = semi_supervised_learning(
-        X_train_prep,
-        y_full=y_train_np,
+    # ── 5c. Apply training‑data defenses ──────────────────
+    # 1. Outlier scan
+    outlier_idx = scan_training_data(X_train_prep, contamination=0.05)
 
+    # 2. Label consistency check
+    label_flip_idx = label_consistency_check(X_train_prep, y_train, k=10, threshold=0.80)
+
+    # Combine and deduplicate
+    suspect_indices = np.unique(np.concatenate([outlier_idx, label_flip_idx]))
+    logger.info(f"Total suspect samples removed: {len(suspect_indices)}")
+
+    # Create clean training arrays
+    X_clean = np.delete(X_train_prep, suspect_indices, axis=0)
+    y_clean = np.delete(np.array(y_train), suspect_indices)
+
+    # ── 5d. Visualise clusters after cleaning ────────────
+    visualise_fraud_cluster(X_clean, y_clean, method='pca')
+
+    # ── 6. Semi‑supervised experiment (on CLEAN data) ────
+    y_clean_np = np.array(y_clean)
+    propagated_labels, train_mask = semi_supervised_learning(
+        X_clean,
+        y_full=y_clean_np,
         label_fraction=0.1,
-        k=50
+        k=min(50, len(X_clean))   # avoid k > n
     )
 
     lr_semi = LogisticRegression(class_weight='balanced', max_iter=1000)
-    lr_semi.fit(X_train_prep[train_mask], propagated_labels)
+    lr_semi.fit(X_clean[train_mask], propagated_labels)
     semi_proba = lr_semi.predict_proba(X_val_prep)[:, 1]
     semi_auc = roc_auc_score(y_val, semi_proba)
     logger.info(f"Semi-supervised LogReg AUC (10% labels): {semi_auc:.3f}")
 
-
-
-
-
-    # 6. Train all models, pick the best
-    best_model, best_proba = train_and_compare(X_train_prep, y_train, X_val_prep, y_val, feature_names=feature_names)
-
-    unsupervised_results = train_unsupervised_anomaly_detectors(
-        X_train_prep, np.array(y_train), X_val_prep, np.array(y_val)
+    # ── 7. Train all supervised models (on CLEAN data) ──
+    best_model, best_proba = train_and_compare(
+        X_clean, y_clean, X_val_prep, y_val,
+        feature_names=feature_names
     )
 
-    # Save the best unsupervised model (by AUC) separately
-    # — it runs alongside the supervised model in production
+    # ── 8. Train unsupervised anomaly detectors (on CLEAN data) ──
+    unsupervised_results = train_unsupervised_anomaly_detectors(
+        X_clean, y_clean_np, X_val_prep, np.array(y_val)
+    )
+
+    # ── 9. Save anomaly model ───────────────────────────
     if unsupervised_results:
         best_unsup = max(unsupervised_results, key=lambda r: r['auc'])
         logger.info(f'Best unsupervised: {best_unsup["name"]} AUC={best_unsup["auc"]:.3f}')
         joblib.dump(best_unsup['model'], os.path.join(model_dir, 'anomaly_model.pkl'))
-        # Save normalisation bounds for scoring
-       
         with open(os.path.join(model_dir, 'anomaly_bounds.json'), 'w') as f:
             json.dump({'min_s': best_unsup['min_s'], 'max_s': best_unsup['max_s'],
-                    'model_type': best_unsup['name']}, f)
+                       'model_type': best_unsup['name']}, f)
         logger.info('Anomaly model saved.')
 
+    # ── 10. Learning curves (on CLEAN data) ─────────────
     skip_learning_curves = isinstance(best_model, (VotingClassifier, StackingClassifier, xgb.XGBClassifier))
-
     if skip_learning_curves:
         logger.info('Skipping learning curves for ensemble model (too slow to clone).')
     else:
-      #Learning curves for the best model
-      plot_learning_curves(best_model, X_train_prep, y_train, X_val_prep, y_val_np)
+        plot_learning_curves(best_model, X_clean, y_clean, X_val_prep, y_val)
 
-    # 8. Save the model, preprocessor, and thresholds
-    
-
+    # ── 11. Save model, preprocessor, thresholds ─────────
     joblib.dump(best_model,   os.path.join(model_dir, 'fraud_model.pkl'))
     joblib.dump(preprocessor, os.path.join(model_dir, 'preprocessor.pkl'))
     logger.info("✅ Model and preprocessor saved.")
@@ -741,6 +860,11 @@ def main():
         json.dump(thresholds, f, indent=2)
     logger.info(f"Thresholds saved: {thresholds}")
 
+    # Save feature names for SHAP explainability
+    if feature_names:
+        with open(os.path.join(model_dir, 'feature_names.json'), 'w') as f:
+            json.dump(feature_names, f)
+        logger.info("Feature names saved for SHAP.")
 
 if __name__ == '__main__':
     main()

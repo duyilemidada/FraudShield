@@ -1,0 +1,11 @@
+time 2026-05-20 10:24:58, INFO: Predict request: merchant=1, txn=txn_123, amount=25000.0
+time 2026-05-20 10:29:23, INFO: Predict request: merchant=1, txn=txn_123, amount=25000.0
+time 2026-05-20 10:29:23, INFO: Rule-based: score=10.0, decision=approve
+time 2026-05-20 10:31:49, INFO: Predict request: merchant=1, txn=txn_123, amount=25000.0
+time 2026-05-20 10:31:49, INFO: Rule-based: score=10.0, decision=approve
+time 2026-05-20 10:31:49, INFO: Registration attempt for email=new@example.com, role=Role.BASIC
+time 2026-05-20 10:31:50, INFO: User newuser registered successfully
+time 2026-05-20 10:31:50, INFO: Login attempt for user: testuser
+time 2026-05-20 10:31:51, INFO: User testuser authenticated, role=Role.BASIC
+time 2026-05-20 10:31:52, INFO: Login attempt for user: testuser
+time 2026-05-20 10:31:53, WARNING: Failed login for testuser

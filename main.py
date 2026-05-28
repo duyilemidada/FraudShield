@@ -39,7 +39,9 @@ async def lifespan(app: FastAPI):
     anomaly_path  = 'ml/models/anomaly_model.pkl'
     anomaly_bounds_path = 'ml/models/anomaly_bounds.json'
     thresholds_path = 'ml/models/thresholds.json'
-   
+    feature_names_path = 'ml/models/feature_names.json'
+    model_version_path = 'ml/models/model_version.txt'
+    feature_names = None
     if os.path.exists(anomaly_path) and os.path.exists(anomaly_bounds_path):
         with open(anomaly_bounds_path, 'r') as f:
             anomaly_bounds = json.load(f)
@@ -51,7 +53,7 @@ async def lifespan(app: FastAPI):
     else:
         app.state.anomaly_model = None
 
-
+    shap_explainer = None 
     if os.path.exists(model_path) and os.path.exists(preproc_path):  
         try:
             app.state.ml_model = {
@@ -71,6 +73,36 @@ async def lifespan(app: FastAPI):
                     "REVIEW_THRESHOLD": 0.35
                  }
 
+            if os.path.exists(feature_names_path):
+                with open(feature_names_path, 'r') as f:
+                    feature_names = json.load(f)
+
+            # ── Create SHAP explainer (only for tree models) ── 
+             
+            if app.state.ml_model is not None and feature_names is not None:
+                model = app.state.ml_model['classifier']
+                model_type = type(model).__name__
+                if model_type in ['RandomForestClassifier', 'XGBClassifier',
+                          'GradientBoostingClassifier', 'ExtraTreesClassifier']: 
+                            import shap
+                            shap_explainer = shap.TreeExplainer(model)
+                            client_logger.info(f'SHAP TreeExplainer loaded for {model_type}')
+                else :
+                     client_logger.warning(
+                           f'SHAP not available for {model_type}; reasons will be empty.'
+                     )
+            # Store everything together
+            if app.state.ml_model is not None:
+                 app.state.ml_model['feature_names'] = feature_names
+                 app.state.ml_model['shap_explainer'] = shap_explainer
+
+
+            if os.path.exists(model_version_path):
+                 with open(model_version_path, 'r') as f:
+                      app.state.model_version = f.read().strip()
+            else :
+                 app.state.model_version = "unknown"
+                 client_logger.warning("No model_version.txt found – using 'unknown'")
             client_logger.info('✅ ML model loaded successfully')
         except Exception as e:
             client_logger.error(f'Failed to load ML model: {e}')

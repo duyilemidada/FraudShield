@@ -1,3 +1,4 @@
+# routers/predict.py (complete updated version)
 
 from fastapi import APIRouter, Depends, Request, BackgroundTasks
 from schemas.transaction import TransactionCreate, TransactionInDB
@@ -7,15 +8,15 @@ from crud.security import get_api_key
 from schemas.users import User
 from logger_config import client_logger
 import pandas as pd
+import numpy as np
 from crud.get_current_user import role_required
 from schemas.users import Role
 from rate_limiter import limiter
-import numpy as np
 from background_tasks import send_fraud_alert_webhook, log_to_analytics
-# Thresholds based on precision/recall tradeoff 
-BLOCK_THRESHOLD  = 0.75   # very confident → auto-block
-REVIEW_THRESHOLD = 0.35   # moderately suspicious → human review
-
+from services.redis_client import get_velocity_features, record_transaction
+from services.audit_logger import write_audit_log
+import time
+import json 
 router = APIRouter()
 
 @router.post('/predict', response_model=TransactionInDB)
@@ -26,7 +27,12 @@ async def predict_and_save(
     transaction: TransactionCreate,
     current_user: User = Depends(get_api_key)
 ):
+    start_time = time.perf_counter()
+
     data = transaction.model_dump()
+    # ── Capture raw features BEFORE adding merchant_id ──
+    raw_features = json.loads(transaction.model_dump())
+
     data['merchant_id'] = str(current_user.id)
 
     client_logger.info(
@@ -34,35 +40,54 @@ async def predict_and_save(
         f'txn={transaction.transaction_id}, amount={transaction.amount}'
     )
 
-    anomaly_score = 0.0
+    beneficiary = transaction.recipient_email or transaction.customer_email
+    # ── 0. Fetch real‑time velocity features from Redis ──
+    velocity = {}
+    try:
+        # Use customer_email as both the actor and the beneficiary for now
+        velocity = get_velocity_features(
+            customer_email=transaction.customer_email,
+            device_fp=transaction.device_fingerprint or "",
+            beneficiary_email=beneficiary
+        )
+    except Exception as e:
+        # If Redis is down, log and continue with zeros – don’t break the request
+        client_logger.warning(f"Redis unavailable, using zero velocity features: {e}")
+        velocity = {
+            "txn_count_5min": 0, "txn_count_1hr": 0, "txn_count_24hr": 0,
+            "amount_sum_24hr": 0, "unique_devices_24hr": 0, "inbound_senders_1hr": 0
+        }
 
-    # ── 1. Preprocess the transaction (needed by any model) ──
+    anomaly_score = 0.0
     ml_model = request.app.state.ml_model
     anomaly_model = request.app.state.anomaly_model
     X_transformed = None
 
-    # Preprocessor is stored inside ml_model (same for both)
-    if ml_model is not None :
-        # Use ml_model's preprocessor (both models were trained on the same pipeline)
-        preproc = ml_model["preprocessor"] 
+    if ml_model is not None:
+        preproc = ml_model["preprocessor"]
         input_df = pd.DataFrame([{
-            'amount':           transaction.amount,
-            'log_amount':       np.log1p(transaction.amount), 
-            'currency':         transaction.currency,
-            'payment_method':   transaction.payment_method,
-            'transaction_type': transaction.transaction_type,
+            'amount':               transaction.amount,
+            'log_amount':           np.log1p(transaction.amount),
+            'currency':             transaction.currency,
+            'payment_method':       transaction.payment_method,
+            'transaction_type':     transaction.transaction_type,
+            # ── NEW velocity features ─────────────────────
+            'txn_count_5min':       velocity['txn_count_5min'],
+            'txn_count_1hr':        velocity['txn_count_1hr'],
+            'txn_count_24hr':       velocity['txn_count_24hr'],
+            'amount_sum_24hr':      velocity['amount_sum_24hr'],
+            'unique_devices_24hr':  velocity['unique_devices_24hr'],
+            'inbound_senders_1hr':  velocity['inbound_senders_1hr'],
         }])
         X_transformed = preproc.transform(input_df)
-    else :
+    else:
         X_transformed = None
 
     # ── 2. Unsupervised anomaly score ──
-    
     if anomaly_model is not None and X_transformed is not None:
         try:
             raw = anomaly_model['model'].score_samples(X_transformed)[0]
             b = anomaly_model['bounds']
-            # Normalise to 0 (normal) → 1 (anomalous)
             anomaly_score = float(1.0 - (raw - b['min_s']) / (b['max_s'] - b['min_s'] + 1e-9))
             anomaly_score = max(0.0, min(1.0, anomaly_score))
         except Exception as e:
@@ -76,12 +101,9 @@ async def predict_and_save(
     if ml_model is not None and X_transformed is not None:
         try:
             fraud_proba = ml_model['classifier'].predict_proba(X_transformed)[0][1]
-
-            # Blend with anomaly score (70% weight for anomaly)
             combined_score = max(fraud_proba, anomaly_score * 0.7)
             score = float(round(combined_score * 100, 2))
 
-            # Use business thresholds
             thresholds = ml_model.get('thresholds', {"BLOCK_THRESHOLD": 0.75, "REVIEW_THRESHOLD": 0.35})
             block_thresh = thresholds.get('BLOCK_THRESHOLD', 0.75)
             review_thresh = thresholds.get('REVIEW_THRESHOLD', 0.35)
@@ -99,26 +121,108 @@ async def predict_and_save(
             )
         except Exception as e:
             client_logger.error(f'ML failed: {e}. Using rules.')
-            fraud_proba = None   # force fallback
+            fraud_proba = None
 
-    # ── 4. Fallback: rule-based or anomaly-only ──
+    # ── 4. Fallback ──
     if fraud_proba is None:
-        # No supervised model – use anomaly or rules
-        if anomaly_score > 0.8:   # strong anomaly, no supervised decision
+        if anomaly_score > 0.8:
             decision = 'review'
             score = round(anomaly_score * 100, 2)
             client_logger.info(f'Anomaly-only: score={score}, decision=review')
         else:
-            # Pure rule-based fallback
             score, decision = calculate_fraud_score(data)
             client_logger.info(f'Rule-based: score={score}, decision={decision}')
 
     data['fraud_score'] = score
     data['decision'] = decision
+    # ── SHAP explainability ─────────────────────────────────
+    reasons = []
+    shap_explainer = ml_model.get('shap_explainer') if ml_model else None
+    feature_names = ml_model.get('feature_names') if ml_model else None
 
-    saved =  await create_transaction(data)
+    if shap_explainer is not None and feature_names is not None and X_transformed is not None:
+        try:
+            # Get SHAP values for the fraud class (class index 1)
+            shap_vals = shap_explainer.shap_values(X_transformed)
+            if isinstance(shap_vals, list ):
+                sv = shap_vals[1][0]  # for binary classification, list of arrays
+            else :
+                sv = shap_vals[0]
 
-    # Queue background tasks (non-blocking — run after response)
+            # Pair feature names with SHAP values
+            impacts = list(zip(feature_names, sv))
+
+            # Top 3 by absolute impact
+            top = sorted(impacts, key=lambda x: abs(x[1]), reverse=True)[:3]
+
+            # Human‑readable labels for common features
+            readable_map = {
+                'amount': 'Transaction amount',
+                'log_amount': 'Transaction amount scale',
+                'txn_count_5min': 'Transactions in last 5 minutes',
+                'txn_count_1hr': 'Transactions in last hour',
+                'txn_count_24hr': 'Transactions in last 24 hours',
+                'amount_sum_24hr': 'Total amount sent in last 24 hours',
+                'unique_devices_24hr': 'Devices used in last 24 hours',
+                'inbound_senders_1hr': 'Senders to this account in last hour',
+            }
+
+            for feat_name, shap_val in top:
+                # Convert one‑hot names like payment_method_ussd → "Payment method USSD"
+                
+                display = feat_name
+                for prefix, label in readable_map.items():
+                    if feat_name.startswith(prefix):
+                        display = label
+                        break
+                if display == feat_name:
+                    # Clean up one‑hot names if no mapping found
+                    if '_' in display:
+                        display = display.replace('_', ' ').title()
+                direction  = 'increased' if shap_val > 0 else "decreased"
+
+                reasons.append({
+                    "feature":   display,
+                    "direction": direction,
+                    "impact":    round(abs(float(shap_val)), 4),
+                    "text":      f"{display} {direction} fraud risk"
+                })
+
+
+        except Exception as e:
+             client_logger.error(f"SHAP explanation failed: {e}")
+             
+    data['reasons'] = reasons
+    saved = await create_transaction(data)
+
+    # ── Write immutable audit log (synchronous, must succeed) ──
+    processing_time = (time.perf_counter() - start_time) * 1000
+    try:
+        await write_audit_log(
+            transaction_id=transaction.transaction_id,
+            merchant_id=str(current_user.id),
+            fraud_score=score,
+            decision=decision,
+            model_version=request.app.state.model_version,
+            features_used=raw_features,
+            reasons=reasons,                     # from SHAP
+            processing_ms=processing_time
+        )
+    except Exception as e :
+        client_logger.error(f"Audit log write failed: {e}")
+    # ── 5. Record this transaction in Redis for future velocity queries ──
+    try:
+        record_transaction(
+            customer_email=transaction.customer_email,
+            device_fp=transaction.device_fingerprint or "",
+            beneficiary_email=beneficiary,
+            txn_id=transaction.transaction_id,
+            amount=transaction.amount
+        )
+    except Exception as e:
+        client_logger.warning(f"Failed to record transaction in Redis: {e}")
+
+    # Queue background tasks
     if data.get('decision') == 'block':
         background_tasks.add_task(
             send_fraud_alert_webhook,
@@ -127,10 +231,11 @@ async def predict_and_save(
             fraud_score=data["fraud_score"],
             decision="block"
         )
-
     background_tasks.add_task(log_to_analytics, data)
 
     return saved
+
+
 
 def _describe_policy(thresholds):
     block = thresholds.get('BLOCK_THRESHOLD', 0.75)

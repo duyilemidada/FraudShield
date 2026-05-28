@@ -1,0 +1,1 @@
+["amount", "txn_count_5min", "txn_count_1hr", "txn_count_24hr", "amount_sum_24hr", "unique_devices_24hr", "inbound_senders_1hr", "log_amount", "currency_NGN", "payment_method_card", "payment_method_transfer", "payment_method_ussd", "payment_method_wallet", "transaction_type_purchase", "transaction_type_transfer", "transaction_type_withdrawal"]

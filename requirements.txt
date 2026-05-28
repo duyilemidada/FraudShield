@@ -107,3 +107,4 @@ xgboost==3.2.0
 zope.event==6.2
 zope.interface==8.4
 psycopg2-binary
+shap

@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     GOOGLE_REDIRECT_URI: str = "http://localhost:8000/api/v1/auth/google/callback"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
-
+    REDIS_URL: str
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
 settings = Settings()
