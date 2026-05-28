@@ -141,6 +141,7 @@ async def predict_and_save(
 
     if shap_explainer is not None and feature_names is not None and X_transformed is not None:
         try:
+            client_logger.info(f"SHAP: feature_names={len(feature_names)}, X_transformed shape={X_transformed.shape}")
             # Get SHAP values for the fraud class (class index 1)
             shap_vals = shap_explainer.shap_values(X_transformed)
             if isinstance(shap_vals, list ):
