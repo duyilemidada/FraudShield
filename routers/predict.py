@@ -1,6 +1,6 @@
 # routers/predict.py (complete updated version)
 
-from fastapi import APIRouter, Depends, Request, BackgroundTasks
+from fastapi import APIRouter, Depends, Request, BackgroundTasks, HTTPException
 from schemas.transaction import TransactionCreate, TransactionInDB
 from services.fraud_service import calculate_fraud_score
 from crud.transaction_crud import create_transaction
@@ -16,6 +16,7 @@ from background_tasks import send_fraud_alert_webhook, log_to_analytics
 from services.redis_client import get_velocity_features, record_transaction
 from services.audit_logger import write_audit_log
 import time
+from pymongo.errors import DuplicateKeyError
 router = APIRouter()
 
 @router.post('/predict', response_model=TransactionInDB)
@@ -141,20 +142,27 @@ async def predict_and_save(
 
     if shap_explainer is not None and feature_names is not None and X_transformed is not None:
         try:
-            client_logger.info(f"SHAP: feature_names={len(feature_names)}, X_transformed shape={X_transformed.shape}")
-            # Get SHAP values for the fraud class (class index 1)
-            shap_vals = shap_explainer.shap_values(X_transformed)
-            if isinstance(shap_vals, list ):
-                sv = shap_vals[1][0]  # for binary classification, list of arrays
-            else :
-                sv = shap_vals[0]
+            # shap_values can return either:
+            #  - a single array of shape (n_samples, n_features)  [most common for binary]
+            #  - a list of arrays [one per class] for classifiers
+            shap_raw = shap_explainer.shap_values(X_transformed)
 
-            # Pair feature names with SHAP values
+            if isinstance(shap_raw, list):
+                # list of arrays → use the fraud class (index 1)
+                sv = shap_raw[1]
+            else:
+                sv = shap_raw
+
+            # sv shape should be (1, n_features) or (n_features,)
+            sv = np.squeeze(np.array(sv))
+
+            # After squeeze, if there's still more than one dimension, take the first row
+            if sv.ndim > 1:
+                sv = sv[0]
+
+            # Now sv is 1‑D with length = n_features
             impacts = list(zip(feature_names, sv))
-
-            # Top 3 by absolute impact
             top = sorted(impacts, key=lambda x: abs(x[1]), reverse=True)[:3]
-
             # Human‑readable labels for common features
             readable_map = {
                 'amount': 'Transaction amount',
@@ -179,7 +187,7 @@ async def predict_and_save(
                     # Clean up one‑hot names if no mapping found
                     if '_' in display:
                         display = display.replace('_', ' ').title()
-                direction  = 'increased' if shap_val > 0 else "decreased"
+                direction  = 'increased' if float(shap_val) > 0 else "decreased"
 
                 reasons.append({
                     "feature":   display,
@@ -193,7 +201,13 @@ async def predict_and_save(
              client_logger.error(f"SHAP explanation failed: {e}")
              
     data['reasons'] = reasons
-    saved = await create_transaction(data)
+    try:
+      saved = await create_transaction(data)
+    except DuplicateKeyError:
+        raise HTTPException(
+            status_code=409,
+            detail=f"Transaction '{transaction.transaction_id}' already exists. Use a unique transaction_id."
+        )
 
     # ── Write immutable audit log (synchronous, must succeed) ──
     processing_time = (time.perf_counter() - start_time) * 1000
