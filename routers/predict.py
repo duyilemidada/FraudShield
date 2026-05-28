@@ -16,7 +16,6 @@ from background_tasks import send_fraud_alert_webhook, log_to_analytics
 from services.redis_client import get_velocity_features, record_transaction
 from services.audit_logger import write_audit_log
 import time
-import json 
 router = APIRouter()
 
 @router.post('/predict', response_model=TransactionInDB)
@@ -31,7 +30,7 @@ async def predict_and_save(
 
     data = transaction.model_dump()
     # ── Capture raw features BEFORE adding merchant_id ──
-    raw_features = json.loads(transaction.model_dump())
+    raw_features = transaction.model_dump(mode='json')
 
     data['merchant_id'] = str(current_user.id)
 
