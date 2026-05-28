@@ -54,61 +54,61 @@ async def lifespan(app: FastAPI):
         app.state.anomaly_model = None
 
     shap_explainer = None 
-    if os.path.exists(model_path) and os.path.exists(preproc_path):  
+    if os.path.exists(model_path) and os.path.exists(preproc_path):
         try:
+            client_logger.info("Loading preprocessor...")
+            preprocessor = joblib.load(preproc_path)
+            client_logger.info("Preprocessor loaded.")
+
+            client_logger.info("Loading classifier...")
+            classifier = joblib.load(model_path)
+            client_logger.info(f"Classifier loaded: {type(classifier).__name__}")
+
             app.state.ml_model = {
-                'classifier':   joblib.load(model_path),
-                'preprocessor': joblib.load(preproc_path)
+                'classifier': classifier,
+                'preprocessor': preprocessor,
             }
 
-            # Load thresholds if available, otherwise fall back to defaults
             if os.path.exists(thresholds_path):
-                with open(thresholds_path, 'r') as f:
+                with open(thresholds_path) as f:
                     app.state.ml_model['thresholds'] = json.load(f)
-                client_logger.info(f"Loaded thresholds: {app.state.ml_model['thresholds']}")
-            else :
-                 # sensible defaults from earlier guess
-                 app.state.ml_model['thresholds'] = {
-                    "BLOCK_THRESHOLD": 0.75,
-                    "REVIEW_THRESHOLD": 0.35
-                 }
 
             if os.path.exists(feature_names_path):
-                with open(feature_names_path, 'r') as f:
+                with open(feature_names_path) as f:
                     feature_names = json.load(f)
+                    app.state.ml_model['feature_names'] = feature_names
+            else:
+                feature_names = None
+                app.state.ml_model['feature_names'] = None
 
-            # ── Create SHAP explainer (only for tree models) ── 
-             
-            if app.state.ml_model is not None and feature_names is not None:
-                model = app.state.ml_model['classifier']
-                model_type = type(model).__name__
+            # SHAP — guard this separately so a SHAP failure doesn't kill startup
+            try:
+                client_logger.info("Loading SHAP explainer...")
+                import shap
+                model_type = type(classifier).__name__
                 if model_type in ['RandomForestClassifier', 'XGBClassifier',
-                          'GradientBoostingClassifier', 'ExtraTreesClassifier']: 
-                            import shap
-                            shap_explainer = shap.TreeExplainer(model)
-                            client_logger.info(f'SHAP TreeExplainer loaded for {model_type}')
-                else :
-                     client_logger.warning(
-                           f'SHAP not available for {model_type}; reasons will be empty.'
-                     )
-            # Store everything together
-            if app.state.ml_model is not None:
-                 app.state.ml_model['feature_names'] = feature_names
-                 app.state.ml_model['shap_explainer'] = shap_explainer
+                                'GradientBoostingClassifier', 'ExtraTreesClassifier']:
+                    app.state.ml_model['shap_explainer'] = shap.TreeExplainer(classifier)
+                    client_logger.info(f"SHAP loaded for {model_type}")
+                else:
+                    app.state.ml_model['shap_explainer'] = None
+                    client_logger.warning(f"No SHAP for {model_type}")
+            except Exception as shap_err:
+                client_logger.error(f"SHAP failed (non-fatal): {shap_err}")
+                app.state.ml_model['shap_explainer'] = None
 
-
+            app.state.model_version = "unknown"
             if os.path.exists(model_version_path):
-                 with open(model_version_path, 'r') as f:
-                      app.state.model_version = f.read().strip()
-            else :
-                 app.state.model_version = "unknown"
-                 client_logger.warning("No model_version.txt found – using 'unknown'")
-            client_logger.info('✅ ML model loaded successfully')
+                with open(model_version_path) as f:
+                    app.state.model_version = f.read().strip()
+
+            client_logger.info("✅ ML model loaded successfully")
+
         except Exception as e:
-            client_logger.error(f'Failed to load ML model: {e}')
+            client_logger.error(f"❌ ML model load failed: {e}", exc_info=True)
             app.state.ml_model = None
     else:
-        client_logger.warning('⚠️  ML model not found — using rule-based fallback')
+        client_logger.warning("⚠️ ML model files not found — rule-based fallback")
         app.state.ml_model = None
 
     yield   
