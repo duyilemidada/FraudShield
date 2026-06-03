@@ -72,6 +72,12 @@ async def lifespan(app: FastAPI):
             if os.path.exists(thresholds_path):
                 with open(thresholds_path) as f:
                     app.state.ml_model['thresholds'] = json.load(f)
+            else:
+                # Sensible defaults when no trained thresholds file exists
+                app.state.ml_model['thresholds'] = {
+                    "BLOCK_THRESHOLD": 0.75,
+                    "REVIEW_THRESHOLD": 0.35
+                }
 
             if os.path.exists(feature_names_path):
                 with open(feature_names_path) as f:
