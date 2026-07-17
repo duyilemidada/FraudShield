@@ -1,0 +1,111 @@
+# .github/workflows/ci.yml
+# Runs on every push to main and every pull request to main.
+# Does NOT run the ML training pipeline (too slow for CI — 10 models on CPU).
+# To run the full pipeline, trigger it manually via the GitHub Actions UI
+# or add a workflow_dispatch trigger.
+
+name: FraudShield CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    name: Lint (Python 3.12)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install lint tools
+        run: |
+          pip install ruff
+
+      - name: Ruff lint
+        # ruff is faster than flake8+black+isort combined.
+        # If you prefer the classic stack: pip install black isort flake8
+        # then: black --check . && isort --check . && flake8 .
+        run: ruff check .
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    needs: lint # only run tests if lint passes
+
+    # GitHub Actions provides free Redis and MongoDB via services
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      mongodb:
+        image: mongo:7
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --eval 'db.runCommand({ ping: 1 })'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      # These match your .env defaults so tests run without real credentials
+      SECRET_KEY: 'ci-test-secret-key-not-for-production'
+      MONGODB_URL: 'mongodb://localhost:27017/'
+      REDIS_URL: 'redis://localhost:6379/0'
+      DATABASE_URL: 'sqlite:///./test.db'
+      ALLOWED_ORIGINS: 'http://localhost:5173'
+      ALGORITHM: 'HS256'
+      ACCESS_TOKEN_EXPIRE_MINUTES: '30'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run tests
+        run: |
+          pytest tests/ -v --tb=short
+
+  # ── Optional: Full ML pipeline (manual trigger only) ─────────────────────
+  # Uncomment this job to add a "Run pipeline" button in GitHub Actions UI.
+  # DO NOT run this on every push — training 10 models takes 5–20 minutes
+  # and consumes your free GitHub Actions minutes.
+
+  # train:
+  #   name: Full ML Pipeline (manual)
+  #   runs-on: ubuntu-latest
+  #   if: github.event_name == 'workflow_dispatch'
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v5
+  #       with:
+  #         python-version: "3.12"
+  #     - name: Install dependencies
+  #       run: pip install -r requirements.txt
+  #     - name: Seed data
+  #       run: python -m ml.seed_synthetic_data
+  #     - name: Train
+  #       run: python -m ml.train_fraud_model

@@ -1,0 +1,12 @@
+,transaction_id,amount,currency,customer_email,customer_phone,customer_ip,device_fingerprint,payment_method,transaction_type,merchant_id,created_at,is_fraud,recipient_email
+count,555,555.0,555,555,555,555,555,555,555,555,555,555,25
+unique,555,,1,34,526,524,526,4,3,5,,2,1
+top,txn_177014,,NGN,heidi@test.com,+2348000000000,10.10.10.10,attacker_device_001,transfer,purchase,2,,False,mule.account@suspicious.ng
+freq,1,,555,71,30,30,30,155,216,118,,445,25
+mean,,63036.12827027027,,,,,,,,,2026-07-01 14:43:42.056639+00:00,,
+min,,66.34,,,,,,,,,2026-06-16 18:24:47.017000+00:00,,
+25%,,12844.04,,,,,,,,,2026-06-23 15:14:58.017000+00:00,,
+50%,,28900.77,,,,,,,,,2026-06-30 16:10:43.017000+00:00,,
+75%,,45421.24,,,,,,,,,2026-07-09 04:49:07.017000+00:00,,
+max,,491190.4,,,,,,,,,2026-07-17 14:57:12.017000+00:00,,
+std,,106356.82021348318,,,,,,,,,,,

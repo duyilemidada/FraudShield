@@ -1,5 +1,6 @@
 # routers/predict.py (complete updated version)
-
+from ml.feature_stats import impute_with_stats
+from services.redis_client import TRACKED_CATEGORIES
 from fastapi import APIRouter, Depends, Request, BackgroundTasks, HTTPException
 from schemas.transaction import TransactionCreate, TransactionInDB
 from services.fraud_service import calculate_fraud_score
@@ -16,7 +17,9 @@ from background_tasks import send_fraud_alert_webhook, log_to_analytics
 from services.redis_client import get_velocity_features, record_transaction
 from services.audit_logger import write_audit_log
 import time
+import os
 from pymongo.errors import DuplicateKeyError
+from middleware.validation import validate_transaction_request
 router = APIRouter()
 
 @router.post('/predict', response_model=TransactionInDB)
@@ -25,7 +28,8 @@ async def predict_and_save(
     request: Request,
     background_tasks: BackgroundTasks,
     transaction: TransactionCreate,
-    current_user: User = Depends(get_api_key)
+    current_user: User = Depends(get_api_key),
+    _valid : None = Depends(validate_transaction_request)
 ):
     start_time = time.perf_counter()
 
@@ -41,45 +45,73 @@ async def predict_and_save(
     )
 
     beneficiary = transaction.recipient_email or transaction.customer_email
-    # ── 0. Fetch real‑time velocity features from Redis ──
-    velocity = {}
+    # ── 0. Fetch real-time velocity features from Redis ─────────────────────
+    feature_stats = getattr(request.app.state, 'feature_stats', {})
+
     try:
-        # Use customer_email as both the actor and the beneficiary for now
+        beneficiary = transaction.recipient_email or transaction.customer_email
         velocity = get_velocity_features(
             customer_email=transaction.customer_email,
             device_fp=transaction.device_fingerprint or "",
             beneficiary_email=beneficiary
         )
     except Exception as e:
-        # If Redis is down, log and continue with zeros – don’t break the request
-        client_logger.warning(f"Redis unavailable, using zero velocity features: {e}")
+        client_logger.warning(f"Redis unavailable — using training-mean imputation: {e}")
+        # Build a dict of None values so impute_with_stats fills them with means
         velocity = {
-            "txn_count_5min": 0, "txn_count_1hr": 0, "txn_count_24hr": 0,
-            "amount_sum_24hr": 0, "unique_devices_24hr": 0, "inbound_senders_1hr": 0
+            "txn_count_5min":      None,
+            "txn_count_1hr":       None,
+            "txn_count_24hr":      None,
+            "amount_sum_24hr":     None,
+            "unique_devices_24hr": None,
+            "inbound_senders_1hr": None,
         }
+        for cat in TRACKED_CATEGORIES:
+            velocity[f"category_{cat}_count_14d"] = None
+
 
     anomaly_score = 0.0
     ml_model = request.app.state.ml_model
     anomaly_model = request.app.state.anomaly_model
     X_transformed = None
 
+    # Apply statistical imputation (training-set means replace None values).
+    # For a brand-new customer with no Redis history, this is fine —
+    # all their values are 0, not None, because zcount on a missing key returns 0.
+    # Imputation only kicks in when Redis itself is down.
+    velocity = impute_with_stats(velocity, feature_stats, strategy="mean")
+
+    # ── 1. Build input DataFrame for the preprocessor ────────────────────────
     if ml_model is not None:
         preproc = ml_model["preprocessor"]
-        input_df = pd.DataFrame([{
-            'amount':               transaction.amount,
-            'log_amount':           np.log1p(transaction.amount),
-            'currency':             transaction.currency,
-            'payment_method':       transaction.payment_method,
-            'transaction_type':     transaction.transaction_type,
-            # ── NEW velocity features ─────────────────────
-            'txn_count_5min':       velocity['txn_count_5min'],
-            'txn_count_1hr':        velocity['txn_count_1hr'],
-            'txn_count_24hr':       velocity['txn_count_24hr'],
-            'amount_sum_24hr':      velocity['amount_sum_24hr'],
-            'unique_devices_24hr':  velocity['unique_devices_24hr'],
-            'inbound_senders_1hr':  velocity['inbound_senders_1hr'],
-        }])
-        X_transformed = preproc.transform(input_df)
+
+        # Base features from the transaction
+        row = {
+            'amount':           transaction.amount,
+            'log_amount':       np.log1p(transaction.amount),
+            'currency':         transaction.currency,
+            'payment_method':   transaction.payment_method,
+            'transaction_type': transaction.transaction_type,
+        }
+
+        # Merge in all velocity features (including category counts)
+        row.update(velocity)
+
+        input_df = pd.DataFrame([row])
+
+        # ── Step 1: preprocessor (scaling + one-hot) ─────────────────────────
+        X_prep = preproc.transform(input_df)
+
+        # ── Step 2: feature selector (keep only training-selected features) ──
+        feature_selector = ml_model.get('feature_selector')
+        if feature_selector is not None:
+            try:
+                X_transformed = feature_selector.transform(X_prep)
+            except Exception as e:
+                client_logger.warning(f"Feature selector failed: {e}. Using full features.")
+                X_transformed = X_prep
+        else:
+            X_transformed = X_prep
     else:
         X_transformed = None
 
@@ -231,7 +263,8 @@ async def predict_and_save(
             device_fp=transaction.device_fingerprint or "",
             beneficiary_email=beneficiary,
             txn_id=transaction.transaction_id,
-            amount=transaction.amount
+            amount=transaction.amount,
+            transaction_type=transaction.transaction_type  # NEW
         )
     except Exception as e:
         client_logger.warning(f"Failed to record transaction in Redis: {e}")
@@ -260,6 +293,43 @@ def _describe_policy(thresholds):
         return 'balanced'
     else:
         return 'aggressive'
+
+
+
+
+@router.get('/admin/drift')
+async def check_drift(
+    request: Request,
+    current_user: User = Depends(role_required(Role.ADMIN))
+):
+    """
+    Run a drift check on the last 500 transactions.
+    Compare their feature distributions to the training-set reference.
+    Returns PSI score per feature with GREEN/YELLOW/RED status.
+
+    Run this weekly or after any data pipeline change.
+    PSI > 0.25 on velocity features means your Redis patterns have shifted
+    significantly from what the model was trained on.
+    """
+    import database.mongo as mongo_module
+    from ml.data_drift import compute_drift_report
+    import pandas as pd
+
+    # Fetch recent transactions (last 500)
+    docs = []
+    async for doc in mongo_module.transaction_collection.find(
+        {}, {"_id": 0}
+    ).sort("created_at", -1).limit(500):
+        docs.append(doc)
+
+    if not docs:
+        return {"error": "No transactions found for drift analysis."}
+
+    recent_df = pd.DataFrame(docs)
+    model_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'ml', 'models')
+
+    report = compute_drift_report(recent_df, model_dir)
+    return report
 
 @router.get('/model-info')
 async def model_info(

@@ -11,6 +11,8 @@ import logging
 import os
 import json
 
+from sklearn.feature_selection import SelectFromModel
+from ml.feature_stats import save_feature_stats
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
@@ -31,6 +33,7 @@ from sklearn.metrics import (
     roc_auc_score,
     precision_recall_curve,  
 )
+from defenses.drift_detector import record_and_check_auc
 from sklearn.cluster import KMeans, DBSCAN
 from sklearn.mixture import GaussianMixture, BayesianGaussianMixture
 from sklearn.ensemble import IsolationForest
@@ -46,6 +49,10 @@ import database.mongo as mongo_module   # the same Motor client used by your API
 
 from defenses.training_data_scanner import scan_training_data
 from redteam.detect_label_flip import label_consistency_check
+
+TRACKED_CATEGORIES = [
+    "purchase", "withdrawal", "transfer",
+]
 
 # ── LOGGER ────────────────────────────────────────────────
 logging.basicConfig(
@@ -137,6 +144,57 @@ def build_preprocessing_pipeline(X):
     ])
     return full_pipeline
 
+# ═══════════════════════════════════════════════════════════
+# Feature selection using SelectFromModel
+# ═══════════════════════════════════════════════════════════
+
+def select_features(X_train_prep, y_train, feature_names, threshold="median"):
+    """
+    Use a Random Forest to score feature importances, then keep only features
+    above the threshold importance. This reduces noise and overfitting.
+
+    threshold="median" means: keep features with importance above the median.
+    This typically cuts features roughly in half.
+
+    WHY: The book's hub://feature_selection step does something similar.
+    In sklearn, SelectFromModel wraps any model with feature_importances_
+    and returns a boolean mask of which features to keep.
+
+    Returns:
+        X_selected:      reduced feature array
+        selector:        fitted SelectFromModel (call .transform() at serving time)
+        selected_names:  list of kept feature names (for SHAP)
+    """
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.feature_selection import SelectFromModel
+
+    logger.info(f"Feature selection: starting with {X_train_prep.shape[1]} features...")
+
+    # Use a fast, shallow RF just for feature importance scoring
+    selector_rf = RandomForestClassifier(
+        n_estimators=50,
+        max_depth=5,
+        class_weight='balanced',
+        n_jobs=-1,
+        random_state=42
+    )
+    selector_rf.fit(X_train_prep, np.array(y_train))
+
+    selector = SelectFromModel(selector_rf, threshold=threshold, prefit=True)
+    X_selected = selector.transform(X_train_prep)
+
+    # Get names of selected features
+    if feature_names:
+        mask = selector.get_support()
+        selected_names = [name for name, keep in zip(feature_names, mask) if keep]
+        dropped = [name for name, keep in zip(feature_names, mask) if not keep]
+        logger.info(f"  Kept {len(selected_names)} features, dropped {len(dropped)}")
+        logger.info(f"  Dropped: {dropped[:10]}{'...' if len(dropped)>10 else ''}")
+    else:
+        selected_names = None
+        logger.info(f"  Kept {X_selected.shape[1]} features (names unavailable)")
+
+    return X_selected, selector, selected_names
 
 # ═════════════════════════════════════════════════════════
 # 5. EVALUATE A SINGLE MODEL (confusion matrix + metrics)
@@ -342,21 +400,21 @@ def train_unsupervised_anomaly_detectors(X_train, y_train_np, X_val, y_val):
     """
     results = []
 
-    # ── IsolationForest ───────────────────────────────────────────
+    # ── IsolationForest ──
     logger.info('Training IsolationForest (unsupervised)...')
     fraud_rate = y_train_np.mean() if y_train_np is not None else 0.10
-    iso = IsolationForest(
-        n_estimators=100,
-        contamination=float(fraud_rate),
-        random_state=42,
-        n_jobs=-1
-    )
-    iso.fit(X_train)  # no labels needed
+    iso = IsolationForest(n_estimators=100, contamination=float(fraud_rate),
+                          random_state=42, n_jobs=-1)
+    iso.fit(X_train)
 
-    # Normalise anomaly score to 0-1 (1 = most anomalous)
-    raw_scores = iso.score_samples(X_val)
-    min_s, max_s = raw_scores.min(), raw_scores.max()
-    iso_proba = 1 - (raw_scores - min_s) / (max_s - min_s + 1e-9)
+    # Compute bounds from TRAINING data
+    train_raw = iso.score_samples(X_train)
+    min_s, max_s = train_raw.min(), train_raw.max()
+
+    # Now score validation with those training bounds
+    val_raw = iso.score_samples(X_val)
+    iso_proba = 1 - (val_raw - min_s) / (max_s - min_s + 1e-9)
+    iso_proba = np.clip(iso_proba, 0, 1)
 
     if y_val is not None:
         auc = roc_auc_score(y_val, iso_proba)
@@ -364,15 +422,18 @@ def train_unsupervised_anomaly_detectors(X_train, y_train_np, X_val, y_val):
         results.append({'name': 'IsolationForest', 'auc': auc, 'model': iso,
                          'proba': iso_proba, 'min_s': min_s, 'max_s': max_s})
 
-    
-     # ── Gaussian Mixture Anomaly Detection ───────────────────────
+    # ── GMM ──
     logger.info('Training GaussianMixture (anomaly detection)...')
     gm = GaussianMixture(n_components=5, n_init=10, random_state=42)
     gm.fit(X_train)
 
-    log_dens = gm.score_samples(X_val)
-    min_d, max_d = log_dens.min(), log_dens.max()
-    gmm_proba = 1 - (log_dens - min_d) / (max_d - min_d + 1e-9)
+    # Compute density bounds from TRAINING data
+    train_log_dens = gm.score_samples(X_train)
+    min_d, max_d = train_log_dens.min(), train_log_dens.max()
+
+    val_log_dens = gm.score_samples(X_val)
+    gmm_proba = 1 - (val_log_dens - min_d) / (max_d - min_d + 1e-9)
+    gmm_proba = np.clip(gmm_proba, 0, 1)
 
     if y_val is not None:
         auc_gmm = roc_auc_score(y_val, gmm_proba)
@@ -381,7 +442,6 @@ def train_unsupervised_anomaly_detectors(X_train, y_train_np, X_val, y_val):
                          'proba': gmm_proba, 'min_s': min_d, 'max_s': max_d})
 
     return results
-
 # ═════════════════════════════════════════════════════════
 # 8. TRAIN MULTIPLE MODELS AND PICK THE BEST
 # ═════════════════════════════════════════════════════════
@@ -413,7 +473,7 @@ def train_and_compare(X_train, y_train, X_val, y_val, feature_names=None):
 
     # ── B: LogReg Lasso ──────────────────────────────────────────────
     logger.info('Training LogReg_Lasso...')
-    lr_l1 = LogisticRegression(C=0.1,  solver='liblinear',
+    lr_l1 = LogisticRegression(C=0.1,penalty='l1' , solver='liblinear',
                                 class_weight='balanced', random_state=42)
     lr_l1.fit(X_train, y_train_np)
     logger.info(f'  Lasso zeroed {np.sum(lr_l1.coef_[0]==0)} features.')
@@ -472,20 +532,19 @@ def train_and_compare(X_train, y_train, X_val, y_val, feature_names=None):
     gbm_proba = gbm.predict_proba(X_val)[:, 1]
     results.append(evaluate_model('GradientBoosting', y_val, gbm.predict(X_val), gbm_proba))
 
-    # ── H: XGBoost (NEW) ─────────────────────────────────────────────
+ # ── H: XGBoost ─────────────────────────────────────────────
     logger.info('Training XGBoost...')
-    # Compute the ratio of legitimate to fraudulent transactions
     scale_pos_weight = (y_train_np == 0).sum() / max((y_train_np == 1).sum(), 1)
 
     xgb_clf = xgb.XGBClassifier(
-        n_estimators=200,           # maximum trees; early stopping will reduce
+        n_estimators=200,
         max_depth=4,
         learning_rate=0.05,
         subsample=0.8,
-        colsample_bytree=0.8,      # fraction of features per tree
-        scale_pos_weight=scale_pos_weight,  # handles class imbalance
+        colsample_bytree=0.8,
+        scale_pos_weight=scale_pos_weight,
         eval_metric='auc',
-        early_stopping_rounds=10,          # ← moved here
+        early_stopping_rounds=10,
         random_state=42
     )
     xgb_clf.fit(
@@ -494,9 +553,25 @@ def train_and_compare(X_train, y_train, X_val, y_val, feature_names=None):
         verbose=False
     )
     logger.info(f'  Best iteration: {xgb_clf.best_iteration}')
+
+    # Retrim the model to the optimal number of trees
+    best_iter = xgb_clf.best_iteration
+    if best_iter < 200:
+        xgb_clf_trimmed = xgb.XGBClassifier(
+            n_estimators=best_iter,
+            max_depth=4, learning_rate=0.05, subsample=0.8,
+            colsample_bytree=0.8, scale_pos_weight=scale_pos_weight,
+            eval_metric='auc', random_state=42
+        )
+        xgb_clf_trimmed.fit(X_train, y_train_np)
+        xgb_clf = xgb_clf_trimmed
+        logger.info(f"  Trimmed XGBoost to {best_iter} trees")
+    else:
+        logger.info(f"  No trimming needed (best_iter == 200)")
+
     xgb_proba = xgb_clf.predict_proba(X_val)[:, 1]
     results.append(evaluate_model('XGBoost', y_val, xgb_clf.predict(X_val), xgb_proba))
-
+    
     # ── I: Soft VotingClassifier (existing) ──────────────────────────
     logger.info('Training VotingClassifier (soft)...')
     voting = VotingClassifier(
@@ -608,13 +683,27 @@ def semi_supervised_learning(X_prep, y_full=None, label_fraction=0.1, k=50):
         # In that case, known_mask would be passed in. We'll just use representatives.
         # For simplicity, if y_full is None, we raise an error (you can extend later)
         raise ValueError("For real data, pass in y_full with known indices set and others = -1")
-
+    
+    # Step 4 (new): Determine cluster label by majority vote of known samples
+    cluster_labels = {}
+    for i in range(k):
+        cluster_mask = kmeans.labels_ == i
+        # Get labels of known samples in this cluster
+        known_in_cluster = y_full[cluster_mask & known_mask]
+        if len(known_in_cluster) > 0:
+            # Majority vote (if tie, choose 0 – conservative)
+            majority = int(known_in_cluster.sum() >= len(known_in_cluster) / 2)
+        else :
+            # No known sample in cluster: fall back to representative
+            majority = reps_labels[i]
+        cluster_labels[i] = majority
     # Step 4: Propagate labels inside each cluster
     propagated = np.empty(n, dtype=int)
+    
     for i in range(k):
         cluster_mask = kmeans.labels_ == i
         # The representative's label becomes the label for the whole cluster
-        propagated[cluster_mask] = reps_labels[i]
+        propagated[cluster_mask] = cluster_labels[i]
 
     # Step 5 (optional but recommended): keep only the closest 20% in each cluster
     percentile = 20
@@ -648,11 +737,26 @@ def semi_supervised_learning(X_prep, y_full=None, label_fraction=0.1, k=50):
 # ═════════════════════════════════════════════════════════
 # Feature: Historical velocity simulation for training
 # ═════════════════════════════════════════════════════════
-def add_training_velocity_features(df):
-    df = df.sort_values('created_at').copy()
-    df['created_at'] = pd.to_datetime(df['created_at'])
+# ═══════════════════════════════════════════════════════════
 
-    # Initialise all velocity columns to zero
+def add_training_velocity_features(df):
+    """
+    Compute velocity features from historical data in time order.
+    Uses an O(n²) loop per customer — fast enough for <10,000 rows.
+
+    SKEW AUDIT: Every feature here must be computed identically in redis_client.py.
+    The comments mark how each feature maps to its Redis equivalent.
+    """
+    if len(df) > 10_000:
+        logger.warning(
+            f"add_training_velocity_features: {len(df)} rows — O(n²) loop will be slow. "
+            f"Consider a merge-asof based approach at this scale."
+        )
+
+    df = df.sort_values('created_at').copy()
+    df['created_at'] = pd.to_datetime(df['created_at'], utc=True, errors='coerce')
+
+    # Initialise all velocity columns to 0
     df['txn_count_5min']      = 0
     df['txn_count_1hr']       = 0
     df['txn_count_24hr']      = 0
@@ -660,90 +764,71 @@ def add_training_velocity_features(df):
     df['unique_devices_24hr'] = 0
     df['inbound_senders_1hr'] = 0
 
-    # ── Part 1: customer-level features ──────────────────────────
-    # (txn counts, amount sum, unique devices — same as before)
+    # Initialise category columns
+    # Redis equivalent: cust:{email}:cat:{category} sorted set, 14d window
+    for cat in TRACKED_CATEGORIES:
+        df[f'category_{cat}_count_14d'] = 0
+
+    # ── Part 1: Customer-level features ──────────────────────────────────────
     for email, group in df.groupby('customer_email'):
         if len(group) <= 1:
             continue
         group = group.sort_values('created_at')
+        # Convert to unix seconds for arithmetic
         times = group['created_at'].astype('int64') // 1_000_000_000
 
         for i in range(1, len(group)):
-            current_time = times.iloc[i]
-            prev_times   = times.iloc[:i]
+            current_ts  = times.iloc[i]
+            prev_times  = times.iloc[:i]          # strictly before current txn
 
-            count_5min  = ((current_time - prev_times) <= 300).sum()
-            count_1hr   = ((current_time - prev_times) <= 3600).sum()
-            count_24hr  = ((current_time - prev_times) <= 86400).sum()
+            # Count windows — Redis: zcount key (now-window) now
+            df.at[group.index[i], 'txn_count_5min']  = ((current_ts - prev_times) <= 300).sum()
+            df.at[group.index[i], 'txn_count_1hr']   = ((current_ts - prev_times) <= 3_600).sum()
+            df.at[group.index[i], 'txn_count_24hr']  = ((current_ts - prev_times) <= 86_400).sum()
 
-            prev_amounts = group['amount'].iloc[:i]
-            in_24hr_mask = (current_time - prev_times) <= 86400
-            amount_sum   = prev_amounts[in_24hr_mask].sum()
+            # Amount sum — Redis: zrangebyscore amounts (now-86400) now → sum values
+            in_24h = (current_ts - prev_times) <= 86_400
+            df.at[group.index[i], 'amount_sum_24hr'] = group['amount'].iloc[:i][in_24h].sum()
 
-            prev_devices   = group['device_fingerprint'].iloc[:i]
-            unique_devices = prev_devices[in_24hr_mask].nunique()
+            # Unique devices — Redis: zrangebyscore devices (now-86400) now → len(set())
+            # NOTE: we now count unique device values in the 24h window — matching
+            # the FIXED redis_client.py which uses a sorted set + zrangebyscore.
+            if 'device_fingerprint' in group.columns:
+                devs_in_24h = group['device_fingerprint'].iloc[:i][in_24h]
+                df.at[group.index[i], 'unique_devices_24hr'] = devs_in_24h.nunique()
 
-            idx = group.index[i]
-            df.at[idx, 'txn_count_5min']      = count_5min
-            df.at[idx, 'txn_count_1hr']       = count_1hr
-            df.at[idx, 'txn_count_24hr']      = count_24hr
-            df.at[idx, 'amount_sum_24hr']     = amount_sum
-            df.at[idx, 'unique_devices_24hr'] = unique_devices
+            # Category counts — Redis: zcount cust:email:cat:X (now-14d) now
+            in_14d = (current_ts - prev_times) <= 1_209_600
+            if 'transaction_type' in group.columns:
+                prev_types = group['transaction_type'].iloc[:i]
+                for cat in TRACKED_CATEGORIES:
+                    cat_col = f'category_{cat}_count_14d'
+                    count = ((prev_types == cat) & in_14d).sum()
+                    df.at[group.index[i], cat_col] = int(count)
 
-    # ── Part 2: beneficiary-level feature ────────────────────────
-    # inbound_senders_1hr: for each transaction, how many DIFFERENT
-    # senders sent money to this recipient in the hour before this txn?
-    #
-    # This requires recipient_email to exist in the data.
-    # If it does not exist (old data, no beneficiary info), stays zero.
-
-    if 'recipient_email' not in df.columns:
-        logger.info("No recipient_email column — inbound_senders_1hr stays zero.")
+    # ── Part 2: Beneficiary-level feature (mule detection) ───────────────────
+    if 'recipient_email' not in df.columns or not df['recipient_email'].notna().any():
+        logger.info("No recipient_email — inbound_senders_1hr stays 0.")
         return df
 
-    # Work on rows that have a recipient
+    times_sec = df['created_at'].astype('int64') // 1_000_000_000
     has_recipient = df['recipient_email'].notna() & (df['recipient_email'] != '')
-
-    if not has_recipient.any():
-        logger.info("recipient_email column exists but is empty — inbound_senders_1hr stays zero.")
-        return df
-
-    # For each transaction that has a recipient,
-    # look back 1 hour and count unique senders to that recipient
-    times_seconds = df['created_at'].astype('int64') // 1_000_000_000
 
     for idx, row in df[has_recipient].iterrows():
         recipient    = row['recipient_email']
-        current_time = times_seconds[idx]
-        window_start = current_time - 3600
+        current_ts   = times_sec[idx]
+        window_start = current_ts - 3_600
 
-        # Find all PREVIOUS transactions going to this same recipient
-        # within the 1-hour window, BEFORE the current transaction
         mask = (
             (df['recipient_email'] == recipient) &
-            (times_seconds < current_time) &          # strictly before
-            (times_seconds >= window_start)            # within 1 hour
+            (times_sec < current_ts) &          # strictly before
+            (times_sec >= window_start)
         )
+        df.at[idx, 'inbound_senders_1hr'] = df.loc[mask, 'customer_email'].nunique()
 
-        # Count unique senders in that window
-        unique_senders = df.loc[mask, 'customer_email'].nunique()
-        df.at[idx, 'inbound_senders_1hr'] = unique_senders
-
-    logger.info("Training velocity features (including inbound_senders_1hr) added.")
+    logger.info("Velocity features (including categories) computed.")
     return df
-""" 
-Issue  — add_training_velocity_features will be very slow on large datasets (train_fraud_model.py)
-The beneficiary loop in Part 2:
-pythonfor idx, row in df[has_recipient].iterrows():
-    mask = (
-        (df['recipient_email'] == recipient) &
-        (times_seconds < current_time) &
-        (times_seconds >= window_start)
-    )
-    unique_senders = df.loc[mask, 'customer_email'].nunique()
-This is O(n²) — for every transaction with a recipient, it scans the entire DataFrame. With 500 rows this is fine. With 50,000 rows this will take minutes. Not a bug for now but it will hurt when you scale.
-The fix when you hit that scale is to use a merge-based approach or sort + binary search. For now add a comment warning about this.
-"""
+
 # ═════════════════════════════════════════════════════════
 # 9. MAIN PIPELINE
 # ═════════════════════════════════════════════════════════
@@ -751,120 +836,142 @@ def main():
     # 1. Load
     df = load_data()
     if df.empty:
-        logger.error("No data found! Run: python -m ml.seed_synthetic_data")
+        logger.error("No data found. Run: python -m ml.seed_synthetic_data")
         return
-    
+
     model_dir = os.path.join(os.path.dirname(__file__), 'models')
     os.makedirs(model_dir, exist_ok=True)
 
-    df = add_training_velocity_features(df)
+    # ── 1b. Quarantine defense ────────────────────────────────────────────────
+    if '_quarantined' in df.columns:
+        before = len(df)
+        df = df[df['_quarantined'] != True]
+        logger.info(f"Removed {before - len(df)} quarantined rows")
 
-    # 2. Feature engineering (log transform)
-    df = engineer_features(df)
+    # ── 2. Temporal split (no future leakage) ─────────────────────────────────
+    df = df.sort_values('created_at')
+    cutoff = int(len(df) * 0.8)
+    train_df = df.iloc[:cutoff].copy()
+    val_df   = df.iloc[cutoff:].copy()
+    logger.info(f"Train: {len(train_df)} rows, Val: {len(val_df)} rows")
 
-    # 3. Split features and labels
-    X, y = split_features_labels(df)
-    logger.info(f"Fraud rate: {y.mean():.1%}")
+    # ── 3. Velocity features (in time order) ──────────────────────────────────
+    combined = pd.concat([train_df, val_df], axis=0)
+    combined = add_training_velocity_features(combined)
+    train_df = combined.iloc[:len(train_df)]
+    val_df   = combined.iloc[len(train_df):]
 
-    # 4. Train/validation split (stratified to keep fraud ratio)
-    X_train, X_val, y_train, y_val = train_test_split(
-        X, y, test_size=0.2, random_state=42, stratify=y
-    )
-    logger.info(f"Training samples: {len(X_train)}, Validation samples: {len(X_val)}")
+    # ── 4. Feature engineering ────────────────────────────────────────────────
+    train_df = engineer_features(train_df)
+    val_df   = engineer_features(val_df)
 
-    # 5. Build preprocessing pipeline and fit on training data
+    # ── 5. Split X/y ──────────────────────────────────────────────────────────
+    X_train, y_train = split_features_labels(train_df)
+    X_val,   y_val   = split_features_labels(val_df)
+    logger.info(f"Fraud rate in training: {y_train.mean():.1%}")
+    logger.info(f"Features: {list(X_train.columns)}")
+
+    # ── 6. Save feature stats for serving-time imputation ────────────────────
+    # Implements the book's impute_policy={"*": "$mean"}
+    from ml.feature_stats import save_feature_stats
+    save_feature_stats(X_train, model_dir)
+
+    # ── 7. Save reference distribution for drift detection ───────────────────
+    from ml.data_drift import save_reference_distribution
+    save_reference_distribution(X_train, model_dir)
+
+    # ── 8. Preprocessing pipeline ─────────────────────────────────────────────
     preprocessor = build_preprocessing_pipeline(X_train)
     X_train_prep = preprocessor.fit_transform(X_train)
-    X_val_prep   = preprocessor.transform(X_val)          # NEVER filter this
+    X_val_prep   = preprocessor.transform(X_val)
 
+    # Build feature names for SHAP and feature selection
     try:
         num_cols = X_train.select_dtypes(include=[np.number]).columns.tolist()
-        cat_cols = X_train.select_dtypes(include=['object']).columns.tolist()
+        cat_cols = X_train.select_dtypes(include=['object', 'string']).columns.tolist()
         ohe = preprocessor.named_transformers_['cat']['onehot']
         cat_names = ohe.get_feature_names_out(cat_cols).tolist()
         feature_names = num_cols + cat_names
-    except Exception:
+    except Exception as e:
+        logger.warning(f"Could not extract feature names: {e}")
         feature_names = None
 
-    # ── 5b. Visualise original clusters (before cleaning) ──
+    # ── 9. Cluster visualisation (for EDA insight) ───────────────────────────
+    y_train_np = np.array(y_train)
     visualise_fraud_cluster(X_train_prep, y_train, method='pca')
 
-    # ── 5c. Apply training‑data defenses ──────────────────
-    # 1. Outlier scan
-    outlier_idx = scan_training_data(X_train_prep, contamination=0.05)
-
-    # 2. Label consistency check
+    # ── 10. Training data defenses ────────────────────────────────────────────
+    outlier_idx    = scan_training_data(X_train_prep, contamination=0.05)
     label_flip_idx = label_consistency_check(X_train_prep, y_train, k=10, threshold=0.80)
-
-    # Combine and deduplicate
     suspect_indices = np.unique(np.concatenate([outlier_idx, label_flip_idx]))
-    logger.info(f"Total suspect samples removed: {len(suspect_indices)}")
-
-    # Create clean training arrays
+    logger.info(f"Removing {len(suspect_indices)} suspect samples")
     X_clean = np.delete(X_train_prep, suspect_indices, axis=0)
-    y_clean = np.delete(np.array(y_train), suspect_indices)
+    y_clean = np.delete(y_train_np, suspect_indices)
 
-    # ── 5d. Visualise clusters after cleaning ────────────
-    visualise_fraud_cluster(X_clean, y_clean, method='pca')
-
-    # ── 6. Semi‑supervised experiment (on CLEAN data) ────
-    y_clean_np = np.array(y_clean)
-    propagated_labels, train_mask = semi_supervised_learning(
-        X_clean,
-        y_full=y_clean_np,
-        label_fraction=0.1,
-        k=min(50, len(X_clean))   # avoid k > n
+    # ── 11. Feature selection ─────────────────────────────────────────────────
+    X_clean_selected, feature_selector, selected_names = select_features(
+        X_clean, y_clean, feature_names, threshold="median"
     )
+    X_val_selected = feature_selector.transform(X_val_prep)
+    joblib.dump(feature_selector, os.path.join(model_dir, 'feature_selector.pkl'))
 
+    # ── 12. Semi-supervised experiment ───────────────────────────────────────
+    propagated_labels, train_mask = semi_supervised_learning(
+        X_clean_selected,
+        y_full=y_clean,
+        label_fraction=0.1,
+        k=min(50, len(X_clean_selected))
+    )
     lr_semi = LogisticRegression(class_weight='balanced', max_iter=1000)
-    lr_semi.fit(X_clean[train_mask], propagated_labels)
-    semi_proba = lr_semi.predict_proba(X_val_prep)[:, 1]
-    semi_auc = roc_auc_score(y_val, semi_proba)
+    lr_semi.fit(X_clean_selected[train_mask], propagated_labels)
+    semi_auc = roc_auc_score(y_val, lr_semi.predict_proba(X_val_selected)[:, 1])
     logger.info(f"Semi-supervised LogReg AUC (10% labels): {semi_auc:.3f}")
 
-    # ── 7. Train all supervised models (on CLEAN data) ──
+    # ── 13. Train supervised models ───────────────────────────────────────────
     best_model, best_proba = train_and_compare(
-        X_clean, y_clean, X_val_prep, y_val,
-        feature_names=feature_names
+        X_clean_selected, y_clean, X_val_selected, y_val,
+        feature_names=selected_names
     )
+    best_auc = roc_auc_score(y_val, best_proba)
 
-    # ── 8. Train unsupervised anomaly detectors (on CLEAN data) ──
+    # ── 14. AUC drift check ───────────────────────────────────────────────────
+    alarm = record_and_check_auc(best_auc)
+    if alarm:
+        logger.warning("🚨 AUC drift detected — possible incremental poisoning!")
+
+    # ── 15. Unsupervised anomaly detectors ────────────────────────────────────
     unsupervised_results = train_unsupervised_anomaly_detectors(
-        X_clean, y_clean_np, X_val_prep, np.array(y_val)
+        X_clean_selected, y_clean, X_val_selected, np.array(y_val)
     )
-
-    # ── 9. Save anomaly model ───────────────────────────
     if unsupervised_results:
         best_unsup = max(unsupervised_results, key=lambda r: r['auc'])
-        logger.info(f'Best unsupervised: {best_unsup["name"]} AUC={best_unsup["auc"]:.3f}')
         joblib.dump(best_unsup['model'], os.path.join(model_dir, 'anomaly_model.pkl'))
         with open(os.path.join(model_dir, 'anomaly_bounds.json'), 'w') as f:
             json.dump({'min_s': best_unsup['min_s'], 'max_s': best_unsup['max_s'],
                        'model_type': best_unsup['name']}, f)
-        logger.info('Anomaly model saved.')
 
-    # ── 10. Learning curves (on CLEAN data) ─────────────
-    skip_learning_curves = isinstance(best_model, (VotingClassifier, StackingClassifier, xgb.XGBClassifier))
-    if skip_learning_curves:
-        logger.info('Skipping learning curves for ensemble model (too slow to clone).')
-    else:
-        plot_learning_curves(best_model, X_clean, y_clean, X_val_prep, y_val)
-
-    # ── 11. Save model, preprocessor, thresholds ─────────
+    # ── 16. Save model and supporting files ───────────────────────────────────
     joblib.dump(best_model,   os.path.join(model_dir, 'fraud_model.pkl'))
     joblib.dump(preprocessor, os.path.join(model_dir, 'preprocessor.pkl'))
-    logger.info("✅ Model and preprocessor saved.")
 
     thresholds = find_optimal_thresholds(y_val, best_proba)
     with open(os.path.join(model_dir, 'thresholds.json'), 'w') as f:
         json.dump(thresholds, f, indent=2)
-    logger.info(f"Thresholds saved: {thresholds}")
 
-    # Save feature names for SHAP explainability
-    if feature_names:
+    if selected_names:
         with open(os.path.join(model_dir, 'feature_names.json'), 'w') as f:
-            json.dump(feature_names, f)
-        logger.info("Feature names saved for SHAP.")
+            json.dump(selected_names, f)
+
+    from datetime import datetime, timezone
+    version_str = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
+    with open(os.path.join(model_dir, 'model_version.txt'), 'w') as f:
+        f.write(version_str)
+
+    logger.info(f"✅ Training complete. Model version: {version_str}")
+    logger.info(f"   AUC: {best_auc:.3f}")
+    logger.info(f"   Block threshold: {thresholds['BLOCK_THRESHOLD']:.4f}")
+    logger.info(f"   Review threshold: {thresholds['REVIEW_THRESHOLD']:.4f}")
+
 
 if __name__ == '__main__':
     main()
