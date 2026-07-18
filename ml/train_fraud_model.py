@@ -325,18 +325,14 @@ def find_optimal_thresholds(y_true, y_proba,
         )
 
     # ── Safety: review must be lower than block ──
-    if review_thresh >= block_thresh:
-        # Force a reasonable gap
-        review_thresh = block_thresh * 0.5
-        logger.info(
-            f"Adjusted review threshold to {review_thresh:.4f} "
-            f"(half of block) to maintain decision hierarchy."
-        )
+    review_thresh = max(review_thresh, 0.10)
 
-    logger.info(f"Block  threshold: {block_thresh:.4f} "
-                f"(precision ≈ {target_precision:.0%})")
-    logger.info(f"Review threshold: {review_thresh:.4f} "
-                f"(recall ≈ {target_recall:.0%})")
+    # Re-check safety gap after flooring
+    if review_thresh >= block_thresh:
+        review_thresh = block_thresh * 0.5
+
+    logger.info(f"Block  threshold: {block_thresh:.4f}")
+    logger.info(f"Review threshold: {review_thresh:.4f}")
     return {
         "BLOCK_THRESHOLD": block_thresh,
         "REVIEW_THRESHOLD": review_thresh
@@ -473,7 +469,7 @@ def train_and_compare(X_train, y_train, X_val, y_val, feature_names=None):
 
     # ── B: LogReg Lasso ──────────────────────────────────────────────
     logger.info('Training LogReg_Lasso...')
-    lr_l1 = LogisticRegression(C=0.1,penalty='l1' , solver='liblinear',
+    lr_l1 = LogisticRegression(C=0.1,l1_ratio=1.0 , solver='liblinear',
                                 class_weight='balanced', random_state=42)
     lr_l1.fit(X_train, y_train_np)
     logger.info(f'  Lasso zeroed {np.sum(lr_l1.coef_[0]==0)} features.')
