@@ -1,1 +1,1 @@
-{"min_s": -0.6303760867290682, "max_s": -0.41841397998364543, "model_type": "IsolationForest"}
+{"min_s": 24.449150542049075, "max_s": 64.37862246559821, "model_type": "GMM_Anomaly"}

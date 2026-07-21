@@ -905,11 +905,19 @@ def main():
     y_clean = np.delete(y_train_np, suspect_indices)
 
     # ── 11. Feature selection ─────────────────────────────────────────────────
-    X_clean_selected, feature_selector, selected_names = select_features(
-        X_clean, y_clean, feature_names, threshold="median"
-    )
-    X_val_selected = feature_selector.transform(X_val_prep)
-    joblib.dump(feature_selector, os.path.join(model_dir, 'feature_selector.pkl'))
+    #X_clean_selected, feature_selector, selected_names = select_features(
+    #     X_clean, y_clean, feature_names, threshold="median"
+    # )
+    #X_val_selected = feature_selector.transform(X_val_prep)
+    #joblib.dump(feature_selector, os.path.join(model_dir, 'feature_selector.pkl'))
+    # ── 11. Feature selection ─────────────────────────────────────────────────
+    # Temporarily disabled: on small feature sets (< 20 features) the median
+    # threshold drops crucial categorical signals (payment_method, transaction_type).
+    # Re-enable when feature count exceeds 50.
+
+    X_clean_selected = X_clean
+    X_val_selected   = X_val_prep
+    selected_names   = feature_names   # keep all features for SHAP
 
     # ── 12. Semi-supervised experiment ───────────────────────────────────────
     propagated_labels, train_mask = semi_supervised_learning(

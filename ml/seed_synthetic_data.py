@@ -168,4 +168,4 @@ async def seed(num_transactions: int = 500, reset: bool = False):
 if __name__ == "__main__":
     import sys
     reset_flag = "--reset" in sys.argv
-    asyncio.run(seed(500, reset=reset_flag))
+    asyncio.run(seed(1500, reset=reset_flag))

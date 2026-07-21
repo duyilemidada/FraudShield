@@ -103,7 +103,7 @@ def get_velocity_features(
     # Parse amount sum from list of (member, score) tuples
     # member = the amount string, score = timestamp (which we ignore here)
     amount_entries = results[3]
-    amount_sum_24hr = sum(float(amt) for amt, _ in amount_entries)
+    amount_sum_24hr = sum(float(amt.split(':')[0]) for amt, _ in amount_entries)
 
     # Unique devices: count distinct values in the 14d window
     device_list = results[4]  # list of device_fp strings
